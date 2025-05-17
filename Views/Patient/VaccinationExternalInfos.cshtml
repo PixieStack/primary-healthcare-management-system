@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine Information</title>
+    <style>
+        /* Existing styles for body and .vaccine go here */
+
+        .vaccine {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+        .vaccine-info {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .vaccine h2 {
+            color: #333;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .pdf-link {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+            .pdf-link:hover {
+                background-color: #0056b3;
+            }
+
+        .vaccine-image {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+            .vaccine-image img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vaccine Information</h1>
+    </div>
+
+    <!-- COVID-19 Vaccine (Pfizer-BioNTech) -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/coronavirus.png" alt="COVID-19 (Pfizer-BioNTech)">
+        </div>
+        <div class="vaccine-info">
+            <h2>COVID-19 Vaccine (Pfizer-BioNTech)</h2>
+            <p>The Pfizer-BioNTech COVID-19 vaccine is one of the vaccines developed to protect against COVID-19.</p>
+            <a href="https://www.who.int/health-topics/coronavirus" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Influenza (Flu) Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/Influenza.png" alt="Influenza (Flu) Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Influenza (Flu) Vaccine</h2>
+            <p>The influenza (flu) vaccine is recommended annually to protect against seasonal influenza.</p>
+            <a href="https://www.nfid.org/infectious-disease/flu-influenza/" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Tetanus, Diphtheria, and Pertussis (Tdap) Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/tdap.png" alt="Tdap Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Tetanus, Diphtheria, and Pertussis (Tdap) Vaccine</h2>
+            <p>The Tdap vaccine is usually given every 10 years to protect against tetanus, diphtheria, and pertussis.</p>
+            <a href="https://www.aboutwhoopingcough.com/tdap-vaccine/tdap-and-dtap/" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Measles, Mumps, and Rubella (MMR) Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/MMR.png" alt="MMR Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Measles, Mumps, and Rubella (MMR) Vaccine</h2>
+            <p>The MMR vaccine is administered if an individual has not been previously vaccinated against measles, mumps, and rubella.</p>
+            <a href="https://www.immunise.health.nz/about-vaccines/nz-immunisations/measles-mumps-and-rubella-mmr-vaccine/" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Varicella (Chickenpox) Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/Varicella.png" alt="Varicella Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Varicella (Chickenpox) Vaccine</h2>
+            <p>The varicella vaccine is administered if an individual has not been previously vaccinated against chickenpox.</p>
+            <a href="https://www.who.int/teams/health-product-policy-and-standards/standards-and-specifications/vaccine-standardization/varicella" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Hepatitis A Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/hepatitis-a.png" alt="Hepatitis A Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Hepatitis A Vaccine</h2>
+            <p>The hepatitis A vaccine provides protection against hepatitis A infection.</p>
+            <a href="https://www.webmd.com/hepatitis/digestive-diseases-hepatitis-a" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Hepatitis B Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/hepatitis-b.png" alt="Hepatitis B Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Hepatitis B Vaccine</h2>
+            <p>The hepatitis B vaccine provides protection against hepatitis B infection.</p>
+            <a href="https://www.webmd.com/hepatitis/digestive-diseases-hepatitis-b" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Human Papillomavirus (HPV) Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/hpv.png" alt="HPV Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Human Papillomavirus (HPV) Vaccine</h2>
+            <p>The HPV vaccine is recommended for certain age groups to protect against HPV-related diseases.</p>
+            <a href="https://www.womenshealth.gov/a-z-topics/human-papillomavirus" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Pneumococcal Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/pneumonia.png" alt="Pneumococcal Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Pneumococcal Vaccine</h2>
+            <p>The pneumococcal vaccine is recommended for adults over 65 and certain high-risk groups to prevent pneumococcal diseases.</p>
+            <a href="https://www.who.int/teams/health-product-policy-and-standards/standards-and-specifications/vaccine-standardization/pneumococcal-disease" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Shingles (Herpes Zoster) Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/shingles.png" alt="Shingles (Herpes Zoster) Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Shingles (Herpes Zoster) Vaccine</h2>
+            <p>The shingles vaccine, such as Shingrix, is used to prevent shingles (herpes zoster) in older adults.</p>
+            <a href="https://www.webmd.com/skin-problems-and-treatments/shingles/shingles-skin" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Meningococcal Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/meningococcal.png" alt="Meningococcal Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Meningococcal Vaccine</h2>
+            <p>The meningococcal vaccine is recommended for certain high-risk groups to protect against meningococcal disease.</p>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/meningitis" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Polio Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/polio.png" alt="Polio Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Polio Vaccine</h2>
+            <p>The polio vaccine is administered if an individual has not been previously vaccinated against polio.</p>
+            <a href="https://www.who.int/health-topics/poliomyelitis" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Yellow Fever Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/yellow-fever.png" alt="Yellow Fever Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Yellow Fever Vaccine</h2>
+            <p>The yellow fever vaccine is required or recommended for travel to certain regions with a risk of yellow fever transmission.</p>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/yellow-fever" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Typhoid Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/Typhoid.png" alt="Typhoid Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Typhoid Vaccine</h2>
+            <p>The typhoid vaccine is recommended for travel to certain regions where typhoid fever is a concern.</p>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/typhoid" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+    <!-- Japanese Encephalitis Vaccine -->
+    <div class="vaccine">
+        <div class="vaccine-image">
+            <img src="~/images/vaccine/japanese-encephalitis.png" alt="Japanese Encephalitis Vaccine">
+        </div>
+        <div class="vaccine-info">
+            <h2>Japanese Encephalitis Vaccine</h2>
+            <p>The Japanese encephalitis vaccine is recommended for travel to regions where Japanese encephalitis is a risk.</p>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/japanese-encephalitis" class="pdf-link" target="_blank">Go To Site</a>
+        </div>
+    </div>
+
+</body>
+</html>

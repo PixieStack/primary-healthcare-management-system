@@ -1,0 +1,142 @@
+﻿@model CodeMed.Models.PrenatalCounsellorReferral;
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<title>Prenatal Mental Health Referral Form</title>
+	<style>
+		.blank-line {
+			margin-bottom: 200px; /* Adjust the value as needed */
+		}
+
+		.centered-button-container {
+			isplay: flex;
+			justify-content: center;
+		}
+
+		button.custom-button {
+			width: 200px; /* Set the width to 200px */
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #3e8e41;
+			}
+
+		div {
+			margin-bottom: 10px;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+			.button-container button {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f4f4f4;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+		}
+
+		.container {
+			max-width: 600px;
+			padding: 20px;
+			background-color: white;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		h1, h2 {
+			text-align: center;
+		}
+
+		label {
+			display: block;
+			margin-top: 10px;
+			font-weight: bold;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="tel"],
+		input[type="date"],
+		textarea,
+		select {
+			width: 100%;
+			padding: 8px;
+			margin-top: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+
+		button {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-top: 10px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #0056b3;
+			}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Prenatal Mental Health Referral Form</h1>
+		<form id="referral-form">
+			<label for="referrer_name">Referrer's Name:</label>
+			<input type="text" id="referrer_name" name="referrer_name" required>
+
+			<label for="patient_name">Patient's Name:</label>
+			<input type="text" id="patient_name" name="patient_name" required>
+
+			<label for="referral_date">Referral Date:</label>
+			<input type="date" id="referral_date" asp-for="ReferralDate" name="referral_date" required>
+
+			<label for="referring_hospital">Referring Hospital:</label>
+			<input type="text" id="referring_hospital" name="referring_hospital" required>
+
+			<label for="contact_info">Contact Information:</label>
+			<input type="tel" id="contact_info" name="contact_info" required>
+
+			<label for="notes">Notes:</label>
+			<textarea id="notes" name="notes" rows="4" required></textarea>
+
+			<button type="submit">Submit Referral</button>
+		</form>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>

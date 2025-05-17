@@ -1,0 +1,49 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+        <p>
+            This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
+            Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
+        </p>
+    }
+    else
+    {
+        <p>
+
+            Hello Prospective User,<br><br>
+
+            We appreciate your selection of CodeMed for your healthcare requirements. Your pathway to discovering a realm of opportunities is just one step ahead.<br><br>
+
+            To ensure the security of your account and provide you with uninterrupted access to our offered services, we kindly request your assistance in confirming your email address. This verification process is an essential part of our commitment to safeguarding your information and ensuring a seamless user experience.<br><br>
+
+            <strong>Why Confirm Your Email?</strong><br>
+            Verifying your email address enables us to:<br><br>
+
+            1. <strong>Protect Your Account:</strong> By confirming your email, you add an extra layer of security to your account, preventing unauthorized access.<br>
+            2. <strong>Receive Important Updates:</strong> Stay informed about new features, enhancements, and important announcements tailored to enhance your experience.<br>
+            3. <strong>Reset Your Password:</strong> In case you ever forget your password, a confirmed email address will help you recover your account with ease.<br><br>
+
+            <strong>How to Confirm:</strong><br>
+            1. <strong>Check Your Inbox:</strong> A confirmation email has been sent to the address you provided during registration. If you can't find it in your inbox, please check your spam or junk folders.<br>
+            2. <strong>Click the Confirmation Link:</strong> Inside the email, you will find a unique confirmation link. Click on it to verify your email address. Please note that the link is time-sensitive and will expire after a certain period for security reasons.<br>
+            3. <strong>Stay Connected:</strong> Once you've confirmed your email, you'll be all set to explore CodeMed and its exceptional features. Don't miss out on the incredible opportunities that await you.<br><br>
+
+            Should you encounter any difficulties during the verification process or have any questions, our dedicated support team is always ready to assist you. Simply reach out to us at codemed.group.corp@outlook.com or +27 78 413 8225.<br><br>
+
+            We appreciate your time and trust in CodeMed]. Your confirmation will not only elevate your experience but also contribute to a more secure and seamless environment for all our valued users.<br><br>
+
+            Thank you for joining us on this exciting journey. We look forward to serving you!<br><br>
+
+            CodeMed Primary Health Care System<br>
+        </p>
+    }
+
+}
+

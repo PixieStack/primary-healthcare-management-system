@@ -1,0 +1,285 @@
+﻿@model CodeMed.Models.ContactUs
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" rel="stylesheet">
+
+	<style>
+		.message-box {
+			margin: 100px auto;
+			width: 800px;
+			border-radius: 10px;
+			padding: 40px;
+			box-shadow: 0px 0px 10px #888888;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+		}
+
+		h1 {
+			text-align: center;
+		}
+
+		label {
+			display: inline-block;
+			margin-bottom: 10px;
+		}
+
+		.centered-button-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		button.custom-button {
+			width: 200px; /* Set the width to 200px */
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+			.button-container button {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+		input[type=text], input[type=email], input[type=password] {
+			padding: 5px;
+			margin-bottom: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+		}
+
+		input[type=radio] {
+			margin-right: 10px;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #3e8e41;
+			}
+
+		select {
+			padding: 8px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		label {
+			font-weight: bold;
+			margin-right: 10px;
+		}
+
+		div {
+			margin-bottom: 10px;
+		}
+	</style>
+</head> 
+<body>
+	<h1>Leave us a message</h1>
+	<div class="message-box">
+
+		<a href="#" class="chat">
+			<i class="bi bi-chat-dots-fill" style="color: orangered; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+			<span style="font-weight: bold;">&nbsp&nbspCHAT</span>
+		</a>
+		<a href="sms:+27784138225" class="msg">
+			<i class="bi bi-chat-left-dots-fill" style="color: deepskyblue; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+			<span style="font-weight: bold;">&nbsp&nbspSMS</span>
+		</a>
+
+		<a href="mailto:CodeMed.Group.Corp@outlook.com" class="mail">
+			<i class="bi bi-envelope-fill" style="color: dodgerblue; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+			<span style="font-weight: bold;">&nbsp&nbspMAIL</span>
+		</a>
+
+		<a href="tel:+27784138225" class="call">
+			<i class="bi bi-telephone-forward-fill" style="color: darkgreen; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+			<span style="font-weight: bold;">&nbsp&nbspCALL</span>
+		</a>
+
+		<a href="whatsapp://send?phone=+27784138225" class="whatsapp">
+			<i class="bi bi-whatsapp" style="color: green; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+			<span style="font-weight: bold;">&nbsp&nbspWHATSAPP</span>
+		</a>
+
+
+		<div class="message-form">
+
+			<form asp-controller="ContactUs" asp-action="Index" method="post">
+				<label asp-for="Name">Name:</label>
+				<input asp-for="Name" type="text" style="background-color: white; width: 720px; color: black;" class="form-control" required>
+
+				<label asp-for="Surname">Surname:</label>
+				<input asp-for="Surname" type="text" style="background-color: white; width: 720px; color: black;" class="form-control" required>
+
+				<label asp-for="PhoneNumber">Phone Number:</label>
+				<input asp-for="PhoneNumber" type="tel" pattern="^(0|\+27)[0-9]{9}$" style="background-color: white; width: 720px; color: black;" class="form-control" required>
+
+				<label asp-for="Email">Email Address:</label>
+				<input asp-for="Email" type="email" style="background-color: white; width: 720px; color: black;" class="form-control" required>
+
+				<label asp-for="Message">Message:</label>
+				<textarea asp-for="Message" rows="10" cols="50" style="background-color: white; width: 720px; height: 300px; color: black; font-size: 16px;" class="form-control" required></textarea>
+
+				<br />
+				<button type="submit" class="btn btn-primary" style="background-color: dodgerblue; border: none; border-radius: 5px; color: white; font-size: 1.25em; padding: 0.5em 1em; box-shadow: 2px 2px 2px rgba(0,0,0,0.4); text-transform: uppercase; transform: translateZ(0);">Send</button>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		const form = document.querySelector('form');
+
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			const name = form.querySelector('#name').value.trim();
+			const surname = form.querySelector('#surname').value.trim();
+			const phone = form.querySelector('#phone').value.trim();
+			const email = form.querySelector('#email').value.trim();
+			const message = form.querySelector('#message').value.trim();
+
+			const mailtoLink = `mailto:CodeMed.group@outlook.com?subject=Contact Us Form Submission&body=Name: ${name} ${surname}%0D%0APhone: ${phone}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+
+			window.location.href = mailtoLink;
+		});
+
+		const chatLink = document.querySelector('.chat');
+		const chatbox = document.createElement('div');
+		const chatHeader = document.createElement('div');
+		const closeBtn = document.createElement('button');
+		const chatMessage = document.createElement('textarea');
+		const userInput = document.createElement('input');
+		const sendBtn = document.createElement('button');
+
+
+
+		chatbox.id = 'chatbox';
+		chatbox.style.display = 'none';
+
+		chatHeader.style.display = 'flex';
+		chatHeader.style.justifyContent = 'space-between';
+		chatHeader.style.alignItems = 'center';
+
+		closeBtn.id = 'close-btn';
+		closeBtn.innerHTML = '&times;';
+		closeBtn.style.backgroundColor = 'transparent';
+		closeBtn.style.border = 'none';
+		closeBtn.style.fontSize = '24px';
+		closeBtn.style.cursor = 'pointer';
+		chatHeader.appendChild(closeBtn);
+
+		chatMessage.id = 'chat-message';
+		chatMessage.style.width = '550px';
+		chatMessage.style.height = '300px';
+		chatMessage.style.resize = 'none';
+		chatMessage.textContent = 'Hi there! I\'m the chatbot. How can I assist you today? Select an option by typing its number and pressing "Send": \n\n1. Option 1 - Registrations\n2. Option 2 - Prenatal Care\n3. Option 3 - Family Planning\n4.Option 4 - Counselling (Mental Health & Wellness)\n5.Option 5 - Chronic Medication\n6.Option 6 - Vaccinations\n\n Answer:';
+		chatbox.appendChild(chatHeader);
+		chatbox.appendChild(chatMessage);
+
+		userInput.type = 'text';
+		userInput.id = 'user-input';
+		userInput.placeholder = 'Enter option number';
+		chatbox.appendChild(userInput);
+
+		sendBtn.id = 'send-btn';
+		sendBtn.textContent = 'Send';
+		chatbox.appendChild(sendBtn);
+
+		chatLink.addEventListener('click', function () {
+			chatbox.style.display = 'block';
+		});
+
+		sendBtn.addEventListener('click', function () {
+			const selectedOption = parseInt(userInput.value);
+			switch (selectedOption) {
+				case 1:
+					chatMessage.value += '\n\nRegistrations: Registrations involve signing up for various health programs or insurance policies. It is an important first step to accessing healthcare services and benefits.Registration forms may require personal information such as name, date of birth, and contact details.Some registrations may require proof of income or other documents.Once registered, individuals can access various health services and benefits.';
+					break;
+				case 2:
+					chatMessage.value += '\n\nPrenatal Care: Prenatal care is important to ensure a healthy pregnancy and a healthy baby. It involves regular check-ups with a healthcare provider, who will monitor the health of the mother and baby. Prenatal care may include ultrasounds, blood tests, and other screenings to detect any potential health issues. Healthcare providers may also offer advice on nutrition, exercise, and other aspects of prenatal health. Prenatal care is important for all pregnant women, even those who feel healthy.';
+					break;
+				case 3:
+					chatMessage.value += '\n\nFamily Planning: Family planning services help individuals and couples make informed decisions about their reproductive health. These services include contraception, fertility treatments, and education on reproductive health. Family planning can help prevent unintended pregnancies and ensure that individuals can have the number of children they want, when they want them. Family planning services are available to people of all genders and ages.';
+					break;
+				case 4:
+					chatMessage.value += '\n\nCounselling (Mental Health & Wellness): Counselling services provide support for individuals who are struggling with mental health or emotional issues. Counselling may involve talking with a trained professional who can help individuals manage their symptoms and develop coping strategies. Counselling can be individual or group-based, and may involve various therapeutic techniques. Mental health and wellness counselling can help improve an individuals quality of life and overall wellbeing.';
+					break;
+				case 5:
+					chatMessage.value += '\n\nChronic Medication: Chronic medication is medication that is taken on an ongoing basis to manage long-term health conditions. This may include medication for conditions such as diabetes, hypertension, or asthma. Chronic medication is important to manage symptoms and prevent complications. Healthcare providers may monitor the effectiveness of medication and adjust doses as needed. Patients may need to refill their medication regularly and follow certain instructions, such as taking medication at a certain time each day.';
+					break;
+				case 6:
+					chatMessage.value += '\n\nVaccinations: Vaccinations are an important form of preventive healthcare that protect individuals from various diseases. Vaccinations work by exposing individuals to a small amount of a disease-causing organism, which triggers the bodys immune system to produce antibodies.This helps the body fight off the disease if it is encountered again in the future.Vaccinations are typically given according to a recommended schedule, and may be required for certain activities such as travel or school enrollment.Vaccinations are safe and effective, and help protect individuals and communities from the spread of disease.';
+					break;
+				case 7:
+					chatMessage.value += '\n\nInterested in registering on our system to make your clinic visits more flexible? Click one of the links below:\n\n';
+					var registrationLink = document.createElement('a');
+					registrationLink.href = 'your_registration_url_here';
+					registrationLink.target = '_blank';
+					registrationLink.textContent = 'Registration';
+					registrationLink.style.fontWeight = 'bold';
+					registrationLink.style.fontSize = '20px';
+					registrationLink.style.color = 'deeppink';
+					chatMessage.appendChild(registrationLink);
+
+					var aboutUsLink = document.createElement('a');
+					aboutUsLink.href = 'your_about_us_url_here';
+					aboutUsLink.target = '_blank';
+					aboutUsLink.textContent = 'About Us';
+					aboutUsLink.style.fontWeight = 'bold';
+					aboutUsLink.style.fontSize = '20px';
+					aboutUsLink.style.color = 'deeppink';
+					chatMessage.appendChild(document.createElement('br'));
+					chatMessage.appendChild(aboutUsLink);
+
+					var loginLink = document.createElement('a');
+					loginLink.href = 'your_login_url_here';
+					loginLink.target = '_blank';
+					loginLink.textContent = 'Login';
+					loginLink.style.fontWeight = 'bold';
+					loginLink.style.fontSize = '20px';
+					loginLink.style.color = 'deeppink';
+					chatMessage.appendChild(document.createElement('br'));
+					chatMessage.appendChild(loginLink);
+
+					break;
+
+				default:
+					chatMessage.value += '\nInvalid option selected. Please select a valid option.';
+					break;
+			}
+			userInput.value = '';
+		});
+
+		closeBtn.addEventListener('click', function () {
+			chatbox.style.display = 'none';
+		});
+
+		document.body.appendChild(chatbox);
+
+	</script>
+</body>
+</html>

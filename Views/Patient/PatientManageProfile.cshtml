@@ -1,0 +1,231 @@
+﻿@model PrenatalUpdate
+@{
+	ViewData["Title"] = "Manage Profile";
+}
+
+<html>
+<head>
+	<style>
+		.register-box {
+			margin: 100px auto;
+			width: 700px;
+			background-color: #2f4e6b;
+			border-radius: 10px;
+			padding: 40px;
+			box-shadow: 0px 0px 10px #888888;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		label {
+			display: inline-block;
+			margin-bottom: 10px;
+			font-weight: bold;
+			font-size: 22px;
+		}
+
+		input[type=text],
+		input[type=email],
+		input[type=password],
+		input[type=text],
+		input[type=number], {
+			padding: 5px;
+			margin-bottom: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			font-size: 18px;
+			width: 200%
+		}
+
+		input[type=radio] {
+			margin-right: 10px;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #3e8e41;
+			}
+
+		select {
+			padding: 8px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			background-color: #2f4e6b !important;
+			font-size: 18px; /* Added font size */
+			width: 200%
+		}
+
+		div {
+			margin-bottom: 10px;
+		}
+	</style>
+
+
+</head>
+<body>
+    <div class="register-box">
+        <form id="registerForm"  method="post">
+            <h2>Manage Profile</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName">First Name</label>
+                <input asp-for="FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="first name" disabled />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName">Last Name</label>
+                <input asp-for="LastName" class="form-control" autocomplete="username" aria-required="true" placeholder="last name" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Citizenship</label>
+                <select asp-for="Citizenship" class="form-control" id="citizenshipDropdown" onchange="showInput()" disabled>
+                    <option value="">-- Select Citizenship --</option>
+                    <option value="South African Citizen">South African Citizen</option>
+                    <option value="Non-South African Citizen">Non-South African Citizen</option>
+                </select>
+                <span asp-validation-for="Citizenship" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="idInput" style="display: none;">
+                <label>ID Number</label>
+                <input asp-for="ID_Number" class="form-control" oninput="validateInput(this)" disabled />
+            </div>
+
+            <div class="form-group" id="passportInput" style="display: none;">
+                <label>Passport Number</label>
+                <input asp-for="Passport_Number" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Home_Address">Home Address</label>
+                <input asp-for="Home_Address" class="form-control" autocomplete="username" aria-required="true" placeholder="home address" />
+                <span asp-validation-for="Home_Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone_Number">Phone Number</label>
+                <input asp-for="Phone_Number" class="form-control" autocomplete="username" aria-required="true" placeholder="phone number" />
+                <span asp-validation-for="Phone_Number" class="text-danger"></span>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+                <label asp-for="Gender">Gender</label>
+                <select asp-for="Gender" class="form-control" autocomplete="Gender" aria-required="true" onchange="showGender(this)" disabled>
+                    <option value="">--Select Gender--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Transgender">Transgender</option>
+                    <option value="Non-Binary">Non-Binary</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <!-- Role -->
+            <div class="form-group">
+                <label asp-for="Role">Role</label>
+                <select asp-for="Role" class="form-control" autocomplete="Role" aria-required="true" onchange="showRole(this)" disabled>
+                    <option value="">--Select Role--</option>
+                    <option value="Patient">Patient</option>
+                    <option value="Healthcare Practitioner">Healthcare Practitioner</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id="phcRoleInput" style="display: none;">
+                <label>PHC Role</label>
+                <input asp-for="PHC_Role" class="form-control" disabled />
+            </div>
+
+            <div class="form-group" id="phcLicenseInput" style="display: none;">
+                <label>PHC License Number</label>
+                <input asp-for="PHC_License_Number" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Occupation">Occupation</label>
+                <input asp-for="Occupation" class="form-control" autocomplete="username" aria-required="true" placeholder="occupation" />
+                <span asp-validation-for="Occupation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NextOfKinName">Next of Kin Name</label>
+                <input asp-for="NextOfKinName" class="form-control" autocomplete="username" aria-required="true" placeholder="next of kin name" />
+                <span asp-validation-for="NextOfKinName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NextOfKinPhone">Next of Kin Phone Number</label>
+                <input asp-for="NextOfKinPhone" class="form-control" autocomplete="username" aria-required="true" placeholder="next of kin phone number" />
+                <span asp-validation-for="NextOfKinPhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NextOfKinEmail">Next of Kin Email Address</label>
+                <input asp-for="NextOfKinEmail" class="form-control" autocomplete="username" aria-required="true" placeholder="next of kin email address" />
+                <span asp-validation-for="NextOfKinEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" id="registerBtn">Update</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<script>
+	function validateInput(input) {
+		input.value = input.value.replace(/\D/g, '').slice(0, 13);
+	}
+
+	function showRole(sel) {
+		var phcOptions = document.getElementById("phc-options");
+		if (sel.value === "PHC Worker") {
+			phcOptions.style.display = "block";
+		} else {
+			phcOptions.style.display = "none";
+		}
+	}
+
+	function showInput() {
+		var citizenshipDropdown = document.getElementById("citizenshipDropdown");
+		var idInput = document.getElementById("idInput");
+		var passportInput = document.getElementById("passportInput");
+
+		if (citizenshipDropdown.value === "South African Citizen") {
+			idInput.style.display = "block";
+			passportInput.style.display = "none";
+		} else if (citizenshipDropdown.value === "Non-South African Citizen") {
+			idInput.style.display = "none";
+			passportInput.style.display = "block";
+		} else {
+			idInput.style.display = "none";
+			passportInput.style.display = "none";
+		}
+	}
+</script>
+</html>
+

@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<title>Manage Upcoming Appointment</title>
+	<style>
+		.center {
+			text-align: center;
+		}
+		/* Global Styles */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		/* Container Styles */
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: white;
+			border: 2px solid #36517E;
+			border-radius: 5px;
+		}
+
+		.body-container {
+			background-color: #f5f5f5;
+			padding: 20px;
+			border-radius: 5px;
+		}
+
+		/* Calendar and Times Container Styles */
+		.calendar-times-container {
+			display: flex;
+			align-items: flex-start;
+		}
+
+		.calendar-container {
+			margin-right: 20px;
+		}
+
+		.times-container {
+			margin-top: 20px; /* Add space between the calendar and times */
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center; /* Align items vertically in the same row */
+		}
+
+		/* Calendar Styles */
+		.calendar {
+			margin-top: 10px; /* Adjust margin as needed */
+		}
+
+		/* Time Options */
+		.time-option {
+			display: inline-block;
+			margin: 5px;
+			padding: 5px 10px;
+			border: 1px solid blue;
+			border-radius: 5px;
+			text-decoration: none;
+			color: blue;
+		}
+
+		#time-picker {
+			margin-left: 10px; /* Add space between time picker and clock */
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		/* Optional: Style for the entire times-container */
+		.times-container {
+			margin-top: 20px;
+		}
+
+		.button-container {
+			text-align: center; /* Center-align the content within the container */
+			margin-top: 20px; /* Add some top margin for spacing */
+		}
+
+		.update-button {
+			background-color: #4CAF50; /* Green background color */
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			.update-button:hover {
+				background-color: #3e8e41; /* Darker green background color on hover */
+			}
+
+		.cancel-button {
+			background-color: #FF5733; /* Red background color */
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+			margin-left: 10px; /* Add some spacing between the buttons */
+		}
+
+			.cancel-button:hover {
+				background-color: #D64628; /* Darker red background color on hover */
+			}
+
+		.blank-line {
+			margin-bottom: 50px; /* Adjust the value as needed */
+		}
+
+		#subsystemContainer {
+			max-width: 80%;
+			margin: 0 auto;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.subsystemBox {
+			/* Updated styles */
+			border: 2px solid #36517E;
+			border-radius: 5px;
+			padding: 20px;
+			margin: 10px;
+			flex-basis: calc(33.33% - 20px);
+			text-align: center;
+			background-color: white;
+			color: #36517E; /* Set the text color to blue */
+			transition: background-color 0.3s ease;
+		}
+
+			.subsystemBox:hover {
+				background-color: #36517E; /* Change background color to blue when hovering */
+				color: white; /* Change text color to white when hovering */
+			}
+
+			.subsystemBox a {
+				display: block;
+				color: #36517E;
+				text-decoration: none;
+				margin-bottom: 10px;
+				padding: 10px;
+				border: 1px solid #36517E;
+				border-radius: 5px;
+				transition: color 0.3s ease;
+			}
+
+				.subsystemBox a:hover {
+					background-color: #FF69B4; /* Change background color to pink when hovering over links */
+				}
+
+	</style>
+</head>
+<body>
+	<div class="center">
+		<h1>Manage Upcoming Appointment</h1>
+	</div>
+	<div class="container">
+		<div class="body-container">
+			<div class="body-container">
+				<h2>Patient Details</h2>
+				<div class="appointment-form">
+					<div class="user-info">
+						@foreach (var patient in ViewBag.Booking)
+						{
+							<p>User ID: <span>@patient.ID</span></p>
+							<p>Patient: <span>@patient.Patient</span></p>
+							<p>Selected Service: <span>@patient.SelectedService</span></p>
+							<p>Selected Provider Type: <span>@patient.SelectedProviderType</span></p>
+							<p>Selected Provider ID: <span>@patient.SelectedProviderId</span></p>
+							<p>Preferred Date: <span>@patient.PreferredDate</span></p>
+							<p>Preferred Time: <span>@patient.PreferredTime</span></p>
+							<p>Session ID: <span>@Html.Raw(Context.Session.GetString("ID"))</span></p>
+						}
+
+					</div>
+
+					<!-- ... Rest of the HTML ... -->
+				</div>
+				<div class="blank-line"></div>
+				<div class="blank-line"></div>
+
+				
+
+				<div class="blank-line"></div>
+				<div class="button-container">
+					<button id="update-btn" class="update-button">Update Appointment</button>
+					<button id="cancel-btn" class="cancel-button">Cancel Appointment</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+		$(function () {
+			// Initialize the datepicker
+			$("#datepicker").datepicker({
+				onSelect: function (dateText) {
+					$("#input_25_date").val(dateText); // Set selected date to input
+					// No need to open the dialog here
+				},
+				minDate: 0 // Set minimum selectable date to current date
+			});
+
+			// Position the calendar below the input
+			$("#input_25_date").datepicker({
+				defaultDate: new Date(),
+				showOn: "focus",
+				changeMonth: true,
+				changeYear: true,
+				dateFormat: "mm/dd/yy",
+				beforeShow: function (input, inst) {
+					const calendar = $("#datepicker");
+					calendar.css({
+						display: 'block',
+						top: input.offsetTop + input.offsetHeight + 10 + 'px', /* Adjust as needed */
+						left: input.offsetLeft + 'px'
+					});
+					return false; // Prevent the default behavior of opening the calendar
+				},
+				onSelect: function (dateText) {
+					const selectedDate = dateText;
+					console.log("Selected date:", selectedDate);
+				}
+			}).focus();
+		});
+
+		document.addEventListener("DOMContentLoaded", function () {
+			const updateBtn = document.getElementById("update-btn");
+			const cancelBtn = document.getElementById("cancel-btn");
+
+			updateBtn.addEventListener("click", function () {
+				// Code to handle updating the appointment
+				alert("Appointment updated!");
+			});
+
+			cancelBtn.addEventListener("click", function () {
+				// Code to handle cancelling the appointment
+				alert("Appointment cancelled!");
+			});
+		});
+	</script>
+</body>
+</html>

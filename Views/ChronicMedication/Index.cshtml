@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Chronic Medication System Dashboard</title>
+    <style>
+        body {
+            color: #fff;
+            font-family: Arial, sans-serif;
+            background-color: #0a0a2a;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            margin-bottom: 20px;
+            color: blue;
+        }
+
+        #dashboardContainer {
+            max-width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dashboardItem {
+            border: 2px solid #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            flex-basis: 30%;
+            text-align: center;
+            background-color: purple;
+        }
+
+            .dashboardItem a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #fff;
+                border-radius: 5px;
+            }
+
+                .dashboardItem a:hover {
+                    background-color: #ff4081;
+                }
+    </style>
+</head>
+<body>
+    <h1>Chronic Medication System Dashboard</h1>
+
+    <div id="dashboardContainer">
+        <div class="dashboardItem">
+            <h2>Book Consultation</h2>
+            <a asp-controller="ChronicMedication" asp-action="">Book Now</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>View Appointments</h2>
+            <a asp-controller="ChronicMedication" asp-action="">View Now</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Medication Refills</h2>
+            <a asp-controller="ChronicMedication" asp-action="">Request Refill</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Prescriptions</h2>
+            <a asp-controller="ChronicMedication" asp-action="">View Prescriptions</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Medication Reminders</h2>
+            <a asp-controller="ChronicMedication" asp-action="">Set Reminders</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Pharmacy Locator</h2>
+            <a asp-controller="ChronicMedication" asp-action="">Find Pharmacy</a>
+        </div>
+    </div>
+</body>
+</html>

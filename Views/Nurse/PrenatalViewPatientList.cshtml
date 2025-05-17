@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Patients List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #filters {
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patients List</h1>
+    <div id="filters">
+        <label for="age-filter">Age:</label>
+        <input type="number" id="age-filter">
+        <label for="gender-filter">Gender:</label>
+        <select id="gender-filter">
+            <option value="">All</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <label for="disease-filter">Chronic Disease:</label>
+        <select id="disease-filter">
+            <option value="">All</option>
+            <option value="HIV">HIV</option>
+            <option value="TB">TB</option>
+            <option value="Cancer">Cancer</option>
+            <option value="ADD">ADD</option>
+        </select>
+        <button onclick="applyFilters()">Apply Filters</button>
+        <button onclick="resetFilters()">Reset Filters</button>
+    </div>
+    <table id="patients-table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>ID Number</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody id="patients-data">
+            <!-- Patients will be dynamically added here -->
+        </tbody>
+    </table>
+    <script>
+        const patients = [
+            { userId: 1, firstName: "John", lastName: "Doe", idNumber: "123456", gender: "male", age: 35, diseases: ["HIV", "TB"] },
+            { userId: 2, firstName: "Jane", lastName: "Smith", idNumber: "987654", gender: "female", age: 42, diseases: ["Cancer"] },
+            { userId: 3, firstName: "Mike", lastName: "Johnson", idNumber: "567890", gender: "male", age: 50, diseases: [] },
+            { userId: 4, firstName: "Emily", lastName: "Brown", idNumber: "456789", gender: "female", age: 28, diseases: ["ADD"] },
+        ];
+
+        function renderPatientsTable(patientsData) {
+            const tableBody = document.getElementById("patients-data");
+            tableBody.innerHTML = "";
+
+            patientsData.forEach(patient => {
+                const row = document.createElement("tr");
+
+                const userIdCell = document.createElement("td");
+                userIdCell.textContent = patient.userId;
+                row.appendChild(userIdCell);
+
+                const firstNameCell = document.createElement("td");
+                firstNameCell.textContent = patient.firstName;
+                row.appendChild(firstNameCell);
+
+                const lastNameCell = document.createElement("td");
+                lastNameCell.textContent = patient.lastName;
+                row.appendChild(lastNameCell);
+
+                const idNumberCell = document.createElement("td");
+                idNumberCell.textContent = patient.idNumber;
+                row.appendChild(idNumberCell);
+
+                const detailsCell = document.createElement("td");
+                const viewButton = document.createElement("button");
+                viewButton.textContent = "View";
+                viewButton.addEventListener("click", () => {
+                    viewPatientDetails(patient);
+                });
+                detailsCell.appendChild(viewButton);
+                row.appendChild(detailsCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function viewPatientDetails(patient) {
+            // This function can be implemented to show the detailed information of a patient
+            console.log("Viewing details for patient:", patient);
+        }
+
+        function applyFilters() {
+            const ageFilter = document.getElementById("age-filter").value;
+            const genderFilter = document.getElementById("gender-filter").value;
+            const diseaseFilter = document.getElementById("disease-filter").value;
+
+            let filteredPatients = patients;
+
+            if (ageFilter !== "") {
+                filteredPatients = filteredPatients.filter(patient => patient.age >= parseInt(ageFilter));
+            }
+
+            if (genderFilter !== "") {
+                filteredPatients = filteredPatients.filter(patient => patient.gender === genderFilter);
+            }
+
+            if (diseaseFilter !== "") {
+                filteredPatients = filteredPatients.filter(patient => patient.diseases.includes(diseaseFilter));
+            }
+
+            renderPatientsTable(filteredPatients);
+        }
+
+        function resetFilters() {
+            document.getElementById("age-filter").value = "";
+            document.getElementById("gender-filter").value = "";
+            document.getElementById("disease-filter").value = "";
+
+            renderPatientsTable(patients);
+        }
+
+        // Initial rendering of all patients
+        renderPatientsTable(patients);
+    </script>
+</body>
+</html>

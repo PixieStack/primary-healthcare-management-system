@@ -1,0 +1,40 @@
+﻿@using System.Data
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaccination Forum</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vaccination Forum</h1>
+    </header>
+    <main>
+        <form id="post-form" asp-action="Forum" method="post">
+        </form>
+
+        <div class="forum-posts">
+            <h2>Forum Posts</h2>
+            <div id="posts">
+                <!-- Posts will be displayed here -->
+                @if (ViewBag.Forum != null)
+                {
+                    @foreach (var post in ViewBag.Forum)
+                    {
+                        <div class="post">
+                            <label>@post.PatientName</label>
+                            <p>@post.Post</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        </div>
+    </main>
+</body>
+</html>

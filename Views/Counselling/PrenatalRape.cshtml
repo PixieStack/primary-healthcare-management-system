@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Rape Survivors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #monitoring-section {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counselors of Rape Survivors</h1>
+    <div id="monitoring-section">
+        <h2>Safety and Immediate Needs</h2>
+        <div>
+            <label for="safety-needs">Safety and Immediate Needs:</label>
+            <textarea id="safety-needs" rows="5"></textarea>
+        </div>
+
+        <h2>Emotional and Psychological Well-being</h2>
+        <div>
+            <label for="emotional-wellbeing">Emotional and Psychological Well-being:</label>
+            <textarea id="emotional-wellbeing" rows="5"></textarea>
+        </div>
+
+        <h2>Self-esteem and Self-worth</h2>
+        <div>
+            <label for="self-esteem">Self-esteem and Self-worth:</label>
+            <textarea id="self-esteem" rows="5"></textarea>
+        </div>
+
+        <h2>Healing and Recovery</h2>
+        <div>
+            <label for="healing-recovery">Healing and Recovery:</label>
+            <textarea id="healing-recovery" rows="5"></textarea>
+        </div>
+
+        <h2>Relationships and Trust</h2>
+        <div>
+            <label for="relationships-trust">Relationships and Trust:</label>
+            <textarea id="relationships-trust" rows="5"></textarea>
+        </div>
+
+        <h2>Sexuality and Intimacy</h2>
+        <div>
+            <label for="sexuality-intimacy">Sexuality and Intimacy:</label>
+            <textarea id="sexuality-intimacy" rows="5"></textarea>
+        </div>
+
+        <h2>Body Image and Physical Health</h2>
+        <div>
+            <label for="body-image">Body Image and Physical Health:</label>
+            <textarea id="body-image" rows="5"></textarea>
+        </div>
+
+        <h2>Boundaries and Assertiveness</h2>
+        <div>
+            <label for="boundaries-assertiveness">Boundaries and Assertiveness:</label>
+            <textarea id="boundaries-assertiveness" rows="5"></textarea>
+        </div>
+
+        <h2>Trauma Triggers and Coping Strategies</h2>
+        <div>
+            <label for="trauma-triggers">Trauma Triggers and Coping Strategies:</label>
+            <textarea id="trauma-triggers" rows="5"></textarea>
+        </div>
+
+        <h2>Empowerment and Resilience</h2>
+        <div>
+            <label for="empowerment-resilience">Empowerment and Resilience:</label>
+            <textarea id="empowerment-resilience" rows="5"></textarea>
+        </div>
+
+        <h2>Session Notes</h2>
+        <div>
+            <label for="session-notes">Session Notes:</label>
+            <textarea id="session-notes" rows="5"></textarea>
+        </div>
+
+        <button onclick="saveMonitoringData()">Save</button>
+    </div>
+
+    <script>
+        function saveMonitoringData() {
+            const safetyNeeds = document.getElementById("safety-needs").value;
+            const emotionalWellbeing = document.getElementById("emotional-wellbeing").value;
+            const selfEsteem = document.getElementById("self-esteem").value;
+            const healingRecovery = document.getElementById("healing-recovery").value;
+            const relationshipsTrust = document.getElementById("relationships-trust").value;
+            const sexualityIntimacy = document.getElementById("sexuality-intimacy").value;
+            const bodyImage = document.getElementById("body-image").value;
+            const boundariesAssertiveness = document.getElementById("boundaries-assertiveness").value;
+            const traumaTriggers = document.getElementById("trauma-triggers").value;
+            const empowermentResilience = document.getElementById("empowerment-resilience").value;
+            const sessionNotes = document.getElementById("session-notes").value;
+
+            // Perform data saving or processing here
+            console.log("Data saved successfully!");
+        }
+    </script>
+</body>
+</html>

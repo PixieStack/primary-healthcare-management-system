@@ -1,0 +1,287 @@
+﻿@using System.Data
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Growth Report</title>
+    <link rel="stylesheet" href="/css/boostrap.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/CodeMed.styles.css?v=6NpGbMrsF9p1j3fx9VpwMIJhHcOU_HqRiXy2MVUSMqI" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .custom-label {
+            width: 150px;
+            /* Add any other styles you want for the label here */
+        }
+
+        select.form-control {
+            width: 150px;
+            /* Add any other styles you want for the select element here */
+        }
+        table {
+            max-width: 1237px; /* Set the same max-width as the form */
+            margin: 0 auto; /* Center the table within the form */
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #87C1FF;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #87C1FF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: white;
+        }
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+
+        form {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px; /* Add padding within the border */
+            position: relative;
+        }
+
+            form::before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                right: -2px;
+                bottom: -2px;
+                left: -2px;
+                border: 2px solid #36517E; /* Outer border */
+                border-radius: 5px;
+                pointer-events: none; /* Ensure the outer border doesn't interfere with the form */
+            }
+
+            form::after {
+                content: "";
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                bottom: 2px;
+                left: 2px;
+                border: 2px solid #36517E; /* Inner border */
+                border-radius: 5px;
+                pointer-events: none; /* Ensure the inner border doesn't interfere with the form */
+            }
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+
+    <div class="container">
+        
+        <form method="post">
+            <div class="center">
+                <h1>CodeMed – e-Nompilo Primary Healthcare</h1>
+            </div>
+            <div class="center">
+                <img src="~/images/CodeMed_Logo.jpg" width="50" height="50" />
+            </div>
+
+            <div class="center">
+                <h1>PATIENT HISTORY REPORT</h1>
+            </div>
+            <p><i class="fas fa-calendar-alt"></i> Obstetrician Name: @($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")</p>
+
+
+            <table style="width: 150%; margin-left: 0%;">
+                <thead>
+                    <tr>
+                        <th width="13%">Patient Name</th>
+                        <th width="13%">Patient Age</th>
+                        <th width="13%">Vaccine Name</th>
+                        <th width="13%">Vaccine Date</th>
+                        <th width="10%">Dose Number</th>
+                        <th width="10%">Administration Site</th>
+                        <th width="10%">Side Effect</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.Rows)
+                    {
+                        <tr>
+                            <td>@row["PatientName"]</td>
+                            <td>@row["PatientAge"]</td>
+                            <td>@row["VaccineName"]</td>
+                            <td>@row["VaccineDate"]</td>
+                            <td>@row["DoseNumber"]</td>
+                            <td>@row["AdministrationSite"]</td>
+                            <td>@row["SideEffects"]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById("filterDropdown").addEventListener("change", function () {
+            var selectedOption = this.value;
+            switch (selectedOption) {
+                case "option1":
+                    // Do nothing or show a message for the "Select Option" case.
+                    break;
+                case "option2":
+                    window.location.href = "/Doctors/ImmunizationGeo";
+                    break;
+                case "option3":
+                    window.location.href = "/Doctors/VaccintaionGeo";
+                    break;
+                case "option4":
+                    window.location.href = "/Doctors/VaccinationHistory";
+                    break;
+                case "option5":
+                    window.location.href = "/Doctors/VaccineUsageRate";
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
+
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="3aa194dc80c2412e81d75fa58896a32f" data-requestMappingFromServer="false" data-connectUrl="http://localhost:50570/d944ef8df85f4fe386ed323d0d014d88/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>

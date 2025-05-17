@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Counselors of Substance Abusers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #monitoring-section {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Substance Abusers</h1>
+    <div id="monitoring-section">
+        <h2>Understanding the Nature of Addiction</h2>
+        <div>
+            <label for="nature-of-addiction">Understanding the Nature of Addiction:</label>
+            <textarea id="nature-of-addiction" rows="5"></textarea>
+        </div>
+
+        <h2>Motivation and Readiness for Change</h2>
+        <div>
+            <label for="motivation-change">Motivation and Readiness for Change:</label>
+            <textarea id="motivation-change" rows="5"></textarea>
+        </div>
+
+        <h2>Setting Realistic Goals</h2>
+        <div>
+            <label for="realistic-goals">Setting Realistic Goals:</label>
+            <textarea id="realistic-goals" rows="5"></textarea>
+        </div>
+
+        <h2>Developing Coping Skills</h2>
+        <div>
+            <label for="coping-skills">Developing Coping Skills:</label>
+            <textarea id="coping-skills" rows="5"></textarea>
+        </div>
+
+        <h2>Relapse Prevention</h2>
+        <div>
+            <label for="relapse-prevention">Relapse Prevention:</label>
+            <textarea id="relapse-prevention" rows="5"></textarea>
+        </div>
+
+        <h2>Addressing Co-occurring Disorders</h2>
+        <div>
+            <label for="co-occurring-disorders">Addressing Co-occurring Disorders:</label>
+            <textarea id="co-occurring-disorders" rows="5"></textarea>
+        </div>
+
+        <h2>Social Support and Healthy Relationships</h2>
+        <div>
+            <label for="social-support">Social Support and Healthy Relationships:</label>
+            <textarea id="social-support" rows="5"></textarea>
+        </div>
+
+        <h2>Lifestyle Changes</h2>
+        <div>
+            <label for="lifestyle-changes">Lifestyle Changes:</label>
+            <textarea id="lifestyle-changes" rows="5"></textarea>
+        </div>
+
+        <h2>Addressing Legal and Employment Issues</h2>
+        <div>
+            <label for="legal-employment-issues">Addressing Legal and Employment Issues:</label>
+            <textarea id="legal-employment-issues" rows="5"></textarea>
+        </div>
+
+        <h2>Long-term Recovery Planning</h2>
+        <div>
+            <label for="recovery-planning">Long-term Recovery Planning:</label>
+            <textarea id="recovery-planning" rows="5"></textarea>
+        </div>
+
+        <h2>Session Notes</h2>
+        <div>
+            <label for="session-notes">Session Notes:</label>
+            <textarea id="session-notes" rows="5"></textarea>
+        </div>
+
+        <button onclick="saveMonitoringData()">Save</button>
+    </div>
+
+    <script>
+        function saveMonitoringData() {
+            const natureOfAddiction = document.getElementById("nature-of-addiction").value;
+            const motivationChange = document.getElementById("motivation-change").value;
+            const realisticGoals = document.getElementById("realistic-goals").value;
+            const copingSkills = document.getElementById("coping-skills").value;
+            const relapsePrevention = document.getElementById("relapse-prevention").value;
+            const coOccurringDisorders = document.getElementById("co-occurring-disorders").value;
+            const socialSupport = document.getElementById("social-support").value;
+            const lifestyleChanges = document.getElementById("lifestyle-changes").value;
+            const legalEmploymentIssues = document.getElementById("legal-employment-issues").value;
+            const recoveryPlanning = document.getElementById("recovery-planning").value;
+            const sessionNotes = document.getElementById("session-notes").value;
+
+            // Perform data saving or processing here
+            console.log("Data saved successfully!");
+        }
+    </script>
+</body>
+</html>

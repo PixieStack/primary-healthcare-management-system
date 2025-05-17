@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Code<span class="code">Med</span></title>
+    <style>
+        body {
+            color: #36517E;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            margin-bottom: 20px;
+            color: #36517E;
+        }
+
+        #subsystemContainer {
+            max-width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .subsystemBox {
+            /* Updated styles */
+            border: 2px solid #36517E;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            flex-basis: calc(33.33% - 20px);
+            text-align: center;
+            background-color: white;
+            color: #36517E; /* Set the text color to blue */
+            transition: background-color 0.3s ease;
+        }
+
+            .subsystemBox:hover {
+                background-color: #36517E; /* Change background color to blue when hovering */
+                color: white; /* Change text color to white when hovering */
+            }
+
+            .subsystemBox a {
+                display: block;
+                color: #36517E;
+                text-decoration: none;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #36517E;
+                border-radius: 5px;
+                transition: color 0.3s ease;
+            }
+
+                .subsystemBox a:hover {
+                    background-color: #FF69B4; /* Change background color to pink when hovering over links */
+                }
+    </style>
+
+
+
+</head>
+<body>
+    <h1>Welcome Back Doctor!</h1>
+
+    <div id="subsystemContainer">
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/3652191.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                Schedule Prenatal Visits
+            </h2>
+            <a asp-controller="Scheduling" asp-action="Index">Schedule Visits</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/4003790.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                Patient Medication 
+            </h2>
+            <a asp-controller="Doctors" asp-action="PrenatalMedication">Patient Medication</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/10262860.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                Monitor Patient Progress
+            </h2>
+            <a asp-controller="Doctors" asp-action="PrenatalMonitorProgress">Monitor Patient Progress</a>
+        </div>
+
+       
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/5234401.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                Prenatal Patient Referral
+            </h2>
+            <a asp-controller="Doctors" asp-action="PrenatalPatientReferral">Patient Referral</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/881760.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                Medication Prescription
+            </h2>
+            <a asp-controller="Doctors" asp-action="PrenatalPrescription">Medication Prescription</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/5247351.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                 View Patient List
+            </h2>
+            <a asp-controller="Doctors" asp-action="PrenatalViewPatientList">View Patient List</a>
+        </div>
+    </div>
+</body>
+</html>

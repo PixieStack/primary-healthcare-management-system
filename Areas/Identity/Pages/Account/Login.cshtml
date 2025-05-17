@@ -1,0 +1,188 @@
+﻿@page
+@model LoginModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>CodeMed PHC System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+
+	<style>
+		.blank-line {
+			margin-bottom: 200px; /* Adjust the value as needed */
+		}
+
+		.centered-button-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		button.custom-button {
+			width: 200px; /* Set the width to 200px */
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.centered-box {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.register-box {
+			background-color: #36517E;
+			border-radius: 10px;
+			padding: 40px;
+			box-shadow: 0px 0px 10px #888888;
+			width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		h2 {
+			text-align: center;
+			color: white;
+		}
+
+		h1 {
+			color: #36517E;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		label {
+			display: inline-block;
+			margin-bottom: 10px;
+			font-weight: bold;
+			font-size: 22px;
+			color: white;
+		}
+
+		input[type="text"],
+		input[type="password"],
+		textarea,
+		select {
+			padding: 5px;
+			margin-bottom: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			font-size: 18px;
+			width: 400px; /* Set the width to 400px */
+			box-sizing: border-box;
+		}
+
+		input[type="radio"] {
+			margin-right: 10px;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #3e8e41;
+			}
+
+		div {
+			margin-bottom: 10px;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+			.button-container button {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+		#registerSubmit {
+			flex: 1;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="blank-line"></div>
+    <h1>Welcome Back</h1>
+    <div class="row">
+		<div class="container">
+			<div class="centered-box">
+				<div class="register-box">
+					<section>
+						<form id="account" method="post">
+							<h2>Please Sign-In</h2>
+							<hr />
+							<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label>
+								<input type="email" id="email" asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+								<span asp-validation-for="Input.Email" class="text-danger"></span>
+							</div>
+
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label>
+								<input type="password" id="password" asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+								<span asp-validation-for="Input.Password" class="text-danger"></span>
+							</div>
+
+							<div class="checkbox mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="rememberMe" asp-for="Input.RememberMe" />
+									<label class="form-check-label" for="rememberMe">@Html.DisplayNameFor(m => m.Input.RememberMe)</label>
+								</div>
+							</div>
+
+							<div>
+								<button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+							</div>
+
+							<div>
+								<p>
+									<a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+								</p>
+								<p>
+									<a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+								</p>
+							</div>
+						</form>
+
+
+					</section>
+				</div>
+			</div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

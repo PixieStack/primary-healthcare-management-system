@@ -1,0 +1,469 @@
+﻿@model CodeMed.Models.AppointmentRequest;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History Form</title>
+    <title>Appointment Request Form</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /*.container {
+                                                                            margin: 0 auto;
+                                                                            width: 800px;
+                                                                            padding: 20px;
+                                                                            background-color: #fff;
+                                                                            border: 1px solid #ccc;
+                                                                            border-radius: 5px;
+                                                                            text-align: center;
+                                                                        }*/
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Update Appointment</h1>
+    </div>
+    <div class="container">
+
+        <form method="post" asp-action="UpdateAppointments">
+
+            <div class="appointment-form">
+                <label for="selected_patient">Select Patient:</label>
+                <div class="search-and-select">
+                    <select id="selected_patient" asp-for="Patient" required>
+                        <option value="">Select Patient</option>
+                        @foreach (var patient in ViewBag.patients)
+                        {
+                            <option value="@patient.Id">@patient.FullName</option>
+                        }
+                    </select>
+                    <input type="text" id="search_patient" placeholder="Search patient...">
+                </div>
+
+                <div class="user-info">
+                    <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                </div>
+            </div>
+
+
+            <label asp-for="SelectedService">Which services are you looking to explore?</label>
+            <select asp-for="SelectedService" id="SelectedService">
+                <option value="select-service">Select Service</option>
+                <option value="family-planning">Family Planning</option>
+                <option value="counselling">Counselling</option>
+                <option value="chronic-medication">Chronic Medication</option>
+                <option value="walk-ins">Walk-ins</option>
+                <option value="vaccinations">Vaccinations</option>
+                <option value="prenatal-care">Prenatal Care</option>
+            </select>
+
+            <!-- Container for dynamic dropdowns -->
+            <div id="dynamic-dropdowns">
+                <div id="family-planning-dropdown" class="dropdown">
+                    <label asp-for="FamilyPlanningServiceType">Select a family planning service:</label>
+                    <select asp-for="FamilyPlanningServiceType" id="family_planning_services">
+                        <option value="select-service">Select Service</option>
+                        <option value="contraceptive-consultation">Contraceptive Consultation</option>
+                        <option value="birth-control-methods">Birth Control Methods</option>
+                        <option value="pregnancy-testing">Pregnancy Testing</option>
+                        <option value="preconception-counseling">Preconception Counseling</option>
+                        <option value="emergency-contraception">Emergency Contraception</option>
+                    </select>
+                </div>
+
+                <div id="counselling-dropdown" class="dropdown">
+                    <label asp-for="CounsellingServiceType">Select a counselling service:</label>
+                    <select asp-for="CounsellingServiceType" id="counselling_services">
+                        <option value="select-service">Select Service</option>
+                        <option value="prenatal-health-advice">Prenatal Health Advice</option>
+                        <option value="emotional-support">Emotional Support</option>
+                        <option value="nutritional-guidance">Nutritional Guidance</option>
+                        <option value="parenting-classes">Parenting Classes</option>
+                        <option value="stress-management">Stress Management</option>
+                    </select>
+                </div>
+
+                <div id="chronic-medication-dropdown" class="dropdown">
+                    <label asp-for="ChronicMedicationServiceType">Select a chronic medication service:</label>
+                    <select asp-for="ChronicMedicationServiceType" id="chronic_services">
+                        <option value="select-service">Select Service</option>
+                        <option value="medication-prescription">Medication Prescription</option>
+                        <option value="dosage-adjustment">Dosage Adjustment</option>
+                        <option value="medication-refill">Medication Refill</option>
+                        <option value="medication-counseling">Medication Counseling</option>
+                        <option value="medication-monitoring">Medication Monitoring</option>
+                    </select>
+                </div>
+
+                <div id="walk-ins-dropdown" class="dropdown">
+                    <label asp-for="WalkInServiceType">Select a walk-in service:</label>
+                    <select asp-for="WalkInServiceType" id="walkin_services">
+                        <option value="select-service">Select Service</option>
+                        <option value="urgent-care">Urgent Care</option>
+                        <option value="minor-ailment-check">Minor Ailment Check</option>
+                        <option value="injury-assessment">Injury Assessment</option>
+                        <option value="vital-signs-check">Vital Signs Check</option>
+                        <option value="simple-treatments">Simple Treatments</option>
+                    </select>
+                </div>
+
+                <div id="vaccinations-dropdown" class="dropdown">
+                    <label asp-for="VaccinationServiceType">Select a vaccination service:</label>
+                    <select asp-for="VaccinationServiceType" id="vaccine_services">
+                        <option value="select-service">Select Service</option>
+                        <option value="flu-shot">Flu Shot</option>
+                        <option value="tetanus-vaccine">Tetanus Vaccine</option>
+                        <option value="childhood-vaccines">Childhood Vaccines</option>
+                        <option value="travel-vaccines">Travel Vaccines</option>
+                        <option value="booster-doses">Booster Doses</option>
+                    </select>
+                </div>
+
+                <div id="prenatal-care-dropdown" class="dropdown">
+                    <label asp-for="PrenatalCareServiceType">What services are you interested in?</label>
+                    <select asp-for="PrenatalCareServiceType" id="prenatal_services">
+                        <option value="select-service">Select Service</option>
+                        <option value="initial-assessment">Initial Assessment and History</option>
+                        <option value="regular-checkups">Regular Check-ups</option>
+                        <option value="lab-tests-screenings">Lab Tests and Screenings</option>
+                        <option value="ultrasound-imaging">Ultrasound Imaging</option>
+                        <option value="nutritional-guidance">Nutritional Guidance</option>
+                        <option value="exercise-lifestyle-advice">Exercise and Lifestyle Advice</option>
+                        <option value="education-counseling">Education and Counseling</option>
+                        <option value="monitoring-complications">Monitoring and Managing Complications</option>
+                        <option value="preparation-labor">Preparation for Labor and Delivery</option>
+                        <option value="postpartum-planning">Postpartum Planning</option>
+                    </select>
+                </div>
+            </div>
+
+            <label asp-for="SelectedProviderType">Choose Healthcare Provider:</label>
+            <select asp-for="SelectedProviderType" id="healthWorkerDropdown">
+                <option value="Select">Select</option>
+                <option value="Counsellor">Counsellor</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Nurse">Nurse</option>
+                <option value="Obstetrician">Obstetrician</option>
+            </select>
+
+            <div id="gynecologistDropdown" style="display: none;">
+                <label asp-for="ObstetricianId">Select Obstetrician:</label>
+                <select asp-for="ObstetricianId" id="selectedGynecologistDropdown">
+                    <option value="">Select Obstetrician</option>
+                    @if (ViewBag.Obstetrician != null)
+                    {
+                        foreach (var gynecologist in ViewBag.Obstetrician)
+                        {
+                            <option value="@gynecologist.Id">@gynecologist.FullName</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">No obstetrician available</option>
+                    }
+                </select>
+            </div>
+
+            <div id="doctorDropdown" style="display: none;">
+                <label asp-for="DoctorId">Select Doctor:</label>
+                <select asp-for="DoctorId" id="selectedDoctorDropdown">
+                    <option value="">Select Doctor</option>
+                    @if (ViewBag.doctors != null)
+                    {
+                        foreach (var doctor in ViewBag.doctors)
+                        {
+                            <option value="@doctor.Id">@doctor.FullName</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">No doctors available</option>
+                    }
+                </select>
+            </div>
+
+
+            <div id="nurseDropdown" style="display: none;">
+                <label asp-for="NurseId">Select Nurse:</label>
+                <select asp-for="NurseId" id="selectedNurseDropdown">
+                    <option value="">Select Nurse</option>
+                    @if (ViewBag.nurses != null)
+                    {
+                        foreach (var nurse in ViewBag.nurses)
+                        {
+                            <option value="@nurse.Id">@nurse.FullName</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">No nurses available</option>
+                    }
+                </select>
+            </div>
+
+            <div id="counsellorDropdown" style="display: none;">
+                <label asp-for="CounsellorId">Select Counsellor:</label>
+                <select asp-for="CounsellorId" id="selectedCounsellorDropdown">
+                    <option value="">Select Counsellor</option>
+                    @if (ViewBag.counsellors != null)
+                    {
+                        foreach (var counsellor in ViewBag.counsellors)
+                        {
+                            <option value="@counsellor.Id">@counsellor.FullName</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">No counsellors available</option>
+                    }
+                </select>
+            </div>
+
+            <label asp-for="PreferredDate">What date and time work best for you?</label>
+            <input type="date" id="preferred_date" asp-for="PreferredDate" required>
+
+            <select asp-for="PreferredTime" id="preferred_time" required>
+                <option value="">Select a time</option>
+                <option value="07:00">7:00 AM</option>
+                <option value="07:30">7:30 AM</option>
+                <option value="08:00">8:00 AM</option>
+                <option value="08:30">8:30 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="09:30">9:30 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="10:30">10:30 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="11:30">11:30 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="12:30">12:30 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="13:30">1:30 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="14:30">2:30 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="15:30">3:30 PM</option>
+            </select>
+
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.13/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+        // Get references to the dropdown and div elements
+        var healthWorkerDropdown = document.getElementById("healthWorkerDropdown");
+        var doctorDropdown = document.getElementById("doctorDropdown");
+        var nurseDropdown = document.getElementById("nurseDropdown");
+        var counsellorDropdown = document.getElementById("counsellorDropdown");
+        var gynecologistDropdown = document.getElementById("gynecologistDropdown");
+
+        // Add an event listener to the healthWorkerDropdown
+        healthWorkerDropdown.addEventListener("change", function () {
+            // Hide all dynamic dropdowns by default
+            doctorDropdown.style.display = "none";
+            nurseDropdown.style.display = "none";
+            counsellorDropdown.style.display = "none";
+            gynecologistDropdown.style.display = "none"; // Note: This line was missing in your original code
+
+            // Show the relevant dynamic dropdown based on the selected value
+            if (healthWorkerDropdown.value === "Doctor") {
+                doctorDropdown.style.display = "block";
+            } else if (healthWorkerDropdown.value === "Nurse") {
+                nurseDropdown.style.display = "block";
+            } else if (healthWorkerDropdown.value === "Counsellor") {
+                counsellorDropdown.style.display = "block";
+            } else if (healthWorkerDropdown.value === "Obstetrician") {
+                gynecologistDropdown.style.display = "block";
+            }
+        });
+
+        // Rest of your code for handling servicesDropdown (not modified)
+        // Hide all dynamic dropdowns initially
+        document.querySelectorAll('.dropdown').forEach(function (element) {
+            element.style.display = 'none';
+        });
+
+        // Add an event listener to the SelectedService dropdown
+        document.getElementById('SelectedService').addEventListener('change', function () {
+            // Get the selected option
+            var selectedOption = this.value;
+
+            // Hide all dynamic dropdowns
+            document.querySelectorAll('.dropdown').forEach(function (element) {
+                element.style.display = 'none';
+            });
+
+            // Show the corresponding dropdown based on the selected option
+            if (selectedOption !== 'select-service') {
+                document.getElementById(selectedOption + '-dropdown').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

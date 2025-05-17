@@ -1,0 +1,206 @@
+﻿@model CodeMed.Models.PrenatalSchedule;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Request Form</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px; /* Set the maximum width for the form */
+            margin: 0 auto; /* Center the form horizontally */
+            text-align: left;
+        }
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #36517E;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 36px; font-weight: bold; color: white">CodeMed</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-blue" asp-area="" asp-controller="Home" asp-action="Index" style="font-weight:bold; font-size:20px; color: white;">Home</a>
+                        </li>
+                        @*<li class="nav-item">
+                        <a class="nav-link text-blue" asp-area="" asp-controller="Home" asp-action="Privacy" style="font-weight:bold; font-size:20px; color: white;">Registration</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-blue" asp-area="" asp-controller="LoggedIn" asp-action="Index" style="font-weight:bold; font-size:20px; color: white;">Dashboard</a>
+                        </li>
+
+                    </ul>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="blank-line"></div>
+
+<div class="center">
+  <h1>Appointment Request Form</h1>
+</div>
+    <div class="container">
+        <form action="submit_appointment.php" method="post">
+            <label for="prefix">Prefix:</label>
+            <select id="prefix" name="prefix">
+                <option value="1">Select Titlle</option>
+                <option value="1">Mrs.</option>
+                <option value="2">Ms.</option>
+                <option value="3">Miss</option>
+                <option value="5">Madam</option>
+                <option value="8">Doctor</option>
+                <option value="9">Professor</option>
+                <option value="10">Engineer</option>
+                <option value="11">Captain</option>
+                <option value="12">Judge</option>
+                <option value="13">Ambassador</option>
+            </select>
+
+
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="contact_number">Contact Number:</label>
+            <input type="tel" id="contact_number" name="contact_number" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="preferred_service">Choose a Service:</label>
+            <select id="servicesDropdown">
+                <option value="Counselling">Counselling</option>
+                <option value="ChronicMedication">Chronic Medication</option>
+                <option value="FamilyPlanning">Family Planning</option>
+                <option value="PrenatalCare">Prenatal Care</option>
+                <option value="Vaccinations">Vaccinations</option>
+                <option value="Walk-in">Walk-in</option>
+            </select>
+
+            <label for="preferred_worker">Choose Healthcare Provider:</label>
+            <select id="healthWorkerDropdown">
+                <option value="Counsellor">Counsellor</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Nurse">Nurse</option>
+            </select>
+
+            @if (ViewBag.Doctor != null)
+            {
+                <div id="doctorDropdown" style="display: none;">
+                    <label for="selected_doctor">Select Doctor:</label>
+                    <select>
+                        <option value="">Select Doctor</option>
+                        @foreach (var doctor in ViewBag.Doctors)
+                        {
+                            <option value="@doctor.Id">@doctor.FullName</option>
+                        }
+                    </select>
+                </div>
+            }
+
+            <label for="services">What services are you interested in?</label>
+            <select id="services" name="services">
+                <option value="initial-assessment">Select Service</option>
+                <option value="initial-assessment">Initial Assessment and History</option>
+                <option value="regular-checkups">Regular Check-ups</option>
+                <option value="lab-tests-screenings">Lab Tests and Screenings</option>
+                <option value="ultrasound-imaging">Ultrasound Imaging</option>
+                <option value="nutritional-guidance">Nutritional Guidance</option>
+                <option value="exercise-lifestyle-advice">Exercise and Lifestyle Advice</option>
+                <option value="education-counseling">Education and Counseling</option>
+                <option value="monitoring-complications">Monitoring and Managing Complications</option>
+                <option value="preparation-labor">Preparation for Labor and Delivery</option>
+                <option value="postpartum-planning">Postpartum Planning</option>
+            </select>
+
+            <label for="preferred_date">What date and time work best for you?</label>
+            <input type="date" id="preferred_date" asp-for="PreferredDate" name="preferred_date" required>
+            <input type="time" id="preferred_time" name="preferred_time" required>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Patients</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .centered-heading {
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background-color: #f5f5f5;
+            color: #36517E;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+
+        .btn {
+            padding: 6px 12px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <h1 class="centered-heading">All Patients Report</h1>
+
+    <div class="container">
+        <!-- ... (same as before) -->
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Gender</th>
+                    <th>Citizenship</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Street Address</th>
+                    <th>Suburb</th>
+                    <th>City</th>
+                    <th>Province</th>
+                    <th>Postal Code</th>
+                    <!-- Add more headers for additional properties -->
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Patients != null)
+                {
+                    @foreach (var patient in ViewBag.Patients)
+                    {
+                        <tr>
+                            <td>@patient.FullName</td>
+                            <td>@patient.Gender</td>
+                            <td>@patient.Citizenship</td>
+                            <td>@patient.Phone_Number</td>
+                            <td>@patient.Email</td>
+                            <td>@patient.Street_Address</td>
+                            <td>@patient.Surburb</td>
+                            <td>@patient.City</td>
+                            <td>@patient.Province</td>
+                            <td>@patient.Postal_Code</td>
+                            <!-- Add more cells for additional properties -->
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ... (same as before) -->
+
+</body>
+</html>

@@ -1,0 +1,274 @@
+﻿@model CodeMed.Models.Prenatal.Counsellor.Prenatal_Postpartum_Therapy;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postpartum Depression</title>
+    <link rel="stylesheet" href="/css/boostrap.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/CodeMed.styles.css?v=6NpGbMrsF9p1j3fx9VpwMIJhHcOU_HqRiXy2MVUSMqI" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Postpartum Depression Therapy</h1>
+    </div>
+    <div class="container">
+
+        <form method="post">
+            <div id="section1" class="prenatal">
+                <label asp-for="Obstetrician">Obstetrician:</label>
+                <input asp-for="Obstetrician" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")" required>
+
+                <div class="appointment-form">
+                    @if (ViewBag.Patients != null)
+                    {
+                        <label for="selected_patient">Select Patient:</label>
+                        <div class="search-and-select">
+                            <select id="selected_patient" asp-for="Patient" required>
+                                <option value="">Select Patient</option>
+                                @foreach (var patient in ViewBag.Patients)
+                                {
+                                    <option value="@patient.Id">@patient.FullName</option>
+                                }
+                            </select>
+                            <input type="text" id="search_patient" placeholder="Search patient...">
+                        </div>
+
+                        <div class="user-info">
+                            <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                        </div>
+                    }
+                </div>
+
+                <label asp-for="Therapy_Date">Therapy Date:</label>
+                <input asp-for="Therapy_Date" type="date" id="start-date" required>
+
+                <label asp-for="Physical_Recovery">Physical Recovery:</label>
+                <textarea asp-for="Physical_Recovery" id="physical-recovery" rows="3"></textarea>
+
+                <label asp-for="Emotional_Wellbeing">Emotional Well-being:</label>
+                <textarea asp-for ="Emotional_Wellbeing" id="emotional-wellbeing" rows="3"></textarea>
+
+                <label asp-for="Breast_Feeding">Breastfeeding and/or Formula Feeding:</label>
+                <textarea asp-for="Breast_Feeding" id="feeding" rows="3"></textarea>
+
+                <label asp-for="Newborn_Care">Newborn Care:</label>
+                <textarea asp-for="Newborn_Care" id="postpartum-nutrition" rows="3"></textarea>
+
+                <label asp-for="Nutrition">Postpartum Nutrition:</label>
+                <textarea asp-for="Nutrition" id="postpartum-nutrition" rows="3"></textarea>
+
+                <div class="centered-button-container">
+                    <button type="button" id="next-section" style="background-color: #0074d9;">Next</button>
+                </div>
+            </div>
+
+            <div id="section2" class="prenatal" style="display: none;">
+
+                <label asp-for="Contraception">Contraception:</label>
+                <textarea asp-for="Contraception" id="contraception" rows="3"></textarea>
+
+                <label asp-for="Physical_Activity">Physical Activity and Exercise:</label>
+                <textarea asp-for="Physical_Activity" id="physical-activity" rows="3"></textarea>
+
+                <label asp-for="Sexual_Health">Postpartum Sexual Health:</label>
+                <textarea asp-for="Sexual_Health" id="sexual-health" rows="3"></textarea>
+
+                <label asp-for="Follow_Up">Postpartum Follow-up:</label>
+                <textarea asp-for="Follow_Up" id="postpartum-followup" rows="3"></textarea>
+
+                <label asp-for="Partner_Family_Support">Partner and Family Support:</label>
+                <textarea asp-for="Partner_Family_Support" id="partner-support" rows="3"></textarea>
+
+                <label asp-for="Session_Notes">Session Notes:</label>
+                <textarea asp-for="Session_Notes" id="session-notes" rows="3"></textarea>
+
+                <div class="button-container">
+                    <button type="button" id="prev-section" style="background-color: #0074d9;">Back</button>
+                    <button type="submit" style="background-color: green;">Save</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script>
+        const section1 = document.getElementById('section1');
+        const section2 = document.getElementById('section2');
+        const nextButton = document.getElementById('next-section');
+        const prevButton = document.getElementById('prev-section');
+
+        nextButton.addEventListener('click', () => {
+            section1.style.display = 'none';
+            section2.style.display = 'block';
+        });
+
+        prevButton.addEventListener('click', () => {
+            section1.style.display = 'block';
+            section2.style.display = 'none';
+        });
+
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+    </script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+</body>
+</html>

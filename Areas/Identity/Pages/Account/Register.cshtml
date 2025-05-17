@@ -1,0 +1,454 @@
+﻿@page
+@model RegisterModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>CodeMed PHC System</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.jpg" rel="icon" />
+	<style>
+		.blank-line {
+			margin-bottom: 200px; /* Adjust the value as needed */
+		}
+
+		.centered-button-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		button.custom-button {
+			width: 200px; /* Set the width to 200px */
+		}
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.centered-box {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.register-box {
+			background-color: #36517E;
+			border-radius: 10px;
+			padding: 40px;
+			box-shadow: 0px 0px 10px #888888;
+			width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		h2 {
+			text-align: center;
+			color: white;
+		}
+
+		h1 {
+			color: #36517E;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		label {
+			display: inline-block;
+			margin-bottom: 10px;
+			font-weight: bold;
+			font-size: 22px;
+			color: white;
+		}
+
+		input[type="text"],
+		input[type="password"],
+		textarea,
+		select {
+			padding: 5px;
+			margin-bottom: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			font-size: 18px;
+			width: 400px; /* Set the width to 400px */
+			box-sizing: border-box;
+		}
+
+		input[type="radio"] {
+			margin-right: 10px;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #3e8e41;
+			}
+
+		div {
+			margin-bottom: 10px;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+			.button-container button {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+		#registerSubmit {
+			flex: 1;
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<div class="blank-line"></div>
+	<h1>Complete to Register</h1>
+	<div class="container">
+		<div class="centered-box">
+			<div class="register-box">
+				<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+					<!-- Section 1: Personal Details -->
+					<div id="section1">
+						<h2>Personal Details</h2>
+						<hr />
+
+						<div class="form-group">
+							<label asp-for="Input.Title">Title</label>
+							<select asp-for="Input.Title" class="form-control" autocomplete="Gender" aria-required="true" onchange="showGender(this)">
+								<option value="">--Select Title--</option>
+								<option value="Miss">Miss</option>
+								<option value="Mrs">Mrs</option>
+								<option value="Ms">Ms</option>
+								<option value="Mr">Mr</option>
+								<option value="Mx">Mx</option>
+								<option value="Dr">Dr</option>
+								<option value="Prof">Prof</option>
+								<option value="Other">Other</option>
+							</select>
+							<span asp-validation-for="Input.Title" class="text-danger"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label asp-for="Input.FirstName">First Name</label>
+							<input asp-for="Input.FirstName" class="form-control" autocomplete="username" aria-required="true" placeholder="last name" />
+							<span asp-validation-for="Input.FirstName" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="Input.LastName">Last Name</label>
+							<input asp-for="Input.LastName" class="form-control" autocomplete="username" aria-required="true" placeholder="last name" />
+							<span asp-validation-for="Input.LastName" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Citizenship</label>
+							<select asp-for="Input.Citizenship" class="form-control" id="citizenshipDropdown" onchange="showInput()">
+								<option value="">-- Select Citizenship --</option>
+								<option value="South African Citizen">South African Citizen</option>
+								<option value="Non-South African Citizen">Non-South African Citizen</option>
+							</select>
+							<span asp-validation-for="Input.Citizenship" class="text-danger"></span>
+						</div>
+
+						<div class="form-group" id="idInput" style="display: none;">
+							<label>ID Number</label>
+							<input asp-for="Input.ID_Number" class="form-control" oninput="validateInput(this)" />
+						</div>
+
+						<div class="form-group" id="passportInput" style="display: none;">
+							<label>Passport Number</label>
+							<input asp-for="Input.Passport_Number" class="form-control" />
+						</div>
+
+
+						<!-- Gender -->
+						<div class="form-group">
+							<label asp-for="Input.Gender">Gender</label>
+							<select asp-for="Input.Gender" class="form-control" autocomplete="Gender" aria-required="true" onchange="showGender(this)">
+								<option value="">--Select Gender--</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Transgender">Transgender</option>
+								<option value="Non-Binary">Non-Binary</option>
+								<option value="Prefer not to say">Prefer not to say</option>
+							</select>
+							<span asp-validation-for="Input.Gender" class="text-danger"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label asp-for="Input.Phone_Number">Phone Number</label>
+							<input asp-for="Input.Phone_Number" id="phoneNumberInput" class="form-control" autocomplete="username" aria-required="true" placeholder="phone number" />
+
+							<span asp-validation-for="Input.Phone_Number" class="text-danger"></span>
+						</div>
+
+						<div class="centered-button-container">
+							<button class="custom-button" type="button" onclick="showSection('section2')" style="background-color: green;">Next</button>
+						</div>
+					</div>
+				
+					<!--  Section 3: Home Address -->
+					<div id="section2" style="display: none;">
+					<h2>Home Address</h2>
+					<hr />
+					<div class="form-group">
+						<label asp-for="Input.Street_Address">Street Address</label>
+						<input asp-for="Input.Street_Address" class="form-control" autocomplete="username" aria-required="true" placeholder="street address" />
+						<span asp-validation-for="Input.Street_Address" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label asp-for="Input.Surburb">Surburb</label>
+						<input asp-for="Input.Surburb" class="form-control" autocomplete="username" aria-required="true" placeholder="surburb" />
+						<span asp-validation-for="Input.Surburb" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label asp-for="Input.City">City</label>
+						<input asp-for="Input.City" class="form-control" autocomplete="username" aria-required="true" placeholder="city" />
+						<span asp-validation-for="Input.City" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label asp-for="Input.Province">Province</label>
+						<select asp-for="Input.Province" class="form-control" aria-required="true">
+							<option value="">Select a province</option>
+							<option value="Eastern Cape">Eastern Cape</option>
+							<option value="Free State">Free State</option>
+							<option value="Gauteng">Gauteng</option>
+							<option value="KwaZulu-Natal">KwaZulu-Natal</option>
+							<option value="Limpopo">Limpopo</option>
+							<option value="Mpumalanga">Mpumalanga</option>
+							<option value="North West">North West</option>
+							<option value="Northern Cape">Northern Cape</option>
+							<option value="Western Cape">Western Cape</option>
+						</select>
+						<span asp-validation-for="Input.Province" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<label asp-for="Input.Postal_Code">Postal Code</label>
+						<input asp-for="Input.Postal_Code" class="form-control" autocomplete="username" aria-required="true" placeholder="postal code" />
+						<span asp-validation-for="Input.Postal_Code" class="text-danger"></span>
+					</div>
+
+					<div class="button-container">
+							<button type="button" onclick="showSection('section1')" style="background-color: #0074d9;">Back</button>
+							<button id="section2NextButton" type="button" onclick="showSection('section3')" style="background-color: green;">Next</button>
+					</div>
+					</div>
+					<!-- Section 3: Role and Occupation -->
+					<div id="section3" style="display: none;">
+						<h2>Occupation</h2>
+						<hr />
+						<div class="form-group">
+							<label asp-for="Input.Role">Role</label>
+							<select asp-for="Input.Role" class="form-control" autocomplete="Role" aria-required="true" onchange="showRole(this)">
+								<option value="">--Select Role--</option>
+								<option value="Patient">Patient</option>
+								<option value="Administrator">Administrator</option>
+								<option value="PHC Worker">PHC Worker</option>
+							</select>
+							<span asp-validation-for="Input.Role" class="text-danger"></span>
+						</div>
+
+						<div id="phc-options" style="display:none">
+							<div class="form-group">
+								<label asp-for="Input.PHC_Role">PHC Role</label>
+								<select asp-for="Input.PHC_Role" class="form-control" autocomplete="PHCRole">
+									<option value="">--Select PHC Role--</option>
+									<option value="Counsellor">Counsellor</option>
+									<option value="Doctor">Doctor</option>
+									<option value="Nurse">Nurse</option>
+									<option value="Obstetrician">Obstetrician</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label asp-for="Input.PHC_License_Number">PHC License Number</label>
+								<input asp-for="Input.PHC_License_Number" class="form-control" autocomplete="PHCID" placeholder="phc license number" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="Input.Occupation">Occupation</label>
+							<input asp-for="Input.Occupation" class="form-control" autocomplete="username" aria-required="true" placeholder="occupation" />
+							<span asp-validation-for="Input.Occupation" class="text-danger"></span>
+						</div>
+						<div class="button-container">
+							<button type="button" onclick="showSection('section1')" style="background-color: #0074d9;">Back</button>
+							<button id="section2NextButton" type="button" onclick="showSection('section4')" style="background-color: green;">Next</button>
+						</div>
+					</div>
+
+					<!-- Section 3: Next of Kin -->
+					<div id="section4" style="display: none;">
+						<h2>Next of Kin</h2>
+						<hr />
+						<div class="form-group">
+							<label asp-for="Input.NextOfKinName">Next Of Kin Name</label>
+							<input asp-for="Input.NextOfKinName" class="form-control" autocomplete="username" aria-required="true" placeholder="next of kin name" />
+							<span asp-validation-for="Input.NextOfKinName" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="Input.NextOfKinRelationship">Next of Kin Relationship</label>
+							<select asp-for="Input.NextOfKinRelationship" class="form-control" autocomplete="off" aria-required="true">
+								<option value="">--Select Relationship--</option>
+								<option value="Parent">Parent</option>
+								<option value="Sibling">Sibling</option>
+								<option value="Spouse">Spouse</option>
+								<option value="Child">Child</option>
+								<option value="Grandparent">Grandparent</option>
+								<option value="Friend">Friend</option>
+								<option value="Other">Other</option>
+							</select>
+							<span asp-validation-for="Input.NextOfKinRelationship" class="text-danger"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label asp-for="Input.NextOfKinPhone">Next Of Kin Phone Number</label>
+							<input asp-for="Input.NextOfKinPhone" id="nextOfKinPhoneInput" class="form-control" autocomplete="username" aria-required="true" placeholder="next of kin phone number" />
+							<span asp-validation-for="Input.NextOfKinPhone" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
+							<label asp-for="Input.NextOfKinEmail">Next Of Kin Email</label>
+							<input asp-for="Input.NextOfKinEmail" class="form-control" autocomplete="username" aria-required="true" placeholder="next of kin  email" />
+							<span asp-validation-for="Input.NextOfKinEmail" class="text-danger"></span>
+						</div>
+						<div class="button-container">
+							<button type="button" onclick="showSection('section2')" style="background-color: #0074d9;">Back</button>
+							<button id="section3NextButton" type="button" onclick="showSection('section5')" style="background-color: green;">Next</button>
+						</div>
+					</div>
+
+					<!-- Section 4: Email and Password -->
+					<div id="section5" style="display: none;">
+						<h2>Email and Password</h2>
+						<hr />
+						<div class="form-group">
+							<label asp-for="Input.Email">Email</label>
+							<input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+							<span asp-validation-for="Input.Email" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Input.Password">Password</label>
+							<input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+							<span asp-validation-for="Input.Password" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Input.ConfirmPassword">Confirm Password</label>
+							<input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+							<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+						</div>
+						<br /><br />
+						<div class="button-container">
+							<button type="button" onclick="showSection('section3')" style="background-color: #0074d9;">Back</button>
+							<button id="registerSubmit" type="submit" style="background-color: green;">Register</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+	var nextOfKinPhoneInput = document.getElementById("nextOfKinPhoneInput");
+	var phoneNumberInput = document.getElementById("phoneNumberInput");
+
+	function updateMaxLength(input, prefix, maxLen) {
+		var value = input.value.trim();
+
+		if (value.startsWith(prefix)) {
+			input.maxLength = maxLen;
+		} else {
+			input.maxLength = 50; // Change 50 to your desired default maximum length
+		}
+	}
+
+	nextOfKinPhoneInput.addEventListener("input", function () {
+		updateMaxLength(this, "+27", 13);
+	});
+
+	phoneNumberInput.addEventListener("input", function () {
+		updateMaxLength(this, "+27", 13);
+		updateMaxLength(this, "0", 10);
+	});
+	function showRole(sel) {
+		var phcOptions = document.getElementById("phc-options");
+		if (sel.value === "PHC Worker") {
+			phcOptions.style.display = "block";
+		} else {
+			phcOptions.style.display = "none";
+		}
+	}
+
+	function showInput() {
+		var citizenshipDropdown = document.getElementById("citizenshipDropdown");
+		var idInput = document.getElementById("idInput");
+		var passportInput = document.getElementById("passportInput");
+
+		if (citizenshipDropdown.value === "South African Citizen") {
+			idInput.style.display = "block";
+			passportInput.style.display = "none";
+		} else if (citizenshipDropdown.value === "Non-South African Citizen") {
+			idInput.style.display = "none";
+			passportInput.style.display = "block";
+		} else {
+			idInput.style.display = "none";
+			passportInput.style.display = "none";
+		}
+	}
+
+	function showSection(sectionId) {
+		const sections = ['section1', 'section2', 'section3', 'section4', 'section5'];
+		for (const section of sections) {
+			document.getElementById(section).style.display = 'none';
+		}
+		document.getElementById(sectionId).style.display = 'block';
+	}
+
+	function validateInput(input) {
+		input.value = input.value.replace(/\D/g, '').slice(0, 13);
+	}
+</script>
+</html>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Planning System Dashboard</title>
+    <style>
+        body {
+            color: #fff;
+            font-family: Arial, sans-serif;
+            background-color: #0a0a2a;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            margin-bottom: 20px;
+            color: blue;
+        }
+
+        #dashboardContainer {
+            max-width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dashboardItem {
+            border: 2px solid #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            flex-basis: 30%;
+            text-align: center;
+            background-color: purple;
+        }
+
+            .dashboardItem a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #fff;
+                border-radius: 5px;
+            }
+
+                .dashboardItem a:hover {
+                    background-color: #ff4081;
+                }
+    </style>
+</head>
+<body>
+    <h1>Family Planning System Dashboard</h1>
+
+    <div id="dashboardContainer">
+        <div class="dashboardItem">
+            <h2>Book Consultation</h2>
+            <a href="/book-consultation">Book Now</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>View Appointments</h2>
+            <a href="/view-appointments">View Now</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Contraceptive Methods</h2>
+            <a href="/contraceptive-methods">Explore Options</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Pregnancy Planning</h2>
+            <a href="/pregnancy-planning">Plan Now</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>Education & Resources</h2>
+            <a href="/education-resources">Learn More</a>
+        </div>
+
+        <div class="dashboardItem">
+            <h2>FAQs</h2>
+            <a href="/faqs">Read FAQs</a>
+        </div>
+    </div>
+</body>
+</html>

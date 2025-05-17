@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Prenatal Care Dashboard</title>
+    <style>
+        body {
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            margin-bottom: 20px;
+            color: #36517E;
+        }
+
+        #dashboardContainer {
+            max-width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboardItem {
+            border: 2px solid #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            background-color: #36517E;
+        }
+
+            .dashboardItem a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #fff;
+                border-radius: 5px;
+            }
+
+                .dashboardItem a:hover {
+                    background-color: #ff4081;
+                }
+
+        #phcRoleContainer {
+            display: none;
+        }
+
+            #phcRoleContainer label {
+                display: block;
+                color: #fff;
+                margin-bottom: 10px;
+            }
+
+            #phcRoleContainer select {
+                padding: 5px;
+                border-radius: 5px;
+            }
+
+            #phcRoleContainer input[type="submit"] {
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: #ff4081;
+                color: #fff;
+                cursor: pointer;
+            }
+    </style>
+    <script>
+        function showPHCRoles() {
+            var phcRoleContainer = document.getElementById("phcRoleContainer");
+            phcRoleContainer.style.display = "block";
+        }
+
+        function redirectToDashboard(role, phcRole) {
+            var dashboardUrl;
+
+            if (role === "Patient") {
+                dashboardUrl = "/Patient/PrenatalIndex";
+            } else if (role === "Administrator") {
+                dashboardUrl = "/Administrators/PrenatalIndex";
+            } else if (role === "PHC Worker") {
+                if (phcRole === "Doctor") {
+                    dashboardUrl = "/Doctors/PrenatalIndex";
+                } else if (phcRole === "Counsellor") {
+                    dashboardUrl = "/Counselling/PrenatalIndex";
+                } else if (phcRole === "Nurse") {
+                    dashboardUrl = "Nurse/PrenatalIndex";
+                }
+            }
+
+            if (dashboardUrl) {
+                window.location.href = dashboardUrl;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="dashboardContainer">
+        <h1>Prenatal Care Dashboard</h1>
+        <div class="dashboardItem">
+            <a href="#" onclick="redirectToDashboard('Patient')">I'm a Patient</a>
+        </div>
+        <div class="dashboardItem">
+            <a href="#" onclick="redirectToDashboard('Administrator')">I'm an Administrator</a>
+        </div>
+        <div class="dashboardItem">
+            <a href="#" onclick="showPHCRoles()">I'm a PHC Worker</a>
+        </div>
+        <div id="phcRoleContainer">
+            <form onsubmit="event.preventDefault(); redirectToDashboard('PHC Worker', phcRoleSelect.value);">
+                <label for="phcRoleSelect">Select PHC Role:</label>
+                <select id="phcRoleSelect" name="phcRoleSelect">
+                    <option value="Doctor">Doctor</option>
+                    <option value="Counsellor">Counsellor</option>
+                    <option value="Nurse">Nurse</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

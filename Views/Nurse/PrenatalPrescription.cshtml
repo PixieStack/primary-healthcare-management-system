@@ -1,0 +1,90 @@
+﻿@model CodeMed.Models.PrenatalCounsellorReferral;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pregnancy Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #monitoring-section {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prenatal Care Medication Prescription Form</h1>
+    <form id="prescription-form">
+        <h2>Patient Information</h2>
+        <label for="patient_name">Patient's Name:</label>
+        <input type="text" id="patient_name" name="patient_name" required>
+
+        <label for="patient_id">Patient's ID:</label>
+        <input type="text" id="patient_id" name="patient_id" required>
+
+        <label for="doctor_name">Doctor's Name:</label>
+        <input type="text" id="doctor_name" name="doctor_name" required>
+
+        <label for="date_prescribed">Date Prescribed:</label>
+        <input type="date" id="date_prescribed" name="date_prescribed" required>
+
+        <h2>Medication Prescription</h2>
+        <label for="medication_name">Medication Name:</label>
+        <input type="text" id="medication_name" name="medication_name" required>
+
+        <label for="reason">Reason for Prescription:</label>
+        <select id="reason" name="reason" required>
+            <option value="" disabled selected>Select a reason</option>
+            <option value="high_blood_pressure">High Blood Pressure</option>
+            <option value="gestational_diabetes">Gestational Diabetes</option>
+            <option value="iron_deficiency">Iron Deficiency</option>
+            <option value="nausea">Nausea</option>
+            <option value="headaches">Headaches</option>
+            <option value="anxiety">Anxiety</option>
+            <option value="insomnia">Insomnia</option>
+            <option value="thyroid_issues">Thyroid Issues</option>
+            <option value="infections">Infections</option>
+        </select>
+
+        <label for="dosage">Dosage:</label>
+        <input type="text" id="dosage" name="dosage" required>
+
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions" rows="4" required></textarea>
+
+        <button type="submit">Prescribe Medication</button>
+    </form>
+
+</body>
+</html>

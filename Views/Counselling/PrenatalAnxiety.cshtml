@@ -1,0 +1,182 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<title>Prenatal Anxiety Counseling Form</title>
+	<style>
+		.blank-line {
+			margin-bottom: 200px; /* Adjust the value as needed */
+		}
+
+		.centered-button-container {
+			isplay: flex;
+			justify-content: center;
+		}
+
+		button.custom-button {
+			width: 200px; /* Set the width to 200px */
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			box-shadow: 1px 1px 5px grey;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #3e8e41;
+			}
+
+		div {
+			margin-bottom: 10px;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+			.button-container button {
+				flex: 1;
+				margin-right: 10px;
+			}
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f4f4f4;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+		}
+
+		.container {
+			max-width: 600px;
+			padding: 20px;
+			background-color: white;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		h1, h2 {
+			text-align: center;
+		}
+
+		label {
+			display: block;
+			margin-top: 10px;
+			font-weight: bold;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		input[type="tel"],
+		input[type="date"],
+		textarea,
+		select {
+			width: 100%;
+			padding: 8px;
+			margin-top: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+
+		button {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-top: 10px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+			button:hover {
+				background-color: #0056b3;
+			}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Prenatal Anxiety Counseling Form</h1>
+		<form id="counseling-form">
+			<div id="section1">
+				<h2>Personal Information</h2>
+				<label for="name">Your Name:</label>
+				<input type="text" id="name" name="name" required>
+
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email" required>
+
+				<label for="phone">Phone:</label>
+				<input type="tel" id="phone" name="phone" required>
+				<div class="centered-button-container">
+					<button class="custom-button" type="button" onclick="showSection('section2')">Next</button>
+				</div>
+			</div>
+
+			<div id="section2" style="display: none;">
+				<h2>Anxiety Notes and Considerations</h2>
+				<label for="due_date">Due Date:</label>
+				<input type="date" id="due_date" name="due_date">
+
+				<label for="anxiety_triggers">Anxiety Triggers:</label>
+				<textarea id="anxiety_triggers" name="anxiety_triggers" rows="4"></textarea>
+
+				<label for="coping_strategies">Coping Strategies:</label>
+				<textarea id="coping_strategies" name="coping_strategies" rows="4"></textarea>
+				<div class="button-container">
+					<button type="button" onclick="showSection('section1')">Back</button>
+					<button id="section2NextButton" type="button" onclick="showSection('section3')">Next</button>
+				</div>
+			</div>
+			<!-- ... Previous form content ... -->
+
+			<div id="section3" style="display: none;">
+				<h2>Additional Counseling Topics</h2>
+				<label for="mindfulness_notes">Mindfulness and Relaxation Techniques:</label>
+				<textarea id="mindfulness_notes" name="mindfulness_notes" rows="4"></textarea>
+
+				<label for="communication_notes">Communication and Support Systems:</label>
+				<textarea id="communication_notes" name="communication_notes" rows="4"></textarea>
+
+				<label for="negative_thoughts_notes">Managing Negative Thoughts:</label>
+				<textarea id="negative_thoughts_notes" name="negative_thoughts_notes" rows="4"></textarea>
+
+				<label for="self_care_notes">Self-Care and Boundaries:</label>
+				<textarea id="self_care_notes" name="self_care_notes" rows="4"></textarea>
+
+				<label for="transition_notes">Preparing for the Transition:</label>
+				<textarea id="transition_notes" name="transition_notes" rows="4"></textarea>
+				<div class="button-container">
+					<button type="button" onclick="showSection('section3')">Back</button>
+					<button id="registerSubmit" type="submit" class="btn btn-lg btn-primary">Register</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<script src="script.js"></script>
+	<script>
+		function showSection(sectionId) {
+			const sections = ['section1', 'section2', 'section3'];
+			for (const section of sections) {
+				document.getElementById(section).style.display = 'none';
+			}
+			document.getElementById(sectionId).style.display = 'block';
+		}</script>
+</body>
+</html>

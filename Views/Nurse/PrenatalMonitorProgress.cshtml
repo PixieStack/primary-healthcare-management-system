@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pregnancy Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #monitoring-section {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pregnancy Monitoring</h1>
+    <div id="monitoring-section">
+        <h2>Maternal Vital Signs</h2>
+        <div>
+            <label for="blood-pressure">Blood Pressure:</label>
+            <input type="text" id="blood-pressure">
+        </div>
+        <div>
+            <label for="heart-rate">Heart Rate:</label>
+            <input type="text" id="heart-rate">
+        </div>
+        <div>
+            <label for="temperature">Temperature:</label>
+            <input type="text" id="temperature">
+        </div>
+
+        <h2>Weight Gain</h2>
+        <div>
+            <label for="weight">Weight:</label>
+            <input type="text" id="weight">
+        </div>
+
+        <h2>Urine Analysis</h2>
+        <div>
+            <label for="urine-test">Urine Test Result:</label>
+            <input type="text" id="urine-test">
+        </div>
+
+        <h2>Blood Tests</h2>
+        <div>
+            <label for="blood-tests">Blood Test Result:</label>
+            <input type="text" id="blood-tests">
+        </div>
+
+        <h2>Fetal Growth and Development</h2>
+        <div>
+            <label for="fundal-height">Fundal Height:</label>
+            <input type="text" id="fundal-height">
+        </div>
+        <div>
+            <label for="ultrasound">Ultrasound Results:</label>
+            <input type="text" id="ultrasound">
+        </div>
+        <div>
+            <label for="fetal-movements">Fetal Movements:</label>
+            <input type="text" id="fetal-movements">
+        </div>
+
+        <h2>Doppler Studies</h2>
+        <div>
+            <label for="doppler-studies">Doppler Study Results:</label>
+            <input type="text" id="doppler-studies">
+        </div>
+
+        <h2>Genetic Screening and Testing</h2>
+        <div>
+            <label for="genetic-screening">Genetic Screening Results:</label>
+            <input type="text" id="genetic-screening">
+        </div>
+
+        <h2>Screening for Gestational Diabetes</h2>
+        <div>
+            <label for="glucose-test">Glucose Test Result:</label>
+            <input type="text" id="glucose-test">
+        </div>
+
+        <h2>Maternal Infections</h2>
+        <div>
+            <label for="infections">Infection Screening Result:</label>
+            <input type="text" id="infections">
+        </div>
+
+        <h2>Emotional Well-being</h2>
+        <div>
+            <label for="emotional-wellbeing">Emotional Well-being Notes:</label>
+            <textarea id="emotional-wellbeing"></textarea>
+        </div>
+
+        <button onclick="saveMonitoringData()">Save</button>
+    </div>
+
+    <script>
+        function saveMonitoringData() {
+            const vitalSigns = {
+                bloodPressure: document.getElementById("blood-pressure").value,
+                heartRate: document.getElementById("heart-rate").value,
+                temperature: document.getElementById("temperature").value
+            };
+
+            const weight = document.getElementById("weight").value;
+            const urineAnalysis = document.getElementById("urine-test").value;
+            const bloodTests = document.getElementById("blood-tests").value;
+            const fetalGrowth = {
+                fundalHeight: document.getElementById("fundal-height").value,
+                ultrasound: document.getElementById("ultrasound").value,
+                fetalMovements: document.getElementById("fetal-movements").value
+            };
+            const dopplerStudies = document.getElementById("doppler-studies").value;
+            const geneticScreening = document.getElementById("genetic-screening").value;
+            const glucoseTest = document.getElementById("glucose-test").value;
+            const infections = document.getElementById("infections").value;
+            const emotionalWellbeing = document.getElementById("emotional-wellbeing").value;
+
+            // Perform data saving or processing here
+            console.log("Data saved successfully!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+﻿@model CodeMed.Models.vaccines.VaccineUsageRateModel
+
+@{
+    ViewBag.Title = "Vaccine Usage Rate Report";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Growth Report</title>
+    <link rel="stylesheet" href="/css/boostrap.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/CodeMed.styles.css?v=6NpGbMrsF9p1j3fx9VpwMIJhHcOU_HqRiXy2MVUSMqI" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .custom-label {
+            width: 150px;
+            /* Add any other styles you want for the label here */
+        }
+
+        select.form-control {
+            width: 150px;
+            /* Add any other styles you want for the select element here */
+        }
+
+        table {
+            max-width: 1237px; /* Set the same max-width as the form */
+            margin: 0 auto; /* Center the table within the form */
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #87C1FF;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #87C1FF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: white;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+
+        form {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px; /* Add padding within the border */
+            position: relative;
+        }
+
+            form::before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                right: -2px;
+                bottom: -2px;
+                left: -2px;
+                border: 2px solid #36517E; /* Outer border */
+                border-radius: 5px;
+                pointer-events: none; /* Ensure the outer border doesn't interfere with the form */
+            }
+
+            form::after {
+                content: "";
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                bottom: 2px;
+                left: 2px;
+                border: 2px solid #36517E; /* Inner border */
+                border-radius: 5px;
+                pointer-events: none; /* Ensure the inner border doesn't interfere with the form */
+            }
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+
+    <div class="container">
+        
+
+        <form method="post">
+            <div class="center">
+                <h1>CodeMed – e-Nompilo Primary Healthcare</h1>
+            </div>
+            <div class="center">
+                <img src="~/images/CodeMed_Logo.jpg" width="50" height="50" />
+            </div>
+
+            <div class="center">
+                <h2>@ViewBag.Title</h2>
+
+               
+                <label for="chartType">Chart Type:</label>
+                <select id="chartType">
+                    <option value="pie">Pie Chart</option>
+                    <option value="bar">Bar Graph</option>
+                    <option value="line">Line Graph</option>
+                    <option value="histogram">Histogram</option>
+                    <option value="scatter">Scatter Plot</option>
+                </select>
+
+                <div id="chart-container" style="width:100%; max-width:1000px;">
+                    <div id="myChart" style="width: 80%; height: 600px; float: left;"></div>
+                    <div style="width: 20%; float: left;">
+                        <p>Lowest Usage Count: @Model.LowestUsageCount</p>
+                        <p>Highest Usage Count: @Model.HighestUsageCount</p>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+                <br> <!-- This adds one line break -->
+
+                <script src="https://www.gstatic.com/charts/loader.js"></script>
+                <script>
+                    google.charts.load('current', { 'packages': ['corechart'] });
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    function drawChart() {
+                        var chartData = [
+                            ['Vaccine Name', 'Usage Count']
+                            @foreach (System.Data.DataRow row in Model.DataTable.Rows)
+                            {
+                                <text>,
+                                ['@row["VaccineName"].ToString()', @row["UsageCount"]]
+                                </text>
+                            }
+                        ];
+
+                        var data = google.visualization.arrayToDataTable(chartData);
+        
+                        // Default chart type
+                        var defaultChartType = 'pie';
+
+                        var options = {
+                            title: 'Vaccine Usage Rate',
+                            is3D: true,
+                            colors: ['#3498DB', '#2980B9', '#1F618D', '#154360', '#117A65', '#0E6655'],
+                            backgroundColor: {
+                                fill: 'transparent'
+                            },
+                            legend: {
+                                textStyle: {
+                                    color: 'black'
+                                }
+                            },
+                            chartArea: {
+                                width: '70%',
+                                height: '70%'
+                            }
+                        };
+        
+                        var chartTypeSelector = document.getElementById('chartType');
+                        var chart = new google.visualization.PieChart(document.getElementById('myChart'));
+
+                        // Function to draw the chart based on the selected type
+                        function drawChartByType(type) {
+                            var newChart;
+                            switch (type) {
+                                case 'pie':
+                                    newChart = new google.visualization.PieChart(document.getElementById('myChart'));
+                                    break;
+                                case 'bar':
+                                    newChart = new google.visualization.BarChart(document.getElementById('myChart'));
+                                    break;
+                                case 'line':
+                                    newChart = new google.visualization.LineChart(document.getElementById('myChart'));
+                                    break;
+                                case 'histogram':
+                                    newChart = new google.visualization.Histogram(document.getElementById('myChart'));
+                                    break;
+                                case 'scatter':
+                                    newChart = new google.visualization.ScatterChart(document.getElementById('myChart'));
+                                    break;
+                            }
+
+                            // Draw the new chart
+                            newChart.draw(data, options);
+                        }
+
+                        // Set the initial chart type
+                        chartTypeSelector.value = defaultChartType;
+                        drawChartByType(defaultChartType);
+
+                        // Event listener to change chart type
+                        chartTypeSelector.addEventListener('change', function() {
+                            var selectedType = chartTypeSelector.value;
+                            drawChartByType(selectedType);
+                        });
+                    }
+                     document.getElementById("filterDropdown").addEventListener("change", function () {
+                            var selectedOption = this.value;
+                            switch (selectedOption) {
+                                case "option1":
+                                    // Do nothing or show a message for the "Select Option" case.
+                                    break;
+                                case "option2":
+                                    window.location.href = "/Doctors/ImmunizationGeo";
+                                    break;
+                                case "option3":
+                                    window.location.href = "/Doctors/VaccintaionGeo";
+                                    break;
+                                case "option4":
+                                    window.location.href = "/Doctors/VaccinationHistory";
+                                    break;
+                                case "option5":
+                                    window.location.href = "/Doctors/VaccineUsageRate";
+                                    break;
+                                default:
+                                    break;
+                            }
+                        });
+                </script>
+
+                <style>
+                    #myChart {
+                        border: 2px solid #3498DB;
+                        border-radius: 10px;
+                        padding: 10px;
+                        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+                    }
+                </style>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

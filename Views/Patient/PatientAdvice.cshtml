@@ -1,0 +1,395 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prenatal Care Advice</title>
+    <title>Appointment Request Form</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        /* Custom styles for the prenatal care advice page */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: #36517E;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .menu-section {
+            background-color: #f8f9fa;
+            border-right: 1px solid #ccc;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .menu-item {
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .content-section {
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            list-style: none;
+            padding: 0;
+        }
+
+        .video-link {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .book-section {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #36517E;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 36px; font-weight: bold; color: white">CodeMed</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-blue" asp-area="" asp-controller="Home" asp-action="Index" style="font-weight:bold; font-size:20px; color: white;">Home</a>
+                        </li>
+                        @*<li class="nav-item">
+                        <a class="nav-link text-blue" asp-area="" asp-controller="Home" asp-action="Privacy" style="font-weight:bold; font-size:20px; color: white;">Registration</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-blue" asp-area="" asp-controller="LoggedIn" asp-action="Index" style="font-weight:bold; font-size:20px; color: white;">Dashboard</a>
+                        </li>
+
+                    </ul>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="blank-line"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Prenatal Care Advice</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 menu-section">
+                <div class="menu-item" onclick="showVideos('1st-trimester')">
+                    Videos of 1st Trimester
+                </div>
+                <!-- Add more menu items for each video and book option -->
+                <div class="menu-item" onclick="showVideos('2nd-trimester')">
+                    Videos of 2nd Trimester
+                </div>
+                <div class="menu-item" onclick="showVideos('3rd-trimester')">
+                    Videos of 3rd Trimester
+                </div>
+                <div class="menu-item" onclick="showVideos('first-time-moms')">
+                    Videos for First Time Moms
+                </div>
+                <div class="menu-item" onclick="showVideos('teen-moms')">
+                    Videos for Teen Moms
+                </div>
+                <div class="menu-item" onclick="showVideos('healthy-eating')">
+                    Healthy Eating during Pregnancy
+                </div>
+                <div class="menu-item" onclick="showVideos('exercises')">
+                    Pregnancy Exercises
+                </div>
+                <div class="menu-item" onclick="showVideos('things-to-look-out-for')">
+                    Things to Look Out For
+                </div>
+                <div class="menu-item" onclick="showBook()">
+                    New Mom and Baby Book
+                </div>
+            </div>
+            <div class="col-md-9 content-section" id="content">
+                <!-- Content will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add your custom scripts here -->
+    <script>
+        function showVideos(category) {
+            let videoContent = '';
+
+            switch (category) {
+                case '1st-trimester':
+                    videoContent = `
+                        <h2>Videos of 1st Trimester</h2>
+                        <div class="video-container">
+                            <video id="video-player-1" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/First_Trimester/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-1">Previous</button>
+                            <button id="next-button-1">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case '2nd-trimester':
+                    videoContent = `
+                        <h2>Videos of 2nd Trimester</h2>
+                        <div class="video-container">
+                            <video id="video-player-2" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/Second_Trimester/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-2">Previous</button>
+                            <button id="next-button-2">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case '3rd-trimester':
+                    videoContent = `
+                        <h2>Videos of 3rd Trimester</h2>
+                        <div class="video-container">
+                            <video id="video-player-3" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/Third_Trimester/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-3">Previous</button>
+                            <button id="next-button-3">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'first-time-moms':
+                    videoContent = `
+                        <h2>Videos for First-Time Moms</h2>
+                        <div class="video-container">
+                            <video id="video-player-first-time" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/First_Pregnancy/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-first-time">Previous</button>
+                            <button id="next-button-first-time">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'teen-moms':
+                    videoContent = `
+                        <h2>Videos for Teen Moms</h2>
+                        <div class="video-container">
+                            <video id="video-player-teen-moms" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/Teen_Moms/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-teen-moms">Previous</button>
+                            <button id="next-button-teen-moms">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'healthy-eating':
+                    videoContent = `
+                        <h2>Videos for Healthy Eating</h2>
+                        <div class="video-container">
+                            <video id="video-player-healthy-eating" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/Diet/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-healthy-eating">Previous</button>
+                            <button id="next-button-healthy-eating">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'exercises':
+                    videoContent = `
+                        <h2>Exercise Videos</h2>
+                        <div class="video-container">
+                            <video id="video-player-exercises" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/Exercises/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-exercises">Previous</button>
+                            <button id="next-button-exercises">Next</button>
+                        </div>
+                    `;
+                    break;
+
+                case 'things-to-look-out-for':
+                    videoContent = `
+                        <h2>Things to Look Out For</h2>
+                        <div class="video-container">
+                            <video id="video-player-look-out" controls autoplay preload="auto">
+                                <source src="~/prenatal_videos/Look_Out/video1.mp4" type="video/mp4">
+                                Video 1
+                            </video>
+                        </div>
+                        <div class="video-navigation">
+                            <button id="prev-button-look-out">Previous</button>
+                            <button id="next-button-look-out">Next</button>
+                        </div>
+                    `;
+                    break;
+            }
+
+            document.getElementById('content').innerHTML = videoContent;
+
+            // Add event listeners for navigation buttons within each case
+            if (category === '1st-trimester') {
+                handleVideoNavigation(1);
+            } else if (category === '2nd-trimester') {
+                handleVideoNavigation(2);
+            } else if (category === '3rd-trimester') {
+                handleVideoNavigation(3);
+            } else if (category === 'first-time-moms') {
+                handleVideoNavigation(4);
+            } else if (category === 'teen-moms') {
+                handleVideoNavigation(5);
+            } else if (category === 'healthy-eating') {
+                handleVideoNavigation(6);
+            } else if (category === 'exercises') {
+                handleVideoNavigation(7);
+            } else if (category === 'things-to-look-out-for') {
+                handleVideoNavigation(8);
+            }
+        }
+
+        function handleVideoNavigation(categoryIndex) {
+            const videoPlayer = document.getElementById(`video-player-${categoryIndex}`);
+            const prevButton = document.getElementById(`prev-button-${categoryIndex}`);
+            const nextButton = document.getElementById(`next-button-${categoryIndex}`);
+
+            let currentVideoIndex = 0;
+
+            const videoSources = [
+                ["~/prenatal_videos/First_Trimester/video1.mp4", "/prenatal_videos/First_Trimester/video2.mp4", "/prenatal_videos/First_Trimester/video3.mp4", "/prenatal_videos/First_Trimester/video4.mp4", "/prenatal_videos/First_Trimester/video5.mp4"],
+                ["~/prenatal_videos/Second_Trimester/video1.mp4", "/prenatal_videos/Second_Trimester/video2.mp4", "/prenatal_videos/Second_Trimester/video3.mp4", "/prenatal_videos/Second_Trimester/video4.mp4", "/prenatal_videos/Second_Trimester/video5.mp4"],
+                ["~/prenatal_videos/Third_Trimester/video1.mp4", "/prenatal_videos/Third_Trimester/video2.mp4", "/prenatal_videos/Third_Trimester/video3.mp4", "/prenatal_videos/Third_Trimester/video4.mp4", "/prenatal_videos/Third_Trimester/video5.mp4"],
+                ["~/prenatal_videos/First_Pregnancy/video1.mp4", "/prenatal_videos/First_Pregnancy/video2.mp4", "/prenatal_videos/First_Pregnancy/video3.mp4", "/prenatal_videos/First_Pregnancy/video4.mp4", "/prenatal_videos/First_Pregnancy/video5.mp4"],
+                ["~/prenatal_videos/Teen_Moms/video1.mp4", "/prenatal_videos/Teen_Moms/video2.mp4", "/prenatal_videos/Teen_Moms/video3.mp4", "/prenatal_videos/Teen_Moms/video4.mp4", "/prenatal_videos/Teen_Moms/video5.mp4"],
+                ["~/prenatal_videos/Diet/video1.mp4", "/prenatal_videos/Diet/video2.mp4", "/prenatal_videos/Diet/video3.mp4", "/prenatal_videos/Diet/video4.mp4", "/prenatal_videos/Diet/video5.mp4"],
+                ["~/prenatal_videos/Exercises/video1.mp4", "/prenatal_videos/Exercises/video2.mp4", "/prenatal_videos/Exercises/video3.mp4", "/prenatal_videos/Exercises/video4.mp4", "/prenatal_videos/Exercises/video5.mp4"],
+                ["~/prenatal_videos/Look_Out/video1.mp4", "/prenatal_videos/Look_Out/video2.mp4", "/prenatal_videos/Look_Out/video3.mp4", "/prenatal_videos/Look_Out/video4.mp4", "/prenatal_videos/Look_Out/video5.mp4"]
+            ];
+
+            // Function to update the video source
+            function updateVideoSource(videoIndex) {
+                videoPlayer.src = videoSources[categoryIndex - 1][videoIndex];
+                videoPlayer.load();
+                videoPlayer.play();
+            }
+
+            // Handle next button click
+            nextButton.addEventListener('click', () => {
+                currentVideoIndex = (currentVideoIndex + 1) % 5; // Assuming there are 5 videos
+                updateVideoSource(currentVideoIndex);
+            });
+
+            // Handle previous button click
+            prevButton.addEventListener('click', () => {
+                currentVideoIndex = (currentVideoIndex - 1 + 5) % 5; // To ensure a positive index
+                updateVideoSource(currentVideoIndex);
+            });
+        }
+
+
+        function showBooks(bookIndex) {
+            const bookContainer = document.getElementById('content');
+            const totalBooks = 5; // Assuming there are 5 books
+
+            // Ensure bookIndex is within the valid range
+            if (bookIndex < 1 || bookIndex > totalBooks) {
+                bookIndex = 1; // Default to the first book if index is out of range
+            }
+
+            const bookFileName = `book${bookIndex}.pdf`;
+            const bookPath = `~/prenatal_books/${bookFileName}`;
+
+            // Display the book using an iframe
+            bookContainer.innerHTML = `
+                <h2>New Mom and Baby Book</h2>
+                <iframe src="${bookPath}" width="100%" height="600" frameborder="0"></iframe>
+                <div class="book-navigation">
+                    <button id="prev-book">Previous Book</button>
+                    <button id="next-book">Next Book</button>
+                </div>
+            `;
+
+            // Handle next book button click
+            document.getElementById('next-book').addEventListener('click', () => {
+                showBooks(bookIndex + 1);
+            });
+
+            // Handle previous book button click
+            document.getElementById('prev-book').addEventListener('click', () => {
+                showBooks(bookIndex - 1);
+            });
+        }
+
+        // Show the first book initially
+        showBooks(1);
+
+    </script>
+
+    <!-- Add the Bootstrap JS scripts at the end of the body -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

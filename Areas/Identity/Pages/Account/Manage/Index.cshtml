@@ -1,0 +1,94 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Username" style="width:750px"class="form-control" placeholder="Please choose your username." disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Phone_Number" class="form-label"></label>
+                <input asp-for="Input.Phone_Number" style="width:750px" class="form-control" placeholder="Please enter your phone number." />
+                <span asp-validation-for="Input.Phone_Number" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.LastName" class="form-label"></label>
+                <input asp-for="Input.LastName" style="width:750px" class="form-control" placeholder="Enter your last name." />
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Street_Address" class="form-label"></label>
+                <input asp-for="Input.Street_Address" style="width:750px" class="form-control" placeholder="Enter your street address." />
+                <span asp-validation-for="Input.Street_Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Surburb" class="form-label"></label>
+                <input asp-for="Input.Surburb" style="width:750px" class="form-control" placeholder="Enter your suburb." />
+                <span asp-validation-for="Input.Surburb" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.City" class="form-label"></label>
+                <input asp-for="Input.City" style="width:750px" class="form-control" placeholder="Enter your city." />
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Province" class="form-label"></label>
+                <input asp-for="Input.Province" style="width:750px" class="form-control" placeholder="Enter your province." />
+                <span asp-validation-for="Input.Province" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Postal_Code" class="form-label"></label>
+                <input asp-for="Input.Postal_Code" style="width:750px" class="form-control" placeholder="Enter your postal code." />
+                <span asp-validation-for="Input.Postal_Code" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.NextOfKinName" class="form-label"></label>
+                <input asp-for="Input.NextOfKinName" style="width:750px" class="form-control" placeholder="Enter next of kin's name." />
+                <span asp-validation-for="Input.NextOfKinName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.NextOfKinRelationship" class="form-label"></label>
+                <input asp-for="Input.NextOfKinRelationship" style="width:750px" class="form-control" placeholder="Enter next of kin's relationship." />
+                <span asp-validation-for="Input.NextOfKinRelationship" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.NextOfKinPhone" class="form-label"></label>
+                <input asp-for="Input.NextOfKinPhone" style="width:750px" class="form-control" placeholder="Enter next of kin's phone number." />
+                <span asp-validation-for="Input.NextOfKinPhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.NextOfKinEmail" class="form-label"></label>
+                <input asp-for="Input.NextOfKinEmail" style="width:750px" class="form-control" placeholder="Enter next of kin's email address." />
+                <span asp-validation-for="Input.NextOfKinEmail" class="text-danger"></span>
+            </div>
+
+            <!-- Additional fields end -->
+
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

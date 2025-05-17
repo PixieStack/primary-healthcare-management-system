@@ -1,0 +1,158 @@
+﻿@model List<CodeMed.Areas.Identity.Data.CodeMedUser>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Include Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Include Bootstrap JavaScript (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>User Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        #addUserButton {
+            float: right;
+            margin-top: -40px;
+        }
+
+        .blank-line {
+            margin-bottom: 50px; /* Adjust the value as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+    <div class="blank-line"></div>
+    <h1>User Management System</h1>
+    <!-- Add the "Add New User" button -->
+    <div class="blank-line"></div>
+    <div>
+        <!-- Your existing filter dropdown and heading -->
+        <a href="@Url.Action("DownloadAdminsReport")" class="btn btn-primary">
+            <i class="bi bi-file-earmark-arrow-down-fill"></i>&nbsp;&nbsp;Download
+        </a>
+    </div>
+
+
+    <div class="blank-line"></div>
+   
+    <h3 id="filterHeading"></h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.admins != null)
+            {
+                @foreach (var obj in ViewBag.Admins)
+                {
+                    <tr>
+                        <td>
+                            @obj.Title
+                        </td>
+                        <td>
+                            @obj.FirstName
+                        </td>
+                        <td>
+                            @obj.LastName
+                        </td>
+                        <td>
+                            @obj.Gender
+                        </td>
+                        <td>
+                            @obj.Email
+                        </td>
+                        <td>
+                            @obj.PhoneNumber
+                        </td>
+                        <td>
+                            @obj.Role
+                        </td>
+                    </tr>
+                }
+            }
+            
+        </tbody>
+    </table>
+    <script>
+        document.getElementById("downloadButton").addEventListener("click", function () {
+            // Make an AJAX request to your GetAllAdmins action to get the file
+            fetch("@Url.Action("GetAllAdmins", "YourControllerName")")
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a link element to trigger the download
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.style.display = "none";
+                    a.href = url;
+                    a.download = "users_report.txt";
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error("Error downloading file: " + error);
+                });
+        });
+    </script>
+
+</body>
+</html>

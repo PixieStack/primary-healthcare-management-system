@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CodeMed</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link href="assets/img/favicon.jpg" rel="icon"/>
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon"/>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+
+        .highlight-current {
+            background-color: orange;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #36517E;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="font-size: 36px; font-weight: bold; color: white">CodeMed</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-blue" asp-area="" asp-controller="Home" asp-action="Index" style="font-weight:bold; font-size:20px; color: white;">Home</a>
+                        </li>
+                        @*<li class="nav-item">
+                        <a class="nav-link text-blue" asp-area="" asp-controller="Home" asp-action="Privacy" style="font-weight:bold; font-size:20px; color: white;">Registration</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-blue" asp-area="" asp-controller="LoggedIn" asp-action="Index" style="font-weight:bold; font-size:20px; color: white;">Dashboard</a>
+                        </li>
+
+                    </ul>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+            
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="blank-line"></div>
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        function searchPage() {
+            var searchText = document.getElementById('searchText').value;
+            var matchFound = false;
+
+            // remove previous highlights
+            var highlightedSpans = document.querySelectorAll('span.highlight');
+            highlightedSpans.forEach(function (span) {
+                span.outerHTML = span.textContent;
+            });
+
+            if (searchText.length > 0) {
+                var pageContent = document.documentElement.innerHTML;
+                var matchPosition = pageContent.indexOf(searchText);
+                if (matchPosition !== -1) {
+                    matchFound = true;
+                    window.scrollTo(0, matchPosition);
+                    var span = document.createElement('span');
+                    span.style.backgroundColor = 'yellow';
+                    span.textContent = searchText;
+                    span.className = 'highlight';
+                    var pageDiv = document.body;
+                    var instance = pageDiv.innerHTML;
+                    var newPageDiv = instance.replace(new RegExp(searchText, 'g'), span.outerHTML);
+                    pageDiv.innerHTML = newPageDiv;
+                }
+            }
+
+            if (!matchFound) {
+                alert('0 matches found');
+                if (highlighted) {
+                    var pageDiv = document.body;
+                    var instance = pageDiv.innerHTML;
+                    var newPageDiv = instance.replace(/<span[^>]*>|<\/span>/g, '');
+                    pageDiv.innerHTML = newPageDiv;
+                    highlighted = false;
+                }
+            }
+        }
+
+    </script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

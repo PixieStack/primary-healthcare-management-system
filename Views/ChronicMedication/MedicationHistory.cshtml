@@ -1,0 +1,377 @@
+﻿@model CodeMed.Models.chronic.MedicationHistory;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History Form</title>
+    <title>Appointment Request Form</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1> Fill In Medication History</h1>
+    </div>
+    <div class="container">
+        <form method="post" asp-action="MedicationHistory">
+            <label asp-for="Doctor">Doctor:</label>
+            <input asp-for="Doctor" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")">
+
+            <div class="appointment-form">
+                @if (ViewBag.Patients != null)
+                {
+                    <label for="selected_patient">Select Patient:</label>
+                    <div class="search-and-select">
+                        <select id="selected_patient" asp-for="Patient" required>
+                            <option value="">Select Patient</option>
+                            @foreach (var patient in ViewBag.Patients)
+                            {
+                                <option value="@patient.Id">@patient.FullName</option>
+                            }
+                        </select>
+                        <input type="text" id="search_patient" placeholder="Search patient...">
+                    </div>
+
+                    <div class="user-info">
+                        <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                    </div>
+                }
+            </div>
+            <label asp-for="ChronicCondition">Chronic Condition:</label>
+            <select asp-for="ChronicCondition" id="chroniccondition" name="chroniccondition" class="form-control" aria-required="true" required>
+                <option value="Select">Select Option</option>
+                <option value="Diabetes">Heart Disease</option>
+                <option value="Arthritis">Asthma</option>
+                <option value="Asthma">Diabetes</option>
+                <option value="HIV/AIDS">Cancer</option>
+                <option value="TB">Arthritis</option>
+            </select>
+            <span asp-validation-for="ChronicCondition" class="text-danger"></span>
+            <!--Allergies-->
+            <label asp-for="Allergies">Allergies:</label>
+            <select asp-for="Allergies" id="allergies" name="allergies" class="form-control" aria-required="true" required>
+                <option value="Select">Select Option</option>
+                <option value="Foods">Foods</option>
+                <option value="Animals">Animals</option>
+                <option value="Medications">Medications</option>
+                <option value="Latex">Latex</option>
+                <option value="Perfumes">Perfumes</option>
+            </select>
+            <span asp-validation-for="Allergies" class="text-danger"></span>
+            <!--Family History-->
+            <label asp-for="FamilyHistory">Family History(Parents, siblings or relatives)</label>
+            <label asp-for="FamilyHistory">Are there any members in the family who have the same chronic condition?</label>
+            <select asp-for="FamilyHistory" id="familyhistory" name="familyhistory" class="form-control" aria-required="true" required>
+                <option value="Select">Select Option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <span asp-validation-for="FamilyHistory" class="text-danger"></span>
+            <!--Current Medication-->
+            <label asp-for="MedicationName">Current Medication:</label>
+            <select asp-for="MedicationName" id="medicationname" class="form-control" aria-required="true">
+                <option value="">Select Medication</option>
+                <option value="Lisinopril">Lisinopril</option>
+                <option value="Amlodipine">Amlodipine</option>
+                <option value="Metoprolol">Metoprolol</option>
+                <option value="Hydrochlorothiazide">Hydrochlorothiazide</option>
+                <option value="Atorvastatin">Atorvastatin</option>
+                <option value="Simvastatin">Simvastatin</option>
+                <option value="Rosuvastatin">Rosuvastatin</option>
+                <option value="Metformin">Metformin</option>
+                <option value="Insulin">Insulin</option>
+                <option value="Glipizide">Glipizide</option>
+                <option value="Sitagliptin">Sitagliptin</option>
+                <option value="Albuterol Inhaler">Albuterol Inhaler</option>
+                <option value="Fluticasone/Salmeterol Inhaler">Fluticasone/Salmeterol Inhaler</option>
+                <option value="Montelukast">Montelukast</option>
+                <option value="Levothyroxine">Levothyroxine</option>
+                <option value="Acetaminophen">Acetaminophen</option>
+                <option value="Ibuprofen">Ibuprofen</option>
+                <option value="Opioid Medication">Opioid Medication</option>
+                <option value="Sertraline">Sertraline</option>
+                <option value="Lithium">Lithium</option>
+                <option value="Aripiprazole">Aripiprazole</option>
+                <option value="Tacrolimus">Tacrolimus</option>
+                <option value="Mycophenolate">Mycophenolate</option>
+                <option value="Prednisone">Prednisone</option>
+                <option value="Warfarin">Warfarin</option>
+                <option value="Clopidogrel">Clopidogrel</option>
+                <option value="Omeprazole">Omeprazole</option>
+                <option value="Loperamide">Loperamide</option>
+                <option value="Mesalamine">Mesalamine</option>
+                <option value="Loratadine">Loratadine</option>
+                <option value="Fluticasone (Nasal Spray)">Fluticasone (Nasal Spray)</option>
+                <option value="EpiPen">EpiPen</option>
+                <option value="Methotrexate">Methotrexate</option>
+                <option value="Tumor Necrosis Factor (TNF) Inhibitors">Tumor Necrosis Factor (TNF) Inhibitors</option>
+                <option value="Alendronate">Alendronate</option>
+                <option value="Risedronate">Risedronate</option>
+                <option value="Carbamazepine">Carbamazepine</option>
+                <option value="Valproic Acid">Valproic Acid</option>
+                <option value="Levetiracetam">Levetiracetam</option>
+                <option value="Tenofovir/Emtricitabine">Tenofovir/Emtricitabine</option>
+                <option value="Ritonavir">Ritonavir</option>
+                <option value="Dolutegravir">Dolutegravir</option>
+            </select>
+            <!--Dose-->
+            <label asp-for="Dose">Dose:</label>
+            <select asp-for="Dose" id="dose" name="dose" class="form-control" aria-required="true" required>
+                <option value="Select">Select Option</option>
+                <option value="10 mg">10 mg</option>
+                <option value="20 mg">20 mg</option>
+                <option value="20 mg">20 mg</option>
+                <option value="25 mg">25 mg</option>
+                <option value="30 mg">30 mg</option>
+                <option value="45 mg">45 mg</option>
+            </select>
+            <!--Medication Reason-->
+            <label asp-for="MedicationReason">Reason for medication</label>
+            <select asp-for="MedicationReason" id="medicationreason" name="medicationreason" class="form-control" aria-required="true" required>
+                <option value="Select">Select Option</option>
+                <option value="Prescription">Prescription</option>
+                <option value="Medical condition">Medical Condition</option>
+            </select>
+            <span asp-validation-for="MedicationReason" class="text-danger"></span>
+
+
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.13/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+        const chronicconditionDropdown = document.getElementById('chroniccondition');
+        const dynamicDropdowns = document.getElementById('dynamic-dropdowns');
+        chronicconditionDropdown.addEventListener('change', function () {
+            dynamicDropdowns.innerHTML = ''; // Clear previous dynamic dropdowns
+            if (chronicconditionDropdown.value === 'Diabetes') {
+                dynamicDropdowns.innerHTML = `
+                                                        <label for="MedicationName">Select medication you are currently taking:</label>
+                                                        <select id="medicationname" name="medicationname">
+                                                            <option value="medicationname">Select Medication</option>
+                                                            <option value="insulin">Insulin</option>
+                                                            <option value="metformin">Metformin</option>
+                                                            <option value="glipizide">Glipizide</option>
+                                                            <option value="glimepiride">Glimepiride</option>
+                                                            <option value="jardiance">Jardiance</option>
+                                                        </select>`;
+            } else if (chronicconditionDropdown.value === 'Arthritis') {
+                dynamicDropdowns.innerHTML = `
+                                                        <label for="MedicationName">Select medication you are currently taking:</label>
+                                                        <select id="medicationname" name="medicationname">
+                                                                <option value="medicationname">Select Medication</option>
+                                                                    <option value="methotrexate">Methotrexate</option>
+                                                                    <option value="endocet">Endocet</option>
+                                                                    <option value="celebrex">Celebrex</option>
+                                                                    <option value="indocin">Indocin</option>
+                                                                    <option value="tylenol">Tylenol</option>
+                                                                </select>`;
+            } else if (chronicconditionDropdown.value === 'TB') {
+                dynamicDropdowns.innerHTML = `
+                                                           <label for="MedicationName">Select medication you are currently taking:</label>
+                                                           <select id="medicationname" name="medicationname">
+                                                                        <option value="medicationname">Select Medication</option>
+                                                                            <option value="isoniazid">Isoniazid</option>
+                                                                            <option value="rifampin">Rifampin</option>
+                                                                            <option value="pyrazinamide">Pyrazinamide</option>
+                                                                            <option value="ethambutol">Ethambutol</option>
+                                                                            <option value="streptomycin">Streptomycin</option>
+                                                        </select>`;
+            } else if (chronicconditionDropdown.value === 'HIV/AIDS') {
+                dynamicDropdowns.innerHTML = `
+                                                         <label for="MedicationName">Select medication you are currently taking:</label>
+                                                         <select id="medicationname" name="medicationname">
+                                                                                <option value="medicationname">Select Medication</option>
+                                                                                    <option value="ziagen">Ziagen</option>
+                                                                                    <option value="reyataz">Reyataz</option>
+                                                                                    <option value="prezista">Prezista</option>
+                                                                                    <option value="kaletra">Kaletra</option>
+                                                                                    <option value="norvir">Norvir</option>
+                                                        </select>`;
+            } else if (chronicconditionDropdown.value === 'Asthma') {
+                dynamicDropdowns.innerHTML = `
+                                                        <label for="MedicationName">Select medication you are currently taking:</label>
+                                                        <select id="medicationname" name="medicationname">
+                                                                                        <option value="medicationname">Select Medication</option>
+                                                                                            <option value="qvarredihaler">Qvar RediHaler</option>
+                                                                                            <option value="pulmicortflexhaler">Pulmicort Flexhaler</option>
+                                                                                            <option value="alvesco">Alvesco</option>
+                                                                                            <option value="floventhfa">Flovent HFA</option>
+                                                                                            <option value="asmanextwisthaler">Asmanex Twisthaler</option>
+                                                        </select>`;
+            }
+        }
+                        });
+
+    </script>
+</body>
+</html>
+
+

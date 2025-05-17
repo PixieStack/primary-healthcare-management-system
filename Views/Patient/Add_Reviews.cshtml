@@ -1,0 +1,242 @@
+﻿@model CodeMed.Models.chronic.reviews
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication</title>
+    <link rel="stylesheet" href="/css/boostrap.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/CodeMed.styles.css?v=6NpGbMrsF9p1j3fx9VpwMIJhHcOU_HqRiXy2MVUSMqI" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .review-form {
+            text-align: center;
+        }
+
+        .star-rating {
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+        }
+
+            .star-rating input[type="radio"] {
+                display: none;
+            }
+
+            .star-rating label {
+                font-size: 24px;
+                cursor: pointer;
+                color: #ccc;
+            }
+
+            .star-rating input[type="radio"]:checked + label {
+                color: orange;
+            }
+
+        .review-form button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .reviews {
+            margin-top: 20px;
+        }
+
+        .review {
+            background-color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        /* Add styles for stars here */
+        .rating {
+            color: orange;
+            display: inline-block;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Leave a Review for Service Recieved</h1>
+
+        <label asp-for="Patient" hidden>Patient:</label>
+        <input asp-for="Patient" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")" hidden>
+
+        <form method="post" asp-action="Add_Reviews" id="reviewForm" class="review-form">
+            <h2>Leave a Review</h2>
+            <textarea asp-for="review" id="review-text" placeholder="Write your review"></textarea>
+            <div class="star-rating">
+                <input asp-for="One_stars" type="radio" id="star5" value="1" />
+                <label asp-for="One_stars" for="star5">★</label>
+                <input asp-for="Two_stars" type="radio" id="star4" value="2" />
+                <label asp-for="Two_stars" for="star4">★</label>
+                <input asp-for="Three_stars" type="radio" id="star3" value="3" />
+                <label asp-for="Three_stars" for="star3">★</label>
+                <input asp-for="Four_stars" type="radio" id="star2" value="4" />
+                <label asp-for="Four_stars" for="star2">★</label>
+                <input asp-for="Five_stars" type="radio" id="star1" value="5" />
+                <label asp-for="Five_stars" for="star1">★</label>
+            </div>
+            <button type="submit" onclick="submitReview()">Submit Review</button>
+        </form>
+
+    </div>
+
+    <div class="blank-line"></div>
+
+    <div class="blank-line"></div>
+
+
+    <script>
+
+
+        <!-- Visual Studio Browser Link-- >
+        <script type="text/javascript" src = "/_vs/browserLink" async = "async" id = "__browserLink_initializationData" data - requestId="3aa194dc80c2412e81d75fa58896a32f" data - requestMappingFromServer="false" data - connectUrl="http://localhost:50570/d944ef8df85f4fe386ed323d0d014d88/browserLink" ></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>
+

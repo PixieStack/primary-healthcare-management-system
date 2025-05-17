@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login Logs</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .no-records {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Login Logs</h2>
+
+    <div>
+        <label for="filter">Filter by:</label>
+        <select id="filter" onchange="filterLogs()">
+            <option value="all">All Logs</option>
+            <option value="patients">Patients</option>
+            <option value="nurses">Nurses</option>
+            <option value="doctors">Doctors</option>
+            <option value="admins">Admins</option>
+            <option value="counsellors">Counsellors</option>
+        </select>
+        <select id="timeFilter" onchange="filterLogs()">
+            <option value="7days">Last 7 Days</option>
+            <option value="30days">Last 30 Days</option>
+            <option value="3months">Last 3 Months</option>
+            <option value="alltime">All Time</option>
+        </select>
+    </div>
+
+    <h3 id="filterHeading"></h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody id="logList">
+            <!-- Log records will be dynamically added here -->
+        </tbody>
+    </table>
+
+    <div id="noRecords" class="no-records"></div>
+
+    <script>
+        // Sample login logs data
+        var logs = [
+            { id: 1, firstName: 'John', lastName: 'Doe', userType: 'patients', loginTime: new Date('2023-06-15T09:00:00'), logoutTime: new Date('2023-06-15T12:30:00') },
+            { id: 2, firstName: 'Jane', lastName: 'Smith', userType: 'nurses', loginTime: new Date('2023-06-15T14:00:00'), logoutTime: new Date('2023-06-15T17:15:00') },
+            { id: 3, firstName: 'James', lastName: 'Johnson', userType: 'doctors', loginTime: new Date('2023-06-14T08:45:00'), logoutTime: new Date('2023-06-14T16:30:00') },
+            { id: 4, firstName: 'Admin', lastName: 'Admin', userType: 'admins', loginTime: new Date('2023-06-13T10:15:00'), logoutTime: new Date('2023-06-13T14:30:00') },
+            { id: 5, firstName: 'Counsel', lastName: 'Counsellor', userType: 'counsellors', loginTime: new Date('2023-06-12T13:45:00'), logoutTime: new Date('2023-06-12T18:00:00') },
+            // Add more logs here...
+        ];
+
+        // Display logs on page load
+        window.onload = function () {
+            filterLogs();
+        };
+
+        // Function to display logs in the table
+        function displayLogs(filteredLogs) {
+            var logList = document.getElementById('logList');
+            logList.innerHTML = '';
+
+            for (var i = 0; i < filteredLogs.length; i++) {
+                var log = filteredLogs[i];
+
+                var duration = calculateDuration(log.loginTime, log.logoutTime);
+
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                  <td>${log.id}</td>
+                  <td>${log.firstName}</td>
+                  <td>${log.lastName}</td>
+                  <td>${getUserRole(log.userType)}</td>
+                  <td>${formatDateTime(log.loginTime)}</td>
+                  <td>${formatDateTime(log.logoutTime)}</td>
+                  <td>${duration.hours}:${duration.minutes}:${duration.seconds}</td>
+                `;
+
+                logList.appendChild(row);
+            }
+
+            // Show "No records found" message if no logs are available
+            var noRecordsMessage = document.getElementById('noRecords');
+            if (filteredLogs.length === 0) {
+                noRecordsMessage.textContent = 'No records found.';
+            } else {
+                noRecordsMessage.textContent = '';
+            }
+        }
+
+        // Function to filter logs based on user role and time
+        function filterLogs() {
+            var roleFilter = document.getElementById('filter').value;
+            var timeFilter = document.getElementById('timeFilter').value;
+            var filteredLogs = logs;
+
+            // Filter logs by user role
+            if (roleFilter !== 'all') {
+                filteredLogs = filteredLogs.filter(function (log) {
+                    return log.userType === roleFilter;
+                });
+            }
+
+            // Filter logs by time
+            switch (timeFilter) {
+                case '7days':
+                    filteredLogs = filteredLogs.filter(function (log) {
+                        var currentDate = new Date();
+                        var sevenDaysAgo = new Date();
+                        sevenDaysAgo.setDate(currentDate.getDate() - 7);
+                        return log.loginTime >= sevenDaysAgo;
+                    });
+                    break;
+                case '30days':
+                    filteredLogs = filteredLogs.filter(function (log) {
+                        var currentDate = new Date();
+                        var thirtyDaysAgo = new Date();
+                        thirtyDaysAgo.setDate(currentDate.getDate() - 30);
+                        return log.loginTime >= thirtyDaysAgo;
+                    });
+                    break;
+                case '3months':
+                    filteredLogs = filteredLogs.filter(function (log) {
+                        var currentDate = new Date();
+                        var threeMonthsAgo = new Date();
+                        threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
+                        return log.loginTime >= threeMonthsAgo;
+                    });
+                    break;
+                case 'alltime':
+                    // No filtering required for all time logs
+                    break;
+            }
+
+            var filterHeading = 'You are now displaying ';
+            switch (roleFilter) {
+                case 'all':
+                    filterHeading += 'All Users';
+                    break;
+                case 'patients':
+                    filterHeading += 'Patient Logs ';
+                    break;
+                case 'nurses':
+                    filterHeading += 'Nurse Logs ';
+                    break;
+                case 'doctors':
+                    filterHeading += 'Doctor Logs ';
+                    break;
+                case 'admins':
+                    filterHeading += 'Administrator Logs ';
+                    break;
+                case 'counsellors':
+                    filterHeading += 'Counsellor Logs ';
+                    break;
+            }
+
+            switch (timeFilter) {
+                case '7days':
+                    filterHeading += 'for the last 7 days';
+                    break;
+                case '30days':
+                    filterHeading += 'for the last 30 days';
+                    break;
+                case '3months':
+                    filterHeading += 'for the last 3 months';
+                    break;
+                case 'alltime':
+                    filterHeading += 'for all time';
+                    break;
+            }
+            document.getElementById('filterHeading').textContent = filterHeading;
+
+            displayLogs(filteredLogs);
+        }
+
+        // Function to calculate duration between two dates
+        function calculateDuration(loginTime, logoutTime) {
+            var duration = Math.abs(logoutTime - loginTime) / 1000; // Duration in seconds
+
+            var hours = Math.floor(duration / 3600);
+            var minutes = Math.floor((duration % 3600) / 60);
+            var seconds = Math.floor(duration % 60);
+
+            return {
+                hours: hours,
+                minutes: minutes,
+                seconds: seconds
+            };
+        }
+
+        // Function to format date and time
+        function formatDateTime(dateTime) {
+            var options = {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            };
+            return dateTime.toLocaleDateString('en-US', options);
+        }
+
+        // Function to get the user role based on user type
+        function getUserRole(userType) {
+            switch (userType) {
+                case 'patients':
+                    return 'Patient';
+                case 'nurses':
+                    return 'Nurse';
+                case 'doctors':
+                    return 'Doctor';
+                case 'admins':
+                    return 'Administrator';
+                case 'counsellors':
+                    return 'Counsellor';
+                default:
+                    return '';
+            }
+        }
+    </script>
+</body>
+</html>

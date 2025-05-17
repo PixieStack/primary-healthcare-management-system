@@ -1,0 +1,269 @@
+﻿@model CodeMed.Models.vaccines.Vaccinations;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History Form</title>
+    <title>Appointment Request Form</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /*.container {
+                                                                            margin: 0 auto;
+                                                                            width: 800px;
+                                                                            padding: 20px;
+                                                                            background-color: #fff;
+                                                                            border: 1px solid #ccc;
+                                                                            border-radius: 5px;
+                                                                            text-align: center;
+                                                                        }*/
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Vaccinations</h1>
+    </div>
+    <div class="container">
+        <form method="post" asp-action="Vaccinations">
+            <label asp-for="Doctor">Doctor:</label>
+            <input asp-for="Doctor" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")">
+
+            <div class="appointment-form">
+                @if (ViewBag.Patients != null)
+                {
+                    <label for="selected_patient">Select Patient:</label>
+                    <div class="search-and-select">
+                        <select id="selected_patient" asp-for="Patient" required>
+                            <option value="">Select Patient</option>
+                            @foreach (var patient in ViewBag.Patients)
+                            {
+                                <option value="@patient.Id">@patient.FullName</option>
+                            }
+                        </select>
+                        <input type="text" id="search_patient" placeholder="Search patient...">
+                    </div>
+
+                    <div class="user-info">
+                        <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                    </div>
+                }
+            </div>
+
+            <label asp-for="DateOfBirth">Date of Birth:</label>
+            <input asp-for="DateOfBirth" type="date" id="date_of_birth"  required><br><br>
+
+            <label asp-for="Address">Address:</label>
+            <textarea asp-for="Address" id="address" rows="4" required></textarea><br><br>
+
+            <!-- Vaccination Information -->
+            <label asp-for="VaccineType">Vaccine Type:</label>
+            <select asp-for="VaccineType" id="vaccine_type" class="form-control" aria-required="true" required>
+                <option value="" disabled selected>Select option...</option>
+                <option value="COVID-19">COVID-19 vaccine</option>
+                <option value="Influenza">Influenza (flu) vaccine</option>
+                <option value="Tdap">Tetanus, Diphtheria, and Pertussis (Tdap) vaccine</option>
+                <option value="MMR">Measles, Mumps, and Rubella (MMR) vaccine</option>
+                <option value="Varicella">Varicella (chickenpox) vaccine</option>
+                <option value="HepatitisA">Hepatitis A vaccine</option>
+                <option value="HepatitisB">Hepatitis B vaccine</option>
+                <option value="HPV">Human Papillomavirus (HPV) vaccine</option>
+                <option value="Pneumococcal">Pneumococcal vaccine</option>
+                <option value="Shingles">Shingles (Herpes Zoster) vaccine</option>
+                <option value="Meningococcal">Meningococcal vaccine </option>
+                <option value="Polio">Polio vaccine (if not previously vaccinated)</option>
+                <option value="YellowFever">Yellow Fever vaccine</option>
+                <option value="Typhoid">Typhoid vaccine</option>
+                <option value="JapaneseEncephalitis">Japanese Encephalitis vaccine</option>
+            </select>
+
+
+            <label asp-for="VaccinationDate">Vaccination Date:</label>
+            <input asp-for="VaccinationDate" type="date" id="vaccination_date" required><br><br>
+
+            <label asp-for="VaccinationLocation">Vaccination Location:</label>
+            <input asp-for="VaccinationLocation" type="text" id="vaccination_location" required><br><br>
+
+            <label asp-for="VaccinationDose">Dose Number:</label>
+            <input asp-for="VaccinationDose" type="number" id="vaccination_dose" required><br><br>
+
+            <label asp-for="VaccinationBatch">Batch Number:</label>
+            <input asp-for="VaccinationBatch" type="text" id="vaccination_batch"  required><br><br>
+
+            <!-- Additional Information -->
+            <label asp-for="Allergies">Allergies (if any):</label>
+            <input asp-for="Allergies" type="text" id="allergies" required><br><br>
+
+            <label asp-for="MedicalConditions">Other Medical Conditions:</label>
+            <input asp-for="MedicalConditions" type="text" id="medical_conditions" required><br><br>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+
+
+    <script>
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+﻿@model CodeMed.Models.vaccines.VaccinationTravelMedicine;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History Form</title>
+    <title>Appointment Request Form</title>
+    <link rel="stylesheet" href="~/css/boostrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CodeMed.styles.css" asp-append-version="true" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /*.container {
+                                                                    margin: 0 auto;
+                                                                    width: 800px;
+                                                                    padding: 20px;
+                                                                    background-color: #fff;
+                                                                    border: 1px solid #ccc;
+                                                                    border-radius: 5px;
+                                                                    text-align: center;
+                                                                }*/
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Children's Immunization</h1>
+    </div>
+    <div class="container">
+        <form method="post" asp-action="VaccinationTravelMedicine">
+
+            <label asp-for="Doctor">Doctor:</label>
+            <input asp-for="Doctor" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")">
+
+            <div class="appointment-form">
+                @if (ViewBag.Patients != null)
+                {
+                    <label for="selected_patient">Select Patient:</label>
+                    <div class="search-and-select">
+                        <select id="selected_patient" asp-for="Patient" required>
+                            <option value="">Select Patient</option>
+                            @foreach (var patient in ViewBag.Patients)
+                            {
+                                <option value="@patient.Id">@patient.FullName</option>
+                            }
+                        </select>
+                        <input type="text" id="search_patient" placeholder="Search patient...">
+                    </div>
+
+                    <div class="user-info">
+                        <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                    </div>
+                }
+            </div>
+            <!-- Destination Selection -->
+            <label asp-for="Destination">Select Your Destination:</label>
+            <select asp-for="Destination" id="destination" class="form-control" aria-required="true" required>
+                <option value="" disabled selected>Select Destination...</option>
+                <option value="CDC">Country with CDC Recommendations</option>
+                <option value="WHO">Country with WHO Recommendations</option>
+                <option value="NoRecommendations">Country with No Specific Recommendations</option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="NorthAmerica">North America</option>
+                <option value="SouthAmerica">South America</option>
+                <option value="Australia">Australia</option>
+            </select><br>
+
+
+            <!-- Routine Vaccinations -->
+            <label asp-for="MMR">Measles, Mumps, Rubella (MMR):</label>
+            <select asp-for="MMR" class="form-control" aria-required="true">
+                <option value="select">Select Option</option>
+                <option value="NotNeeded">Not Needed</option>
+                <option value="UpToDate">Up to Date</option>
+                <option value="1Dose">1 Dose</option>
+                <option value="2Doses">2 Doses</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Unknown">Unknown</option>
+            </select><br>
+
+            <label asp-for="DTaP">Diphtheria, Tetanus, Pertussis (DTaP):</label>
+            <select asp-for="DTaP" class="form-control" aria-required="true">
+                <option value="select">Select Option</option>
+                <option value="NotNeeded">Not Needed</option>
+                <option value="UpToDate">Up to Date</option>
+                <option value="1Dose">1 Dose</option>
+                <option value="2Doses">2 Doses</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Unknown">Unknown</option>
+            </select><br>
+
+            <!-- Travel-Specific Vaccines -->
+            <label asp-for="HepatitisA">Hepatitis A:</label>
+            <select asp-for="HepatitisA" class="form-control" aria-required="true">
+                <option value="select">Select Option</option>
+                <option value="NotNeeded">Not Needed</option>
+                <option value="UpToDate">Up to Date</option>
+                <option value="1Dose">1 Dose</option>
+                <option value="2Doses">2 Doses</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Unknown">Unknown</option>
+            </select><br>
+
+            <label asp-for="HepatitisB">Hepatitis B:</label>
+            <select asp-for="HepatitisB" class="form-control" aria-required="true">
+                <option value="select">Select Option</option>
+                <option value="NotNeeded">Not Needed</option>
+                <option value="UpToDate">Up to Date</option>
+                <option value="1Dose">1 Dose</option>
+                <option value="2Doses">2 Doses</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Unknown">Unknown</option>
+            </select><br>
+
+            <h3>Travel-Specific Vaccines (Select All That Apply):</h3>
+            <label asp-for="Travel_Specific">
+            <select asp-for="Travel_Specific"class="form-control" aria-required="true" id="vaccination">
+                <option value="select">Select Option</option>
+                <option value="Typhoid">Typhoid</option>
+                <option value="YellowFever">Yellow Fever</option>
+                <option value="JapaneseEncephalitis">Japanese Encephalitis</option>
+                <option value="Rabies">Rabies</option>
+                <option value="none">None</option>
+            </select>
+            </label>
+
+
+
+            <!-- Additional Considerations -->
+            <h3>Other Travel-Related Health Concerns (Select All That Apply):</h3>
+            <label asp-for="Health_Concerns">
+            <select asp-for="Health_Concerns" class="form-control" aria-required="true" id="health_concerns">
+                <option value="select">Select Option</option>
+                <option value="MalariaProphylaxis">Malaria Prophylaxis</option>
+                <option value="TravelersDiarrhea">Traveler's Diarrhea</option>
+                <option value="none">None</option>
+            </select>
+            </label>
+
+
+            <!-- Pre-Trip Consultation -->
+            <h3>Pre-Trip Consultation:</h3>
+            <p>It's advisable to schedule a pre-travel consultation with a travel medicine specialist or your healthcare provider. They can assess your specific health needs and provide personalized vaccination recommendations based on your travel plans, health history, and current health status.</p>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+
+
+    <script>
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

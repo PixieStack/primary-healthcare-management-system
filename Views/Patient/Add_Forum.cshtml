@@ -1,0 +1,75 @@
+﻿@model CodeMed.Models.vaccines.Forum;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaccination Forum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #36517E;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            margin: 10px;
+        }
+
+        .post {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .reply-btn {
+            background-color: #36517E;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .reply-form {
+            display: none;
+            margin-top: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vaccination Forum</h1>
+    </header>
+    <main>
+        <label asp-for="PatientName" hidden>Patient:</label>
+        <input asp-for="PatientName" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")" hidden>
+
+        <form id="post-form" asp-action="Add_Forum" method="post">
+            <label asp-for="Post">Share Your Vaccination Experience:</label>
+            <textarea asp-for="Post" id="topic" placeholder="Tell us about your vaccination experience"></textarea>
+            <button type="submit">Post</button>
+        </form>
+    </main>
+    
+</body>
+</html>

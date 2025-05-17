@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Information</title>
+    <style>
+        /* Existing styles for body and .disease go here */
+
+        .disease {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+            overflow: hidden;
+        }
+
+        .disease-info {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .disease h2 {
+            color: #333;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .pdf-link {
+            display: inline-block;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+            .pdf-link:hover {
+                background-color: #0056b3;
+            }
+
+        .disease-image {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+            .disease-image img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Information</h1>
+    </div>
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Diabetes.png" alt="Diabetes">
+        </div>
+        <div class="disease-info">
+            <h2>Diabetes</h2>
+            <p>Diabetes is a chronic condition that affects how your body processes glucose (sugar).</p>
+            <a href="~/chronic_books/sde-diabetes-fs.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 2: Heart Disease -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/hypertension.png" alt="Heart Disease">
+        </div>
+        <div class="disease-info">
+            <h2>Heart Disease</h2>
+            <p>Heart disease is a condition that affects the heart and blood vessels.</p>
+            <a href="~/chronic_books/Heart_Disease.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 3: Arthritis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Arthritis.png" alt="Arthritis">
+        </div>
+        <div class="disease-info">
+            <h2>Arthritis</h2>
+            <p>Arthritis is a group of conditions characterized by joint inflammation. While there is no cure, treatments such as medication, physical therapy, and lifestyle modifications can help manage symptoms and improve quality of life.</p>
+            <a href="~/chronic_books/arthritis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 4: Asthma -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/asthma.png" alt="Asthma">
+        </div>
+        <div class="disease-info">
+            <h2>Asthma</h2>
+            <p>Asthma attacks can be triggered by allergens like pollen or dust, respiratory infections, exercise, cold air, or exposure to irritants like smoke. Identifying and avoiding triggers is essential in asthma management.</p>
+            <a href="~/chronic_books/Asthma_Information_Sheet_for_BHPs_Version_3.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 5: Alzheimer's Disease -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Alzheimer.png" alt="Alzheimer's Disease">
+        </div>
+        <div class="disease-info">
+            <h2>Alzheimer's Disease</h2>
+            <p>While there is no cure, research suggests that a healthy lifestyle with regular exercise, a balanced diet, and mental stimulation can help lower the risk or slow the progression of Alzheimer's disease.</p>
+            <a href="~/chronic_books/Alzheimerdisease.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 6: Chronic Kidney Disease -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/kidney.png" alt="Chronic Kidney Disease">
+        </div>
+        <div class="disease-info">
+            <h2>Chronic Kidney Disease</h2>
+            <p>Common causes of chronic kidney disease include diabetes, high blood pressure, and long-term use of certain medications. Early detection and management are crucial in slowing its progression.</p>
+            <a href="~/chronic_books/ChronicKidney.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+
+    <!-- Disease 7: Crohn's Disease -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Crohn.png" alt="Crohn's Disease">
+        </div>
+        <div class="disease-info">
+            <h2>Crohn's Disease</h2>
+            <p>There isn't a one-size-fits-all diet for Crohn's, but some individuals find relief by avoiding trigger foods and following a low-residue or low-FODMAP diet. Consulting a dietitian can help tailor a diet plan to specific needs.</p>
+            <a href="~/chronic_books/crohn'sdisease.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 8: COPD -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/COPD.png" alt="COPD">
+        </div>
+        <div class="disease-info">
+            <h2>COPD</h2>
+            <p>While COPD is not reversible, various treatments, including medication, oxygen therapy, and pulmonary rehabilitation, can help manage symptoms and improve quality of life.</p>
+            <a href="~/chronic_books/COPD.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 9: Multiple Sclerosis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/sclerosis.png" alt="Multiple Sclerosis">
+        </div>
+        <div class="disease-info">
+            <h2>Multiple Sclerosis</h2>
+            <p>MS has a genetic component, but it's not directly inherited. A family history may slightly increase the risk, but other factors, like environmental and immune system factors, also play a role in its development.</p>
+            <a href="~/chronic_books/MultipleSclerosis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 10: Rheumatoid Arthritis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Rheumatoid.png" alt="Rheumatoid Arthritis">
+        </div>
+        <div class="disease-info">
+            <h2>Rheumatoid Arthritis</h2>
+            <p>Yes, rheumatoid arthritis can impact other organs, such as the heart, lungs, and eyes. It's important to work with a healthcare team to manage the disease comprehensively.</p>
+            <a href="~/chronic_books/rheumatoidarthritis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 11: Osteoporosis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Osteoporosis.png" alt="Osteoporosis">
+        </div>
+        <div class="disease-info">
+            <h2>Osteoporosis</h2>
+            <p>While osteoporosis can't always be completely prevented, lifestyle changes such as regular weight-bearing exercise, a diet rich in calcium and vitamin D, and not smoking can help reduce the risk of developing the condition.</p>
+            <a href="~/chronic_books/Osteoarthritis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 12: Lupus -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Lupus.png" alt="Lupus">
+        </div>
+        <div class="disease-info">
+            <h2>Lupus</h2>
+            <p>The exact cause of lupus is unknown, and there is no cure. Treatment focuses on managing symptoms and preventing flares using medication and lifestyle changes.</p>
+            <a href="~/chronic_books/Lupus.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 13: Parkinson's Disease -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Parkinson.png" alt="Parkinson's Disease">
+        </div>
+        <div class="disease-info">
+            <h2>Parkinson's Disease</h2>
+            <p>While there is a genetic component to Parkinson's, it's not typically directly inherited. The majority of cases are sporadic, with a combination of genetic and environmental factors contributing to the disease.</p>
+            <a href="~/chronic_books/Parkinson'sDisease.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 14: Psoriasis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Psoriasis.png" alt="Psoriasis">
+        </div>
+        <div class="disease-info">
+            <h2>Psoriasis</h2>
+            <p>Psoriasis is not contagious; it's an autoimmune skin condition. It can be triggered by various factors, including genetics and environmental influences.</p>
+            <a href="~/chronic_books/Psoarisis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 15: Hypertension (High Blood Pressure) -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/hypertension.png" alt="Hypertension (High Blood Pressure)">
+        </div>
+        <div class="disease-info">
+            <h2>Hypertension (High Blood Pressure)</h2>
+            <p>Lifestyle changes such as a healthy diet, regular exercise, reducing salt intake, and managing stress can help lower and control high blood pressure. In some cases, medication may also be necessary.</p>
+            <a href="~/chronic_books/Hypertension.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 16: Cystic Fibrosis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/cystic.png" alt="Cystic Fibrosis">
+        </div>
+        <div class="disease-info">
+            <h2>Cystic Fibrosis</h2>
+            <p>Cystic fibrosis is managed with a combination of airway clearance techniques, medications, and nutritional support. Treatment plans are personalized based on the individual's needs.</p>
+            <a href="~/chronic_books/cysticibrosis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 17: HIV/AIDS -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/HIV.png" alt="HIV/AIDS">
+        </div>
+        <div class="disease-info">
+            <h2>HIV/AIDS</h2>
+            <p>Currently, there is no cure for HIV, but antiretroviral therapy (ART) can effectively control the virus and allow people with HIV to live long and healthy lives.</p>
+            <a href="~/chronic_books/hiv.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+
+    <!-- Disease 18: Migraine -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/migraine.png" alt="Migraine">
+        </div>
+        <div class="disease-info">
+            <h2>Migraine</h2>
+            <p>Migraine prevention may involve identifying and avoiding triggers, making lifestyle changes, and taking medication as prescribed. Not all migraines can be prevented, but their frequency and severity can often be reduced.</p>
+            <a href="~/chronic_books/migraine.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 19: Endometriosis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Endometriosis.png" alt="Endometriosis">
+        </div>
+        <div class="disease-info">
+            <h2>Endometriosis</h2>
+            <p>Endometriosis can impact fertility, but not every individual with endometriosis experiences infertility. Treatments are available to help manage symptoms and improve fertility in some cases.</p>
+            <a href="~/chronic_books/Endometriosis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Disease 20: Osteoarthritis -->
+    <div class="disease">
+        <div class="disease-image">
+            <img src="~/images/chronic/Osteoarthritis.png" alt="Osteoarthritis">
+        </div>
+        <div class="disease-info">
+            <h2>Osteoarthritis</h2>
+            <p>Osteoarthritis is primarily a wear-and-tear condition that affects joint cartilage, while rheumatoid arthritis is an autoimmune disease that causes inflammation and joint damage. Their causes, treatments, and progression patterns are different.</p>
+            <a href="~/chronic_books/osteoporosis.pdf" class="pdf-link" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+
+</body>
+</html>

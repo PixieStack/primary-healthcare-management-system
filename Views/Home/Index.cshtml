@@ -1,0 +1,1034 @@
+﻿@model CodeMed.Models.ContactUs
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>CodeMed PHC System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/assets/img/favicon.jpg" rel="icon"/>
+    <link href="~/assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Arsha
+    * Updated: Jul 27 2023 with Bootstrap v5.3.1
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+
+    <meta name="theme-color" content="#add5f3">
+    <meta property="og:title" content="Page 9">
+    <meta property="og:type" content="website">
+    <style>
+        .bulleted-list {
+            list-style-type: none;
+            padding-left: 20px; /* Adjust this value for the desired indentation */
+        }
+
+            .bulleted-list p::before {
+                content: "•"; /* Bullet point symbol */
+                display: inline-block;
+                width: 1em;
+                margin-left: -1em;
+            }
+
+        .list-item {
+            counter-increment: list-counter;
+            margin-left: 20px; /* Adjust this value to control the space between the number and the text */
+        }
+
+            .list-item:before {
+                content: counter(list-counter) ". ";
+            }
+
+        .about-image {
+            display: flex;
+            justify-content: center; /* Center the image horizontally */
+            align-items: flex-start; /* Align the image at the top */
+            margin-bottom: 20px; /* Add some space between image and content */
+        }
+
+            .about-image img {
+                max-width: 100%;
+                height: auto;
+            }
+
+        .section-content h2 {
+            margin-top: 0; /* Remove default margin from the heading */
+        }
+
+        .message-box {
+            margin: 100px auto;
+            width: 800px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0px 0px 10px #888888;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        input[type=text], input[type=email], input[type=password] {
+            padding: 5px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+        }
+
+        input[type=radio] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .custom-button {
+            background-color: rgba(40, 58, 90, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .custom-button:hover {
+                background-color: rgba(40, 58, 90, 0.9);
+            }
+
+        .popup-message {
+            position: absolute;
+            padding: 20px;
+            color: white;
+            font-size: 16px;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: rgba(40, 58, 90, 0.9);
+            z-index: 9999;
+        }
+
+        .popup-close {
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+            color: white;
+            text-decoration: underline;
+        }
+
+        h4 {
+            color: darkblue;
+        }
+
+        .scrollto {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo me-auto"><a href="index.html">CodeMed</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link   scrollto" href="#portfolio">Values</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto" href="#team">Our Team</a></li>
+                    <li><a class="nav-link scrollto" href="#faq">Q&A</a></li>
+                    <li><a class="nav-link scrollto" asp-controller="ContactUs" asp-action="Index">Contact</a></li>
+                    <li><a class="getstarted scrollto" asp-area="Identity" asp-page="/Account/Login">Sign-In</a></li>
+                    <li><a class="getstarted scrollto" asp-area="Identity" asp-page="/Account/Register">Sign-Up</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                    <h1>Your first line of defense</h1>
+                    <h2>At CodeMed, we are committed to providing high-quality primary health care services for individuals of all ages. Our dedicated team of healthcare professionals is focused on delivering comprehensive and compassionate care to promote the overall well-being of our patients. </h2>
+                    <div class="d-flex justify-content-center justify-content-lg-start">
+                        <a href="/Identity/Account/Register" class="btn-get-started scrollto">Get Started</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/family.png" class="img-fluid animated" alt="" />
+                </div>
+            </div>
+        </div>
+
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= Clients Section ======= -->
+        <section id="clients" class="clients section-bg">
+            <div class="container">
+
+                <div class="row" data-aos="zoom-in">
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center flex-column justify-content-center">
+                        <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/10184706.png" alt="">
+                        <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Family Planning</h4>
+                    </div>
+
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/8123466.png" alt="">
+                        <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Prenatal Care</h4>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/4884421.png" alt="">
+                        <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Counselling</h4>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/952229.png" alt="">
+                        <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Chronic Medication</h4>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/4190876.png" alt="">
+                        <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Vaccinations</h4>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                        <img src="https://assets.nicepagecdn.com/5120a3ed/4933974/images/7409834.png" alt="" />
+                        <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Walk-Ins</h4>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </section><!-- End Cliens Section -->
+
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+                <div class="row content">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>About Us</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row content">
+                    <div class="col-lg-4">
+                        <img src="~/assets/img/hero-img.png" class="img-fluid animated" alt="">
+                    </div>
+                    <div class="col-lg-8">
+                        <h2>What is the Primary Healthcare System?</h2>
+                        <p>
+                            The primary healthcare system is a web-based platform developed to address the lack of accessibility and affordability of healthcare services in many communities. It aims to provide convenient and cost-effective healthcare services to a wider population...
+                        </p>
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row content">
+                    <div class="col-lg-8">
+                        <h2>What are the Roles of each Sub-Systems?</h2>
+                        <div class="bulleted-list">
+                            <p><strong>Registration:</strong> Patients, doctors, nurses, and counselors will be able to create accounts and access the system.</p>
+                            <p><strong>Pre-natal Care:</strong> Patients will be able to schedule appointments, track their medical history, and receive reminders for important check-ups.</p>
+                            <p><strong>Counselling (Mental Health & Wellness):</strong> Providing mental health support and resources.</p>
+                            <p><strong>Family planning:</strong> Patients will have access to information about contraception and support for family planning.</p>
+                            <p><strong>Chronic Medication and vaccination:</strong> Tracking medication, dosages, scheduling appointments, and reminders. Also, allowing scheduling and tracking of vaccinations.</p>
+                            <p><strong>Potential Walk-In System Implementation:</strong> The proposed Walk-In System enhances accessibility by catering to individuals needing immediate medical attention. It operates alongside existing subsystems, prioritizing urgent cases for timely care...</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="~/assets/img/roles.png" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row content">
+                    <div class="col-lg-8 order-lg-2">
+                        <h2>Use Cases of the Primary Healthcare System</h2>
+                        <div>
+                            <p class="bulleted-list"><strong>Patients:</strong></p>
+                            <p class="list-item">Register on the platform.</p>
+                            <p class="list-item">Schedule appointments.</p>
+                            <p class="list-item">Receive medical advice.</p>
+                            <p class="list-item">Manage their health records.</p>
+
+                            <p class="bulleted-list"><strong>Doctors and Nurses:</strong></p>
+                            <p class="list-item">View patient records.</p>
+                            <p class="list-item">Schedule appointments.</p>
+                            <p class="list-item">Prescribe medication.</p>
+                            <p class="list-item">Update patient records.</p>
+
+                            <p class="bulleted-list"><strong>Counselors:</strong></p>
+                            <p class="list-item">Schedule counseling sessions.</p>
+                            <p class="list-item">Provide counseling services.</p>
+                            <p class="list-item">Update patient records.</p>
+
+                            <p class="bulleted-list"><strong>Administrative Staff:</strong></p>
+                            <p class="list-item">Manage patient records.</p>
+                            <p class="list-item">Schedule appointments.</p>
+                            <p class="list-item">Manage user accounts.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 order-lg-1">
+                        <img src="~/assets/img/system.jpg" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row content">
+                    <div class="col-lg-8">
+                        <h2>Subsystems</h2>
+                        <p>The primary healthcare system will be composed of the following subsystems:</p>
+                        <div>
+                            <p class="list-item"><strong>Registration:</strong> Registration is the initial step where individuals enroll in the primary health care system. It involves creating a record for each individual, including their basic personal and demographic information. This process helps healthcare providers maintain a comprehensive database of patients, which is crucial for managing appointments, tracking medical history, and ensuring continuity of care.</p>
+                            <p class="list-item"><strong>Family Planning:</strong> Family planning services involve helping individuals and couples make informed decisions about when to have children, how many children to have, and what methods of contraception to use. These services include providing information about various contraceptive methods, conducting health screenings, and offering counseling about reproductive health. Family planning plays a significant role in promoting reproductive health, preventing unintended pregnancies, and supporting family goals.</p>
+                            <p class="list-item"><strong>Prenatal Care:</strong> Pre-natal care is a subset of healthcare services provided to pregnant women before childbirth. It focuses on monitoring the health of both the mother and the developing fetus. Pre-natal care typically includes regular check-ups, medical tests, and screenings to ensure the well-being of the mother and the early detection of any potential complications. It also involves providing guidance on nutrition, exercise, and lifestyle changes during pregnancy.</p>
+                            <p class="list-item"><strong>Counselling:</strong> Counseling services within a primary health care system encompass mental health and general wellness support. Trained counselors or mental health professionals offer guidance, support, and interventions to individuals facing psychological or emotional challenges. This can include stress, anxiety, depression, grief, and more. Promoting mental health awareness and providing access to counseling services helps individuals maintain overall well-being.</p>
+                            <p class="list-item"><strong>Chronic Medication:</strong> In the realm of chronic medication, healthcare systems focus on providing consistent care and support for individuals dealing with long-term health conditions. Healthcare providers work closely with patients to monitor their conditions, adjust medication regimens as needed, and offer lifestyle recommendations to enhance overall well-being. The goal is to effectively manage chronic illnesses such as diabetes, hypertension, and asthma, enabling patients to lead fulfilling lives while minimizing the impact of these conditions on their daily activities.</p>
+                            <p class="list-item"><strong>Vaccinations:</strong> Vaccination stands as a critical pillar of public health initiatives, safeguarding communities from a range of preventable infectious diseases. By administering vaccines, healthcare professionals help stimulate the body's immune response to develop immunity against specific pathogens. This not only protects vaccinated individuals but also contributes to herd immunity, limiting the spread of diseases within populations. Vaccination schedules are meticulously designed to ensure timely protection for people of all ages against illnesses like measles, influenza, and hepatitis, promoting healthier societies on a global scale.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="~/assets/img/why-us.png" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row content">
+                    <div class="col-lg-8 order-lg-2">
+                        <h2>Proposed Solution</h2>
+                        <p>The primary healthcare system will be developed as a web-based platform using modern web technologies such as HTML, CSS, JavaScript, and MVC. The platform will be hosted on a secure server to ensure the privacy and security of patient data. The vaccination subsystem will be integrated into the platform, allowing healthcare providers to schedule and manage vaccination appointments for patients. The system will be designed to be user-friendly and accessible to users with different levels of technical expertise. The platform will be developed using a responsive design approach, ensuring that it can be accessed from a variety of devices, including desktop computers, tablets, and smartphones.</p>
+                        <p></p>
+                        <p>Our project aims to develop a digital healthcare management system that can facilitate the management of patients, medical records, appointments, and medication for hospitals and clinics. The system will be designed to provide an easy-to-use interface that can be accessed by healthcare providers, patients, and administrators. With the increasing demand for healthcare services and the need to streamline healthcare processes, our project will offer an efficient and effective solution that can help healthcare providers deliver high-quality care.</p>
+                        <p></p>
+                        <p>The current healthcare management system is largely paper-based and manual, leading to inefficiencies in managing patient data, scheduling appointments, and managing medications. This system is prone to errors and can lead to delays in patient care, missed appointments, and medication errors. In addition, the lack of a centralized database makes it difficult to share patient information between healthcare providers, leading to suboptimal care.</p>
+
+
+                    </div>
+                    <div class="col-lg-4 order-lg-1">
+                        <img src="~/assets/img/solution.jpeg" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="row content">
+                    <div class="col-lg-8">
+                        <h2>Who uses the Primary Healthcare System?</h2>
+                        <p>
+                            The system will be used by patients, doctors, nurses, counselors, and administrative staff.
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <img src="~/assets/img/skills.png" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- End About Us Section -->
+
+        <!-- ======= Values Section ======= -->
+        <section id="portfolio" class="portfolio">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Our Values</h2>
+                    <div class="row">
+                        <div class="col-lg-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
+                            <img src="~/assets/img/why-us.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="u-align-justify u-text u-text-default u-text-palette-2-dark-2 u-text-3" style="font-size: 26px; font-weight: bold; line-height: 1.5;" spellcheck="false">
+                                <a href="#" class="popup-link" data-message="We believe that healthcare should be accessible to everyone. Our system ensures that individuals can easily book appointments and access the care they need, regardless of their location or background.">
+                                    Accessibility
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We value the importance of convenience in healthcare. Our system allows users to book appointments at their preferred clinics with just a few taps, eliminating the need for lengthy phone calls or waiting in queues.">
+                                    Convenience
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="Our system is designed to cater to various healthcare needs. Whether it's prenatal care, family planning, mental health counseling, vaccinations, or chronic medication management, our platform offers a comprehensive range of services to address diverse healthcare requirements.">
+                                    Comprehensive Care
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We prioritize the well-being and satisfaction of our users. Our system is designed to provide personalized care, ensuring that patients' unique needs and preferences are taken into consideration throughout their healthcare journey.">
+                                    Patient-Centered Approach
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We understand the sensitivity of personal health information. Our system incorporates robust privacy and security measures to safeguard patient data, ensuring confidentiality and compliance with relevant regulations.">
+                                    Privacy and Security
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We believe in fostering collaboration among healthcare providers, patients, and support networks. Our system facilitates seamless communication and coordination between different stakeholders, enhancing the overall healthcare experience.">
+                                    Collaboration
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We are committed to continually enhancing our system to meet evolving healthcare needs. By actively seeking feedback and incorporating user suggestions, we strive to provide an innovative and ever-improving platform for primary healthcare services.">
+                                    Continuous Improvement
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="Our system aims to empower individuals by providing them with the tools and information they need to make informed healthcare decisions. Through educational resources and user-friendly interfaces, we empower users to take control of their health and well-being.">
+                                    Empowerment
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We are dedicated to promoting health equity and reducing healthcare disparities. Our system aims to ensure that underserved communities and marginalized populations have equal access to quality primary healthcare services.">
+                                    Equity
+                                </a><br>
+                                <a href="#" class="popup-link" data-message="We prioritize building trust with our users. Our system is built on reliability, ensuring accurate appointment scheduling, timely reminders, and a seamless user experience that users can depend on for their healthcare needs.">
+                                    Trust and Reliability
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Values Section -->
+
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Services</h2>
+                    <p>"Comprehensive Care at Your Fingertips 🌿🏥Discover a Spectrum of Services: From nurturing prenatal care to informative counseling, seamless registration to reliable chronic medication, safeguarding vaccinations to a future-ready walk-in system. Your well-being, our priority. Welcome to a Holistic Primary Health Care Experience. 💙👨‍⚕️👩‍⚕️ #YourHealthMatters #QualityCare #InnovativeWellness"</p>
+                </div>
+
+                <section>
+                    <div class="container">
+
+                        <div class="row" data-aos="zoom-in">
+                            <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center flex-column justify-content-center">
+                                <a asp-controller="FamilyPlanning" asp-action="About">
+                                    <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/10184706.png" alt="">
+                                    <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Family Planning</h4>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                                <a asp-controller="PrenatalCare" asp-action="About">
+                                    <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/8123466.png" alt="">
+                                    <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Prenatal Care</h4>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                                <a asp-controller="Counselling" asp-action="About">
+                                    <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/4884421.png" alt="">
+                                    <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Counselling</h4>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                                <a asp-controller="ChronicMedication" asp-action="About">
+                                    <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/952229.png" alt="">
+                                    <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Chronic-Medication</h4>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                                <a asp-controller="Vaccinations" asp-action="About">
+                                    <img src="https://assets.nicepagecdn.com/21b69b67/4915745/images/4190876.png" alt="">
+                                    <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Vaccinations</h4>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-2 col-md-4 col-6 d-flex flex-column align-items-center justify-content-center">
+                                <a asp-controller="Vaccinations" asp-action="About">
+                                    <img src="https://assets.nicepagecdn.com/5120a3ed/4933974/images/7409834.png" alt="" />
+                                    <h4 class="u-custom-font u-font-source-sans-pro u-text u-text-palette-2-dark-1 u-text-8" style="color: cornflowerblue">Walk-Ins</h4>
+                                </a>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </section><!-- End Services Section -->
+
+        <!-- ======= Team Section ======= -->
+        <section id="team" class="team section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Meet Our Team</h2>
+                    <p>Each member of our team brings a unique blend of skills, dedication, and innovation to their respective sub-systems, ensuring that our primary healthcare system remains comprehensive, efficient, and patient-centric. We are not just developers; we are healthcare enablers, working towards a healthier and happier community</p>
+                </div>
+
+                <div class="row">
+
+                    <!-- Eden Thwala -->
+                    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="member d-flex align-items-start">
+                            <div class="pic"><img src="~/assets/img/team/Eden.jpg" class="img-fluid" alt=""></div>
+                            <div class="member-info">
+                                <h4>Eden Thwala</h4>
+                                <span>Prenatal Care</span>
+                                <p>Role: Senior Developer & Manager</p>
+                                <p>Bio: Eden leads the Prenatal Care sub-system with her extensive experience and skillset. Her commitment to enhancing maternal health is reflected in her work.</p>
+                                <div class="social">
+                                    <a href=""><i class="ri-twitter-fill"></i></a>
+                                    <a href=""><i class="ri-facebook-fill"></i></a>
+                                    <a href=""><i class="ri-instagram-fill"></i></a>
+                                    <a href=""><i class="ri-linkedin-box-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unathi Ndongeni -->
+                    <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="member d-flex align-items-start">
+                            <div class="pic"><img src="~/assets/img/team/Unathi.jpg" class="img-fluid" alt=""></div>
+                            <div class="member-info">
+                                <h4>Unathi Ndongeni</h4>
+                                <span>Chronic Medication</span>
+                                <p>Role: Senior Developer & Manager</p>
+                                <p>Bio: Unathi is at the forefront of the Chronic Medication sub-system, ensuring patients receive timely and accurate medication support for managing long-term health conditions.</p>
+                                <div class="social">
+                                    <a href=""><i class="ri-twitter-fill"></i></a>
+                                    <a href=""><i class="ri-facebook-fill"></i></a>
+                                    <a href=""><i class="ri-instagram-fill"></i></a>
+                                    <a href=""><i class="ri-linkedin-box-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graeme Viviers -->
+                    <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="member d-flex align-items-start">
+                            <div class="pic"><img src="~/assets/img/team/graeme.jpg" class="img-fluid" alt=""></div>
+                            <div class="member-info">
+                                <h4>Graeme Viviers</h4>
+                                <span>Vaccinations</span>
+                                <p>Role: Senior Developer & Manager</p>
+                                <p>Bio: Graeme manages the Vaccinations sub-system with precision and care. His efforts contribute to the promotion of public health through effective vaccination programs.</p>
+                                <div class="social">
+                                    <a href=""><i class="ri-twitter-fill"></i></a>
+                                    <a href=""><i class="ri-facebook-fill"></i></a>
+                                    <a href=""><i class="ri-instagram-fill"></i></a>
+                                    <a href=""><i class="ri-linkedin-box-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bongani Bongani -->
+                    <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="member d-flex align-items-start">
+                            <div class="pic"><img src="~/assets/img/team/bongani.jpg" class="img-fluid" alt=""></div>
+                            <div class="member-info">
+                                <h4>Bongani Bongani</h4>
+                                <span>Counselling</span>
+                                <p>Role: Senior Developer & Manager</p>
+                                <p>Bio: Bongani's leadership in the Counseling sub-system aids individuals in accessing essential mental health support, reflecting our commitment to holistic healthcare.</p>
+                                <div class="social">
+                                    <a href=""><i class="ri-twitter-fill"></i></a>
+                                    <a href=""><i class="ri-facebook-fill"></i></a>
+                                    <a href=""><i class="ri-instagram-fill"></i></a>
+                                    <a href=""><i class="ri-linkedin-box-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Close the row for team members here if you don't have more members to add -->
+                </div>
+            </div>
+        </section> <!-- End Team Section -->
+
+        <!-- ======= Frequently Asked Questions Section ======= -->
+        <section id="faq" class="faq section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>"Navigating Your Healthcare Experience: Informative Q&A for Every Aspect of Our Comprehensive Primary Health System"</p>
+                </div>
+
+                <div class="faq-list">
+                    <ul>
+                        <li data-aos="fade-up" data-aos-delay="100">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">What information is required for the registration process? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                                <p>
+                                    To register, we'll need your valid ID number, full name, date of birth, contact information, and your next of kin's details. Your next of kin's information is vital for emergencies and essential communications. Rest assured, all data provided is treated with strict confidentiality and used solely for medical purposes within our secure system. Your accurate information ensures we can provide you with the best care possible.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-up" data-aos-delay="200">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">What family planning methods are available, and how can I choose the one that suits me best? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    Our healthcare center offers a comprehensive range of family planning methods to suit your unique preferences and lifestyle. These include oral contraceptives (birth control pills), intrauterine devices (IUDs), condoms, contraceptive injections, implants, diaphragms, and cervical caps. Each method comes with its benefits, potential side effects, and considerations. During a personalized counseling session, our healthcare professionals will guide you through the pros and cons of each option, taking into account factors like your medical history, future family plans, and daily routine. This collaborative approach empowers you to make an informed decision that aligns perfectly with your reproductive health goals, ensuring your peace of mind and well-being.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-up" data-aos-delay="300">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Why is early and consistent prenatal care important for a healthy pregnancy? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    Early and consistent prenatal care is a cornerstone of a healthy pregnancy journey. These regular check-ups allow our experienced healthcare professionals to closely monitor both your health and the well-being of your developing baby. Early detection of any potential complications or concerns enables timely interventions, which can prevent or minimize risks. During these visits, we'll provide essential guidance on proper nutrition, prenatal vitamins, and lifestyle adjustments. Moreover, these sessions offer you the opportunity to discuss any questions or concerns you might have, ensuring that you are well-prepared for each phase of pregnancy. By partnering with us in this journey, you're giving your baby the best possible start in life.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-up" data-aos-delay="400">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">What is the role of counseling in managing chronic conditions, and how can it improve my overall well-being? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    Counseling plays a crucial role in managing chronic conditions by providing you with the tools to better understand and cope with your health challenges. Our skilled counselors help you develop strategies for medication adherence, lifestyle adjustments, stress management, and emotional well-being. By addressing both the physical and emotional aspects of your condition, counseling enhances your overall quality of life and empowers you to take control of your health journey.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-up" data-aos-delay="500">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed"> I have been prescribed chronic medication. How can I ensure I take it correctly and manage any potential side effects? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    Taking chronic medication correctly is vital for managing your health condition effectively. Our healthcare team will provide comprehensive instructions on the proper dosage, timing, and potential side effects of your medication. It's important to ask any questions you have during your appointment and to inform your provider of any adverse reactions you experience. This way, we can work together to adjust your treatment plan as needed and ensure the best possible outcomes.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-up" data-aos-delay="600">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-6" class="collapsed">Why is it important to stay up-to-date with vaccinations, and how do they contribute to community health? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    Staying up-to-date with vaccinations is essential because they protect you and your community from preventable and potentially serious diseases. Vaccinations help create herd immunity, which safeguards those who are unable to receive certain vaccines due to medical reasons. By getting vaccinated, you not only safeguard your own health but also contribute to the overall health and safety of the community by preventing the spread of contagious diseases.
+                                </p>
+                            </div>
+                        </li>
+
+                        <li data-aos="fade-up" data-aos-delay="700">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-7" class="collapsed">How will the upcoming walk-in system work, and when should I plan to use it for my healthcare needs? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
+                                <p>
+                                    We're excited to share our plans for an upcoming walk-in system that will soon be implemented to enhance your access to healthcare. This system will allow you to visit our healthcare center without a prior appointment. While it's not yet active, it's designed for non-emergency medical needs like minor illnesses, injuries, or routine check-ups. When it's launched, this system will provide you with the flexibility to receive timely care without the need for scheduling. Remember, for urgent or life-threatening situations, always seek immediate medical attention through emergency services. We're looking forward to bringing you this convenient healthcare option in the near future.
+                                </p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </section><!-- End Frequently Asked Questions Section -->
+
+
+@*        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Contact</h2>
+                    <p>Feel free to customize the caption to match the tone and style of your website. This caption effectively conveys the purpose of the form, encouraging users to reach out and contact you for any inquiries or messages they might have.</p>
+                </div>
+
+                <div class="message-box">
+                    <a href="#" class="chat">
+                        <i class="bi bi-chat-dots-fill" style="color: orangered; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+                        <span style="font-weight: bold;">&nbsp&nbspCHAT</span>
+                    </a>
+                    <a href="sms:+27784138225" class="msg">
+                        <i class="bi bi-chat-left-dots-fill" style="color: deepskyblue; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+                        <span style="font-weight: bold;">&nbsp&nbspSMS</span>
+                    </a>
+
+                    <a href="mailto:CodeMed.Group.Corp@outlook.com" class="mail">
+                        <i class="bi bi-envelope-fill" style="color: dodgerblue; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+                        <span style="font-weight: bold;">&nbsp&nbspMAIL</span>
+                    </a>
+
+                    <a href="tel:+27784138225" class="call">
+                        <i class="bi bi-telephone-forward-fill" style="color: darkgreen; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+                        <span style="font-weight: bold;">&nbsp&nbspCALL</span>
+                    </a>
+
+                    <a href="whatsapp://send?phone=+27784138225" class="whatsapp">
+                        <i class="bi bi-whatsapp" style="color: green; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); font-size: 18px;"></i>
+                        <span style="font-weight: bold;">&nbsp&nbspWHATSAPP</span>
+                    </a>
+
+
+                    <div class="message-form">
+                        <h2>Leave us a message</h2>
+                        <form method="post">
+                            <label asp-for="Name">Name:</label>
+                            <input asp-for="Name" type="text" style="background-color: white; width: 400px; color: black;" class="form-control" required>
+                            <label asp-for="Surname">Surname:</label>
+                            <input asp-for="Surname" type="text" style="background-color: white; width: 400px; color: black;" class="form-control" required>
+                            <label asp-for="PhoneNumber">Phone Number:</label>
+                            <input asp-for="PhoneNumber" type="text" style="background-color: white; width: 400px; color: black;" class="form-control" required>
+                            <label asp-for="Email">Email Address:</label>
+                            <input asp-for="Email" type="text" style="background-color: white; width: 400px; color: black;" class="form-control" required>
+                            <label asp-for="Message">Message:</label>
+                            <textarea asp-for="Message" rows="10" cols="50" style="background-color: white; width: 713px; height: 300px; color: black; font-size: 16px;" class="form-control" required></textarea>
+                            <br />
+                            <button type="submit" style="background-color: green;">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Contact Section -->*@
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>CodeMed</h3>
+                        <p>
+                            <br>
+                            South Africa <br><br>
+                            <strong>Phone:</strong> +27 78 413 8225<br>
+                            <strong>Email:</strong> CodeMed.Group.Corp@outlook.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Family Planning</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Prenatal Care</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">COunselling</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Chronic Medication</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Vaccinations</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Social Networks</h4>
+                        <p>You can get in touch with us via social media below</p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container footer-bottom clearfix">
+            <div class="copyright">
+                &copy; Copyright <strong><span>CodeMed</span></strong>. All Rights Reserved
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = form.querySelector('#name').value.trim();
+            const surname = form.querySelector('#surname').value.trim();
+            const phone = form.querySelector('#phone').value.trim();
+            const email = form.querySelector('#email').value.trim();
+            const message = form.querySelector('#message').value.trim();
+
+            const mailtoLink = `mailto:CodeMed.group@outlook.com?subject=Contact Us Form Submission&body=Name: ${name} ${surname}%0D%0APhone: ${phone}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+
+            window.location.href = mailtoLink;
+        });
+
+        const chatLink = document.querySelector('.chat');
+        const chatbox = document.createElement('div');
+        const chatHeader = document.createElement('div');
+        const closeBtn = document.createElement('button');
+        const chatMessage = document.createElement('textarea');
+        const userInput = document.createElement('input');
+        const sendBtn = document.createElement('button');
+
+        chatbox.id = 'chatbox';
+        chatbox.style.display = 'none';
+        chatbox.style.position = 'fixed';
+        chatbox.style.bottom = '0';
+        chatbox.style.left = '0';
+        chatbox.style.right = '0';
+        chatbox.style.zIndex = '9999';
+
+        chatHeader.style.display = 'flex';
+        chatHeader.style.justifyContent = 'space-between';
+        chatHeader.style.alignItems = 'center';
+
+        closeBtn.id = 'close-btn';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.backgroundColor = 'transparent';
+        closeBtn.style.border = 'none';
+        closeBtn.style.fontSize = '24px';
+        closeBtn.style.cursor = 'pointer';
+        chatHeader.appendChild(closeBtn);
+
+        chatMessage.id = 'chat-message';
+        chatMessage.style.width = '550px';
+        chatMessage.style.height = '300px';
+        chatMessage.style.resize = 'none';
+        chatMessage.textContent = 'Hi there! I\'m the chatbot. How can I assist you today? Select an option by typing its number and pressing "Send": \n\n1. Option 1 - Registrations\n2. Option 2 - Prenatal Care\n3. Option 3 - Family Planning\n4. Option 4 - Counselling (Mental Health & Wellness)\n5. Option 5 - Chronic Medication\n6. Option 6 - Vaccinations\n\n Answer:';
+        chatbox.appendChild(chatHeader);
+        chatbox.appendChild(chatMessage);
+
+        userInput.type = 'text';
+        userInput.id = 'user-input';
+        userInput.placeholder = 'Enter option number';
+        chatbox.appendChild(userInput);
+
+        sendBtn.id = 'send-btn';
+        sendBtn.textContent = 'Send';
+        chatbox.appendChild(sendBtn);
+
+        chatLink.addEventListener('click', function () {
+            chatbox.style.display = 'block';
+        });
+
+        sendBtn.addEventListener('click', function () {
+            const selectedOption = parseInt(userInput.value);
+            switch (selectedOption) {
+                case 1:
+                    chatMessage.value += '\n\nRegistrations: Registrations involve signing up for various health programs or insurance policies. It is an important first step to accessing healthcare services and benefits.Registration forms may require personal information such as name, date of birth, and contact details.Some registrations may require proof of income or other documents.Once registered, individuals can access various health services and benefits.';
+                    break;
+                case 2:
+                    chatMessage.value += '\n\nPrenatal Care: Prenatal care is important to ensure a healthy pregnancy and a healthy baby. It involves regular check-ups with a healthcare provider, who will monitor the health of the mother and baby. Prenatal care may include ultrasounds, blood tests, and other screenings to detect any potential health issues. Healthcare providers may also offer advice on nutrition, exercise, and other aspects of prenatal health. Prenatal care is important for all pregnant women, even those who feel healthy.';
+                    break;
+                case 3:
+                    chatMessage.value += '\n\nFamily Planning: Family planning services help individuals and couples make informed decisions about their reproductive health. These services include contraception, fertility treatments, and education on reproductive health. Family planning can help prevent unintended pregnancies and ensure that individuals can have the number of children they want, when they want them. Family planning services are available to people of all genders and ages.';
+                    break;
+                case 4:
+                    chatMessage.value += '\n\nCounselling (Mental Health & Wellness): Counselling services provide support for individuals who are struggling with mental health or emotional issues. Counselling may involve talking with a trained professional who can help individuals manage their symptoms and develop coping strategies. Counselling can be individual or group-based, and may involve various therapeutic techniques. Mental health and wellness counselling can help improve an individuals quality of life and overall wellbeing.';
+                    break;
+                case 5:
+                    chatMessage.value += '\n\nChronic Medication: Chronic medication is medication that is taken on an ongoing basis to manage long-term health conditions. This may include medication for conditions such as diabetes, hypertension, or asthma. Chronic medication is important to manage symptoms and prevent complications. Healthcare providers may monitor the effectiveness of medication and adjust doses as needed. Patients may need to refill their medication regularly and follow certain instructions, such as taking medication at a certain time each day.';
+                    break;
+                case 6:
+                    chatMessage.value += '\n\nVaccinations: Vaccinations are an important form of preventive healthcare that protect individuals from various diseases. Vaccinations work by exposing individuals to a small amount of a disease-causing organism, which triggers the bodys immune system to produce antibodies.This helps the body fight off the disease if it is encountered again in the future.Vaccinations are typically given according to a recommended schedule, and may be required for certain activities such as travel or school enrollment.Vaccinations are safe and effective, and help protect individuals and communities from the spread of disease.';
+                    break;
+                case 7:
+                    chatMessage.value += '\n\nInterested in registering on our system to make your clinic visits more flexible? Click one of the links below:\n\n';
+                    var registrationLink = document.createElement('a');
+                    registrationLink.href = 'your_registration_url_here';
+                    registrationLink.target = '_blank';
+                    registrationLink.textContent = 'Registration';
+                    registrationLink.style.fontWeight = 'bold';
+                    registrationLink.style.fontSize = '20px';
+                    registrationLink.style.color = 'deeppink';
+                    chatMessage.appendChild(registrationLink);
+
+                    var aboutUsLink = document.createElement('a');
+                    aboutUsLink.href = 'your_about_us_url_here';
+                    aboutUsLink.target = '_blank';
+                    aboutUsLink.textContent = 'About Us';
+                    aboutUsLink.style.fontWeight = 'bold';
+                    aboutUsLink.style.fontSize = '20px';
+                    aboutUsLink.style.color = 'deeppink';
+                    chatMessage.appendChild(document.createElement('br'));
+                    chatMessage.appendChild(aboutUsLink);
+
+                    var loginLink = document.createElement('a');
+                    loginLink.href = 'your_login_url_here';
+                    loginLink.target = '_blank';
+                    loginLink.textContent = 'Login';
+                    loginLink.style.fontWeight = 'bold';
+                    loginLink.style.fontSize = '20px';
+                    loginLink.style.color = 'deeppink';
+                    chatMessage.appendChild(document.createElement('br'));
+                    chatMessage.appendChild(loginLink);
+
+                    break;
+
+                default:
+                    chatMessage.value += '\nInvalid option selected. Please select a valid option.';
+                    break;
+            }
+            userInput.value = '';
+        });
+
+        closeBtn.addEventListener('click', function () {
+            chatbox.style.display = 'none';
+        });
+
+        document.body.appendChild(chatbox);
+
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var popupLinks = document.querySelectorAll('.popup-link');
+            var activePopup = null;
+
+            popupLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    if (activePopup) {
+                        document.body.removeChild(activePopup);
+                        activePopup = null;
+                    }
+
+                    var popup = document.createElement('div');
+                    popup.className = 'popup-message';
+
+                    var closeButton = document.createElement('span');
+                    closeButton.className = 'popup-close';
+                    closeButton.innerHTML = 'X';
+
+                    var messageContent = document.createElement('span');
+                    messageContent.innerHTML = this.getAttribute('data-message');
+
+                    popup.appendChild(closeButton);
+                    popup.appendChild(messageContent);
+
+                    var linkRect = this.getBoundingClientRect();
+
+                    popup.style.position = 'absolute';
+                    // Adjust the top and left positions
+                    popup.style.top = (linkRect.top + window.scrollY + linkRect.height) + 'px';
+                    popup.style.left = (linkRect.left + window.scrollX) + 'px';
+
+                    closeButton.style.position = 'absolute';
+                    closeButton.style.top = '5px';
+                    closeButton.style.right = '5px';
+
+                    popup.appendChild(closeButton);
+
+                    document.body.appendChild(popup);
+
+                    closeButton.addEventListener('click', function () {
+                        document.body.removeChild(popup);
+                        activePopup = null;
+                    });
+
+                    activePopup = popup;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

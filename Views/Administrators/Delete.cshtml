@@ -1,0 +1,82 @@
+﻿@model CodeMed.Areas.Identity.Data.CodeMedUser
+
+<style>
+    body {
+        background-image: url("/content/Home/Delete.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+
+<form method="post" asp-action="Delete">
+    <input asp-for="Id" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <header class="text-primary" style="font-size: 30px; font-weight: bold;">Delete Record</header>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="Title" style="font-size: 20px; font-weight: bold;"></label>
+            <input asp-for="Title" style="width: 800px" class="form-control" disabled />
+        </div>
+        <div class="mb-3">
+            <label asp-for="FirstName" style="font-size: 20px; font-weight: bold;"></label>
+            <input asp-for="FirstName" style="width: 800px" class="form-control" disabled />
+        </div>
+        <div class="mb-3">
+            <label asp-for="LastName" style="font-size: 20px; font-weight: bold;"></label>
+            <input asp-for="LastName" style="width: 800px" class="form-control" disabled />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Gender" style="font-size: 20px; font-weight: bold;"></label>
+            <textarea asp-for="Gender" style="width: 800px; resize: none;" class="form-control autoresize" disabled></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Email" style="font-size: 20px; font-weight: bold;"></label>
+            <textarea asp-for="Email" style="width: 800px; resize: none;" class="form-control autoresize" disabled></textarea>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Role" style="font-size: 20px; font-weight: bold;"></label>
+            <textarea asp-for="Role" style="width: 800px; resize: none;" class="form-control autoresize" disabled>
+                @if (Model.Role == "PHC Worker")
+                {
+                    @Model.PHC_Role
+                }
+                else
+                {
+                    @Model.Role
+                }
+    </textarea>
+        </div>
+
+        <br /><br />
+        <button type="submit" class="btn btn-primary text-danger" style="width:200px">Delete</button>
+        &nbsp;&nbsp;
+        <a asp-controller="Administrators" asp-action="PrenatalManageUsers" class="btn btn-primary" style="width:200px">Back to Record List</a>
+    </div>
+</form>
+
+
+<script>
+    const textareas = document.querySelectorAll('.autoresize');
+
+    function resizeTextarea(event) {
+        const textarea = event.target;
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    }
+
+    textareas.forEach((textarea) => {
+        textarea.addEventListener('input', resizeTextarea);
+        textarea.dispatchEvent(new Event('input'));
+    });
+</script>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

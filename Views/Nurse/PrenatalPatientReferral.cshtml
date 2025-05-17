@@ -1,0 +1,83 @@
+﻿@model CodeMed.Models.PrenatalCounsellorReferral;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pregnancy Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #monitoring-section {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prenatal Mental Health Referral Form</h1>
+    <form id="referral-form">
+        <!-- Existing patient referral form fields -->
+        <label for="referrer_name">Referrer's Name:</label>
+        <input type="text" id="referrer_name" name="referrer_name" required>
+
+        <label for="patient_name">Patient's Name:</label>
+        <input type="text" id="patient_name" name="patient_name" required>
+
+        <label for="referral_date">Referral Date:</label>
+        <input type="date" id="referral_date" asp-for="ReferralDate" name="referral_date" required>
+
+        <label for="referring_hospital">Referring Hospital:</label>
+        <input type="text" id="referring_hospital" name="referring_hospital" required>
+
+        <label for="contact_info">Contact Information:</label>
+        <input type="tel" id="contact_info" name="contact_info" required>
+
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" rows="4" required></textarea>
+
+        <!-- Doctor's referral form fields -->
+        <h2>Doctor's Referral</h2>
+        <label for="doctor_name">Doctor's Name:</label>
+        <input type="text" id="doctor_name" name="doctor_name" required>
+
+        <label for="patient_condition">Patient's Condition:</label>
+        <textarea id="patient_condition" name="patient_condition" rows="4" required></textarea>
+
+        <label for="doctor_recommendations">Doctor's Recommendations:</label>
+        <textarea id="doctor_recommendations" name="doctor_recommendations" rows="4" required></textarea>
+
+        <button type="submit">Submit Referral</button>
+    </form>
+
+</body>
+</html>

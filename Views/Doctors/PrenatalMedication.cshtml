@@ -1,0 +1,134 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+            .radio-group input[type="radio"] {
+                margin-top: 0;
+            }
+
+        form button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            form button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+    <title>Prenatal Care Medication Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Prenatal Care Medication Form</h1>
+        <form id="medication-form">
+            <label for="patient-name">Patient Name:</label>
+            <input type="text" id="patient-name" name="patient-name" required>
+
+            <label for="medication-name">Medication Name:</label>
+            <input type="text" id="medication-name" name="medication-name" required>
+
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="start-date" required>
+
+            <label for="possible-end-date">Possible End Date:</label>
+            <input type="date" id="possible-end-date" name="possible-end-date" required>
+
+            <label for="dosage">Dosage:</label>
+            <input type="text" id="dosage" name="dosage" required>
+
+            <label for="dose-period">Dose Period:</label>
+            <div class="radio-group">
+                <label for="daily">
+                    <input type="radio" id="daily" name="dose-period" value="daily" required>
+                    Daily
+                </label>
+                <label for="weekly">
+                    <input type="radio" id="weekly" name="dose-period" value="weekly" required>
+                    Weekly
+                </label>
+                <label for="monthly">
+                    <input type="radio" id="monthly" name="dose-period" value="monthly" required>
+                    Monthly
+                </label>
+            </div>
+
+            <label for="doses-per-day">Doses Per Day:</label>
+            <input type="number" id="doses-per-day" name="doses-per-day" required>
+
+            <label for="possible-dose-count-total">Possible Dose Count In Total:</label>
+            <input type="number" id="possible-dose-count-total" name="possible-dose-count-total" required>
+
+            <label for="how-to-take">How to Take:</label>
+            <textarea id="how-to-take" name="how-to-take" rows="4" required></textarea>
+
+            <label for="side-effects">Most Common Side-Effects:</label>
+            <textarea id="side-effects" name="side-effects" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("medication-form");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(form);
+
+                // Convert FormData to JSON object
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+
+                // Display collected data (you can customize this part)
+                console.log(jsonData);
+                alert("Form submitted successfully!");
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+﻿@using System.Data
+
+@{
+    ViewData["Title"] = "View Certificates";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .certificate {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-width: 100px;
+            max-height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .certificate-info {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .certificate-id {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .download-link {
+            display: block;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <img class="logo" src="~/images/CodeMed_Logo.jpg" style="width:100px; height:100px;" alt="Company Logo" />
+        <h1>CodeMed Vaccines Certificate</h1>
+
+        @if (Model != null && Model.Rows.Count > 0)
+        {
+            foreach (DataRow row in Model.Rows)
+            {
+                <div class="certificate-info">
+                    <p><strong>Issuing Doctor:</strong> @row["IssuingDoctor"]</p>
+                    <p><strong>Patient Name:</strong> @row["PatientName"]</p>
+                    <p><strong>Age:</strong> @row["Age"]</p>
+                    <p><strong>Vaccine:</strong> @row["Vaccine"]</p>
+                    <p><strong>Vaccination Date:</strong> @row["VaccinationDate"]</p>
+                    <p><strong>Dose:</strong> @row["Dose"]</p>
+                    <p><strong>Admin Site:</strong> @row["AdminSite"]</p>
+                    <p><strong>Side Effects:</strong> @row["SideEffects"]</p>
+                    <p><strong>Certificate ID:</strong> @row["CertificateId"]</p>
+                </div>
+
+            }
+        }
+        else
+        {
+            <p>No certificates found for the specified patient.</p>
+        }
+    </div>
+</body>
+</html>

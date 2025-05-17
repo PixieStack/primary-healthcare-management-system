@@ -1,0 +1,82 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Account</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles for the account management page */
+        .header {
+            background-color: #36517E;
+            color: white;
+            padding: 10px;
+        }
+
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .nav-section {
+            border-right: 1px solid #ccc;
+        }
+
+        h1, h2 {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-4">
+        <div class="header">
+            <h1>Manage your account</h1>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2>Change your account settings</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 nav-section">
+                        <partial name="_ManageNav" />
+                    </div>
+                    <div class="col-md-9">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        @RenderSection("Scripts", required: false)
+    }
+
+    <!-- Add the Bootstrap JS scripts at the end of the body -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

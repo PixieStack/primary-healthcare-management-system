@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Nurse Dashboard<span class="code">Med</span></title>
+    <style>
+        body {
+            color: #36517E;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            margin-bottom: 20px;
+            color: #36517E;
+        }
+
+        #subsystemContainer {
+            max-width: 80%;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .subsystemBox {
+            /* Updated styles */
+            border: 2px solid #36517E;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            flex-basis: calc(33.33% - 20px);
+            text-align: center;
+            background-color: white;
+            color: #36517E; /* Set the text color to blue */
+            transition: background-color 0.3s ease;
+        }
+
+            .subsystemBox:hover {
+                background-color: #36517E; /* Change background color to blue when hovering */
+                color: white; /* Change text color to white when hovering */
+            }
+
+            .subsystemBox a {
+                display: block;
+                color: #36517E;
+                text-decoration: none;
+                margin-bottom: 10px;
+                padding: 10px;
+                border: 1px solid #36517E;
+                border-radius: 5px;
+                transition: color 0.3s ease;
+            }
+
+                .subsystemBox a:hover {
+                    background-color: #FF69B4; /* Change background color to pink when hovering over links */
+                }
+    </style>
+</head>
+<body>
+    <h1>Welcome Back Counsellor!</h1>
+
+    <div id="subsystemContainer">
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-2">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/6381743.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-2">
+                </span>
+                Consent Form
+            </h2>
+            <a asp-controller="Counselling" asp-action="CounsellingConsent">Consent Form</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-6">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/3707626.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-6">
+                </span>
+                Mental Assessement
+            </h2>
+            <a asp-controller="Counselling" asp-action="CounsellingMentalAssessement">Mental Assessement</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-1">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/10215675.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-1">
+                </span>
+                Schedule Visits
+            </h2>
+            <a asp-controller="Counselling" asp-action="PrenatalScheduling">Schedule Visits</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-10">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/10262860.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-10">
+                </span>
+                Monitor Patient Progress
+            </h2>
+            <a asp-controller="Counselling" asp-action="CounsellingProgressTracking">Monitor Patient Progress</a>
+        </div>
+
+        
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-3">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/6742449.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-3">
+                </span>
+                View Appointments
+            </h2>
+            <a asp-controller="Counselling" asp-action="CounsellingViewAppointments">View Appointments</a>
+        </div>
+
+        <div class="subsystemBox">
+            <h2>
+                <span class="u-border-2 u-border-white u-file-icon u-icon u-icon-circle u-palette-1-base u-icon-8">
+                    <img src="https://assets.nicepagecdn.com/de382bdf/4948094/images/10215675.png" alt="">
+                </span><span class="u-file-icon u-icon u-icon-8">
+                </span>
+                Couselling Resources
+            </h2>
+            <a asp-controller="Counselling" asp-action="CousellingResources">Couselling Resources</a>
+        </div>
+
+    </div>
+</body>
+</html>

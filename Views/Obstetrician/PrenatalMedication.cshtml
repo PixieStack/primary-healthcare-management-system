@@ -1,0 +1,291 @@
+﻿@model CodeMed.Models.Prenatal.Doctor.Prenatal_Obstetrician_Medication;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication</title>
+    <link rel="stylesheet" href="/css/boostrap.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/CodeMed.styles.css?v=6NpGbMrsF9p1j3fx9VpwMIJhHcOU_HqRiXy2MVUSMqI" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Prenatal Care Medication Form</h1>
+    </div>
+    <div class="container">
+        <form method="post">
+            <label asp-for="Obstetrician">Obstetrician:</label>
+            <input asp-for="Obstetrician" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")">
+
+            <div class="appointment-form">
+                @if (ViewBag.Patients != null)
+                {
+                    <label for="selected_patient">Select Patient:</label>
+                    <div class="search-and-select">
+                        <select id="selected_patient" asp-for="Patient" required>
+                            <option value="">Select Patient</option>
+                            @foreach (var patient in ViewBag.Patients)
+                            {
+                                <option value="@patient.Id">@patient.FullName</option>
+                            }
+                        </select>
+                        <input type="text" id="search_patient" placeholder="Search patient...">
+                    </div>
+
+                    <div class="user-info">
+                        <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                    </div>
+                }
+            </div>
+
+
+            <label asp-for="Medication_Name">Medication Name:</label>
+            <select asp-for="Medication_Name" id="medication-name" class="form-control" aria-required="true" required>
+                <option value="">Select Option</option>
+                <option value="Folic Acid">Folic Acid</option>
+                <option value="Iron Supplements">Iron Supplements</option>
+                <option value="Prenatal Vitamins">Prenatal Vitamins</option>
+                <option value="Acetaminophen (Tylenol)">Acetaminophen (Tylenol)</option>
+                <option value="Calcium Supplements">Calcium Supplements</option>
+                <option value="Antibiotics">Antibiotics</option>
+                <option value="Antinausea Medications">Antinausea Medications</option>
+                <option value="Insulin">Insulin</option>
+                <option value="Thyroid Medications">Thyroid Medications</option>
+                <option value="Asthma Medications">Asthma Medications</option>
+                <option value="Anticoagulants">Anticoagulants</option>
+                <option value="Antidepressants">Antidepressants</option>
+                <option value="Antihypertensive Medications">Antihypertensive Medications</option>
+                <option value="Antiviral Medications">Antiviral Medications</option>
+                <option value="Epilepsy Medications">Epilepsy Medications</option>
+                <option value="Steroids">Steroids</option>
+                <option value="Topical Skin Treatments">Topical Skin Treatments</option>
+            </select>
+
+
+            <label asp-for="Start_Date">Start Date:</label>
+            <input asp-for="Start_Date" type="date" id="start-date" required>
+
+            <label asp-for="End_Date">Possible End Date:</label>
+            <input asp-for="End_Date" type="date" id="possible-end-date" required>
+
+            <label asp-for="Dosage">Dosage:</label>
+            <input asp-for="Dosage" type="number" id="possible-dose-count-total" required>
+
+            <label asp-for="Dose_Period">Dose Period:</label>
+            <div class="radio-group">
+                <label for="daily">
+                    <input asp-for="Dose_Period" type="radio" id="daily" value="daily" required>
+                    Daily
+                </label>
+                <label for="weekly">
+                    <input asp-for="Dose_Period" type="radio" id="weekly" value="weekly" required>
+                    Weekly
+                </label>
+                <label for="monthly">
+                    <input asp-for="Dose_Period" type="radio" id="monthly" value="monthly" required>
+                    Monthly
+                </label>
+            </div>
+
+
+            <label asp-for="Trimester">Trimester:</label>
+            <select asp-for="Trimester" id="trimester" name="trimester" class="form-control" aria-required="true" required>
+                <option value="Select">Select Option</option>
+                <option value="First Trimester">First Trimester</option>
+                <option value="Second Trimester">Second Trimester</option>
+                <option value="Third Trimester">Third Trimester</option>
+            </select>
+
+            <label asp-for="Directions">How to Take:</label>
+            <textarea asp-for="Directions" id="how-to-take" rows="3" required></textarea>
+
+            <label asp-for="Side_Effects">Most Common Side-Effects:</label>
+            <textarea asp-for="Side_Effects" id="side-effects" rows="3" required></textarea>
+
+            <div class="centered-button-container">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        function showSection(sectionId) {
+            const sections = ['section1', 'section2'];
+            for (const section of sections) {
+                document.getElementById(section).style.display = 'none';
+            }
+            document.getElementById(sectionId).style.display = 'block';
+        }
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+    </script>
+
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="3aa194dc80c2412e81d75fa58896a32f" data-requestMappingFromServer="false" data-connectUrl="http://localhost:50570/d944ef8df85f4fe386ed323d0d014d88/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>

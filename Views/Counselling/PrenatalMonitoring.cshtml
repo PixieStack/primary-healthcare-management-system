@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Counselor Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #monitoring-section {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counselor Monitoring</h1>
+    <div id="monitoring-section">
+        <h2>Emotional State</h2>
+        <div>
+            <label for="emotional-state">Emotional State:</label>
+            <textarea id="emotional-state" rows="5"></textarea>
+        </div>
+
+        <h2>Progress toward Goals</h2>
+        <div>
+            <label for="progress-goals">Progress toward Goals:</label>
+            <textarea id="progress-goals" rows="5"></textarea>
+        </div>
+
+        <h2>Engagement and Participation</h2>
+        <div>
+            <label for="engagement-participation">Engagement and Participation:</label>
+            <textarea id="engagement-participation" rows="5"></textarea>
+        </div>
+
+        <h2>Attendance and Punctuality</h2>
+        <div>
+            <label for="attendance">Attendance:</label>
+            <input type="text" id="attendance">
+        </div>
+        <div>
+            <label for="punctuality">Punctuality:</label>
+            <input type="text" id="punctuality">
+        </div>
+
+        <h2>Physical Symptoms</h2>
+        <div>
+            <label for="physical-symptoms">Physical Symptoms:</label>
+            <textarea id="physical-symptoms" rows="5"></textarea>
+        </div>
+
+        <h2>Verbal and Nonverbal Communication</h2>
+        <div>
+            <label for="communication">Verbal and Nonverbal Communication:</label>
+            <textarea id="communication" rows="5"></textarea>
+        </div>
+
+        <h2>Risk Assessment</h2>
+        <div>
+            <label for="risk-assessment">Risk Assessment:</label>
+            <textarea id="risk-assessment" rows="5"></textarea>
+        </div>
+
+        <h2>Treatment Adherence</h2>
+        <div>
+            <label for="treatment-adherence">Treatment Adherence:</label>
+            <textarea id="treatment-adherence" rows="5"></textarea>
+        </div>
+
+        <h2>Therapeutic Relationship</h2>
+        <div>
+            <label for="therapeutic-relationship">Therapeutic Relationship:</label>
+            <textarea id="therapeutic-relationship" rows="5"></textarea>
+        </div>
+
+        <h2>Feedback and Satisfaction</h2>
+        <div>
+            <label for="feedback-satisfaction">Feedback and Satisfaction:</label>
+            <textarea id="feedback-satisfaction" rows="5"></textarea>
+        </div>
+
+        <button onclick="saveMonitoringData()">Save</button>
+    </div>
+    <script>
+        function saveMonitoringData() {
+            const emotionalState = document.getElementById("emotional-state").value;
+            const progressGoals = document.getElementById("progress-goals").value;
+            const engagementParticipation = document.getElementById("engagement-participation").value;
+            const attendance = document.getElementById("attendance").value;
+            const punctuality = document.getElementById("punctuality").value;
+            const physicalSymptoms = document.getElementById("physical-symptoms").value;
+            const communication = document.getElementById("communication").value;
+            const riskAssessment = document.getElementById("risk-assessment").value;
+            const treatmentAdherence = document.getElementById("treatment-adherence").value;
+            const therapeuticRelationship = document.getElementById("therapeutic-relationship").value;
+            const feedbackSatisfaction = document.getElementById("feedback-satisfaction").value;
+
+            // Perform data saving or processing here
+            console.log("Data saved successfully!");
+        }
+    </script>
+</body>
+</html>

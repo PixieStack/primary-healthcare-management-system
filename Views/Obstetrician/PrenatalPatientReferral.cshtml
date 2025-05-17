@@ -1,0 +1,511 @@
+﻿@model CodeMed.Models.Prenatal.Doctor.Prenatal_Obstetrician_Referral;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral</title>
+    <link rel="stylesheet" href="/css/boostrap.css" />
+    <link rel="stylesheet" href="/css/site.css?v=pAGv4ietcJNk_EwsQZ5BN9-K4MuNYS2a9wl4Jw-q9D0" />
+    <link rel="stylesheet" href="/CodeMed.styles.css?v=6NpGbMrsF9p1j3fx9VpwMIJhHcOU_HqRiXy2MVUSMqI" />
+    <link href="assets/img/favicon.jpg" rel="icon" />
+    <link href="assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+    <style>
+        .search-and-select {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style the search input to make it inline with the dropdown */
+        #search_patient {
+            margin-left: 10px; /* Add space between the select and input */
+        }
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 400px; /* Set the width to 200px */
+        }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .centered-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button.custom-button {
+            width: 200px; /* Set the width to 200px */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .button-container button {
+                flex: 1;
+                margin-right: 10px;
+            }
+
+        .center {
+            text-align: center;
+            color: #36517E;
+        }
+
+        .blank-line {
+            margin-bottom: 80px; /* Adjust the value as needed */
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            border: 2px solid #36517E; /* Add a blue border around the form */
+            padding: 20px; /* Add some padding within the border */
+        }
+
+
+            form label {
+                display: block;
+                margin-bottom: 10px;
+                color: #36517E;
+                font-weight: bold;
+            }
+
+            form input[type="text"],
+            form input[type="tel"],
+            form input[type="email"],
+            form input[type="date"],
+            form input[type="time"],
+            form textarea,
+            form select,
+            form input[type="submit"] {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 15px;
+                font-size: 14px;
+            }
+
+            form input[type="submit"] {
+                background-color: #36517E;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 3px;
+            }
+
+                form input[type="submit"]:hover {
+                    background-color: #243d5e;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="blank-line"></div>
+    <div class="center">
+        <h1>Prenatal Health Referral Form</h1>
+    </div>
+    <div class="container">
+
+        <form method="post">
+
+            <!-- Doctor's referral form fields -->
+            <h3>Obstetrician's Referral</h3>
+            <label asp-for="Obstetrician">Obstetrician:</label>
+            <input asp-for="Obstetrician" type="text" id="firstName" class="form-control" value="@($"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}")">
+
+            <div class="appointment-form">
+                @if (ViewBag.Patients != null)
+                {
+                    <label for="selected_patient">Select Patient:</label>
+                    <div class="search-and-select">
+                        <select id="selected_patient" asp-for="Patient" required>
+                            <option value="">Select Patient</option>
+                            @foreach (var patient in ViewBag.Patients)
+                            {
+                                <option value="@patient.Id">@patient.FullName</option>
+                            }
+                        </select>
+                        <input type="text" id="search_patient" placeholder="Search patient...">
+                    </div>
+
+                    <div class="user-info">
+                        <label for="full_name">Patient Name:&nbsp;&nbsp;<span id="selected_full_name"></span></label>
+                    </div>
+                }
+            </div>
+
+            <h3>Referring Hospital:</h3>
+
+            <label asp-for="Clinic_Name">Clinic Referred From:</label>
+            <input asp-for="Clinic_Name" type="text" id="referrer_name" value="eNompilo" required>
+
+            <label asp-for="Symptoms">Symptoms:</label>
+            <select asp-for="Symptoms" id="Symptoms" class="form-control" aria-required="true" required>
+                <option value="Severe chest pain or tightness">Severe chest pain or tightness</option>
+                <option value="Difficulty breathing or shortness of breath">Difficulty breathing or shortness of breath</option>
+                <option value="Uncontrolled bleeding">Uncontrolled bleeding</option>
+                <option value="Seizures or convulsions">Seizures or convulsions</option>
+                <option value="Loss of consciousness or fainting">Loss of consciousness or fainting</option>
+                <option value="Severe allergic reaction (anaphylaxis)">Severe allergic reaction (anaphylaxis)</option>
+                <option value="Severe burns or deep cuts">Severe burns or deep cuts</option>
+                <option value="Suspected broken bones or fractures">Suspected broken bones or fractures</option>
+                <option value="Head injuries with loss of consciousness">Head injuries with loss of consciousness</option>
+                <option value="Severe abdominal pain">Severe abdominal pain</option>
+                <option value="Severe headaches or migraines">Severe headaches or migraines</option>
+                <option value="Severe dehydration">Severe dehydration</option>
+                <option value="High fever (especially in infants)">High fever (especially in infants)</option>
+                <option value="Stroke symptoms (sudden numbness, confusion, slurred speech)">Stroke symptoms (sudden numbness, confusion, slurred speech)</option>
+                <option value="Poisoning or exposure to toxic substances">Poisoning or exposure to toxic substances</option>
+                <option value="Suspected overdose on drugs or medication">Suspected overdose on drugs or medication</option>
+                <option value="Severe vomiting or diarrhea">Severe vomiting or diarrhea</option>
+                <option value="Severe allergic reactions to insect bites or stings">Severe allergic reactions to insect bites or stings</option>
+                <option value="Prolonged or severe seizures">Prolonged or severe seizures</option>
+                <option value="Severe injuries from accidents or falls">Severe injuries from accidents or falls</option>
+                <option value="Sudden and severe joint pain or swelling">Sudden and severe joint pain or swelling</option>
+                <option value="Persistent high blood pressure">Persistent high blood pressure</option>
+                <option value="Severe complications during childbirth">Severe complications during childbirth</option>
+                <option value="Severe abdominal trauma">Severe abdominal trauma</option>
+                <option value="Severe infections or sepsis">Severe infections or sepsis</option>
+                <option value="Intractable pain or discomfort">Intractable pain or discomfort</option>
+                <option value="Severe allergic reactions to food">Severe allergic reactions to food</option>
+                <option value="Complications of chronic medical conditions">Complications of chronic medical conditions</option>
+                <option value="Severe back or neck injuries">Severe back or neck injuries</option>
+                <option value="Severe psychiatric distress or suicidal thoughts">Severe psychiatric distress or suicidal thoughts</option>
+            </select>
+
+
+            <label asp-for="Province">Province</label>
+            <select asp-for="Province" id="Province" class="form-control" aria-required="true" required>
+                <option value="">Select a province</option>
+                <option value="Eastern Cape">Eastern Cape</option>
+                <option value="Free State">Free State</option>
+                <option value="Gauteng">Gauteng</option>
+                <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+                <option value="Limpopo">Limpopo</option>
+                <option value="Mpumalanga">Mpumalanga</option>
+                <option value="North West">North West</option>
+                <option value="Northern Cape">Northern Cape</option>
+                <option value="Western Cape">Western Cape</option>
+            </select>
+
+            <!-- Container for displaying hospitals -->
+            <div id="hospitalContainer">
+                <label asp-for="Hospital">Hospital</label>
+                <select asp-for="Hospital" id="Hospital" class="form-control" aria-required="true" required>
+                    <option value="">Select a hospital</option>
+                </select>
+            </div>
+
+            <label asp-for="Referral_Date">Referral Date:</label>
+            <input asp-for="Referral_Date" type="date" id="start-date" required>
+
+            <label asp-for="Email">Contact Information:</label>
+            <input asp-for="Email" type="tel" id="contact_info"  required>
+
+            <label asp-for="Comments">Comments:</label>
+            <textarea asp-for="Comments" id="notes" rows="3" required></textarea>
+
+            <div class="button-container">
+                <button type="submit" style="background-color: #0074d9;">Email Referral</button>
+                <button type="submit" style="background-color: green">Save Referral</button>
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+        var dropdown = document.getElementById("selected_patient");
+        var fullNameSpan = document.getElementById("selected_full_name");
+        var searchInput = document.getElementById("search_patient");
+
+        dropdown.addEventListener("change", function () {
+            var selectedOption = dropdown.options[dropdown.selectedIndex];
+            var selectedFullName = selectedOption.text;
+            fullNameSpan.textContent = selectedFullName;
+        });
+
+        searchInput.addEventListener("input", function () {
+            var searchTerm = searchInput.value.toLowerCase();
+            for (var i = 0; i < dropdown.options.length; i++) {
+                var option = dropdown.options[i];
+                var fullName = option.text.toLowerCase();
+                if (fullName.includes(searchTerm)) {
+                    option.style.display = "block";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+        const hospitals = {
+            'Eastern Cape': [
+                'All Saints Hospital',
+                'Andries Vosloo Hospital',
+                'Bhisho Hospital',
+                'Bisho Hospital',
+                'Cecilia Makiwane Hospital',
+                'Dihlabeng Hospital',
+                'Dihlabeng Psychiatric Hospital',
+                'Dora Nginza Hospital',
+                'Dr. Malizo Mpehle Hospital',
+                'Fort Grey TB Hospital',
+                'Frere Hospital',
+                'Frontier Hospital',
+                'Komani Psychiatric Hospital',
+                'Livingstone Hospital',
+                'Mthatha General Hospital',
+                'Nessie Knight Hospital',
+                'Nelson Mandela Academic Hospital',
+                'Port Elizabeth Provincial Hospital',
+                'Queenstown Provincial Hospital',
+                'Zithulele Hospital'
+            ],
+            'Free State': [
+                'Boitumelo Regional Hospital',
+                'Bongani Regional Hospital',
+                'Dihlabeng Hospital',
+                'Dihlabeng Psychiatric Hospital',
+                'Edendale Hospital',
+                'Elizabeth Ross District Hospital',
+                'Ficksburg Hospital',
+                'Manapo Hospital',
+                'Mofumahadi Manapo Mopeli Regional Hospital',
+                'National Hospital',
+                'Pelonomi Hospital',
+                'Phekolong Hospital',
+                'Parys District Hospital',
+                'Thebe District Hospital',
+                'Thusanong District Hospital',
+                'Universitas Academic Hospital',
+                'Zastron Hospital'
+            ],
+            'Gauteng': [
+                'Bertha Gxowa Hospital',
+                'Charlotte Maxeke Johannesburg Academic Hospital',
+                'Chris Hani Baragwanath Academic Hospital',
+                'Dr. George Mukhari Academic Hospital',
+                'Edenvale Hospital',
+                'Far East Rand Hospital',
+                'Helen Joseph Hospital',
+                'Kalafong Hospital',
+                'Leratong Hospital',
+                'Mamelodi Hospital',
+                'Natalspruit Hospital',
+                'Odi Hospital',
+                'Rahima Moosa Mother and Child Hospital',
+                'South Rand Hospital',
+                'Steve Biko Academic Hospital',
+                'Tambo Memorial Hospital',
+                'Tembisa Hospital',
+                'Tshwane District Hospital',
+                'Weskoppies Hospital',
+                'Sterkfontein Hospital'
+            ],
+            'KwaZulu-Natal': [
+                'Addington Hospital',
+                'Emmaus Hospital',
+                'GJ Crookes Hospital',
+                'Grey\'s Hospital',
+                'Inkosi Albert Luthuli Central Hospital',
+                'King Edward VIII Hospital',
+                'Ladysmith Provincial Hospital',
+                'Madadeni Hospital',
+                'Mahatma Gandhi Memorial Hospital',
+                'Newcastle Provincial Hospital',
+                'Ngwelezana Hospital',
+                'Port Shepstone Regional Hospital',
+                'RK Khan Hospital',
+                'St. Aidan\'s Hospital',
+                'Stanger Hospital',
+                'Umzimkhulu Hospital',
+                'Vryburg Hospital',
+                'Warrenton Hospital',
+                'Wentworth Hospital',
+                'Prince Mshiyeni Memorial Hospital'
+            ],
+            'Limpopo': [
+                'Donald Fraser Hospital',
+                'Dilokong Hospital',
+                'Elim Hospital',
+                'George Masebe Hospital',
+                'Helen Franz Hospital',
+                'Jane Furse Hospital',
+                'Letaba Hospital',
+                'Louis Trichardt Hospital',
+                'Malamulele Hospital',
+                'Mankweng Hospital',
+                'Matlala Hospital',
+                'Mokopane Hospital',
+                'Pietersburg Hospital',
+                'Polokwane Provincial Hospital',
+                'Seshego Hospital',
+                'St. Rita\'s Hospital',
+                'Tshilidzini Hospital',
+                'Voortrekker Hospital',
+                'WF Knobel Hospital'
+            ],
+            'Mpumalanga': [
+                'Amajuba Memorial Hospital',
+                'Barberton Hospital',
+                'Bethal Hospital',
+                'Carolina Hospital',
+                'Evander Hospital',
+                'KwaMhlanga Hospital',
+                'Lydenburg Hospital',
+                'Mapulaneng Hospital',
+                'Matikwana Hospital',
+                'Middelburg Hospital',
+                'Rob Ferreira Hospital',
+                'Shongwe Hospital',
+                'Standerton Hospital',
+                'Themba Hospital',
+                'Tintswalo Hospital',
+                'Tonga Hospital',
+                'Witbank Hospital',
+                'KwaMhlanga Hospital',
+                'Mapulaneng Hospital',
+                'KwaMhlanga Hospital'
+            ],
+            'North West': [
+                'Brits Hospital',
+                'Itsoseng Community Health Centre',
+                'Job Shimankana Tabane Hospital',
+                'Klerksdorp/Tshepong Hospital Complex',
+                'Koster Hospital',
+                'Lehurutshe Hospital',
+                'Mahikeng Provincial Hospital',
+                'Mafikeng Provincial Hospital',
+                'Moses Kotane Hospital',
+                'Potchefstroom Hospital',
+                'Rustenburg Provincial Hospital',
+                'Setsheng Hospital',
+                'Taung District Hospital',
+                'Tshepong Hospital',
+                'Tshepong Nka Hospital',
+                'Tshepong Stilfontein Hospital',
+                'Vryburg Hospital',
+                'Witrand Hospital'
+            ],
+            'Northern Cape': [
+                'Carnarvon Hospital',
+                'Colesberg Hospital',
+                'De Aar Hospital',
+                'Douglas Hospital',
+                'Galeshewe Day Hospital',
+                'Groblershoop Hospital',
+                'Hartswater Hospital',
+                'Kathu Hospital',
+                'Khai-Ma Hospital',
+                'Kimberley Hospital',
+                'Kuruman Hospital',
+                'Postmasburg Hospital',
+                'Robert Sobukwe Hospital',
+                'Springbok Hospital',
+                'Upington Hospital',
+                'Vanwyksvlei Hospital',
+                'Victoria West Hospital',
+                'Warrenton Hospital'
+            ],
+            'Western Cape': [
+                'Beaufort West Hospital',
+                'False Bay Hospital',
+                'George Provincial Hospital',
+                'Groote Schuur Hospital',
+                'Heideveld Emergency Centre',
+                'Helderberg Hospital',
+                'Hermanus Hospital',
+                'Khayelitsha District Hospital',
+                'Knysna Hospital',
+                'Karl Bremer Hospital',
+                'Mitchell\'s Plain Hospital',
+                'New Somerset Hospital',
+                'Oudtshoorn Hospital',
+                'Red Cross War Memorial Children\'s Hospital',
+                'Somerset Hospital',
+                'Tygerberg Hospital',
+                'Vredenburg Hospital',
+                'Worcester Hospital',
+                'Victoria Hospital'
+            ],
+        };
+
+        // Function to populate the hospital dropdown based on the selected province
+        function populateHospitals() {
+            const province = document.getElementById('Province').value;
+            const hospitalDropdown = document.getElementById('Hospital');
+
+            // Clear previous hospital options
+            hospitalDropdown.innerHTML = '<option value="">Select a hospital</option>';
+
+            // Display hospitals for the selected province
+            if (province && hospitals.hasOwnProperty(province)) {
+                const hospitalList = hospitals[province].sort(); // Sort the hospitals alphabetically
+
+                hospitalList.forEach((hospital) => {
+                    const option = document.createElement('option');
+                    option.value = hospital;
+                    option.textContent = hospital;
+                    hospitalDropdown.appendChild(option);
+                });
+            }
+        }
+
+        // Add an event listener to the province dropdown to trigger hospital population
+        document.getElementById('Province').addEventListener('change', populateHospitals);
+    </script>
+    </script>
+
+    <!-- Visual Studio Browser Link -->
+    <script type="text/javascript" src="/_vs/browserLink" async="async" id="__browserLink_initializationData" data-requestId="3aa194dc80c2412e81d75fa58896a32f" data-requestMappingFromServer="false" data-connectUrl="http://localhost:50570/d944ef8df85f4fe386ed323d0d014d88/browserLink"></script>
+    <!-- End Browser Link -->
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>

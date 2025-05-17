@@ -1,0 +1,607 @@
+﻿@model CodeMed.Models.ContactUs
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>CodeMed PHC System</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/assets/img/favicon.jpg" rel="icon"/>
+    <link href="~/assets/img/apple-touch-icon.jpg" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Arsha
+    * Updated: Jul 27 2023 with Bootstrap v5.3.1
+    * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+
+    <meta name="theme-color" content="#add5f3">
+    <meta property="og:title" content="Page 9">
+    <meta property="og:type" content="website">
+    <style>
+        .bulleted-list {
+            list-style-type: none;
+            padding-left: 20px; /* Adjust this value for the desired indentation */
+        }
+
+            .bulleted-list p::before {
+                content: "•"; /* Bullet point symbol */
+                display: inline-block;
+                width: 1em;
+                margin-left: -1em;
+            }
+
+        .list-item {
+            counter-increment: list-counter;
+            margin-left: 20px; /* Adjust this value to control the space between the number and the text */
+        }
+
+            .list-item:before {
+                content: counter(list-counter) ". ";
+            }
+
+        .about-image {
+            display: flex;
+            justify-content: center; /* Center the image horizontally */
+            align-items: flex-start; /* Align the image at the top */
+            margin-bottom: 20px; /* Add some space between image and content */
+        }
+
+            .about-image img {
+                max-width: 100%;
+                height: auto;
+            }
+
+        .section-content h2 {
+            margin-top: 0; /* Remove default margin from the heading */
+        }
+
+        .message-box {
+            margin: 100px auto;
+            width: 800px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0px 0px 10px #888888;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        input[type=text], input[type=email], input[type=password] {
+            padding: 5px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+        }
+
+        input[type=radio] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px grey;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #3e8e41;
+            }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        .custom-button {
+            background-color: rgba(40, 58, 90, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .custom-button:hover {
+                background-color: rgba(40, 58, 90, 0.9);
+            }
+
+        .popup-message {
+            position: absolute;
+            padding: 20px;
+            color: white;
+            font-size: 16px;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 5px;
+            background-color: rgba(40, 58, 90, 0.9);
+            z-index: 9999;
+        }
+
+        .popup-close {
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+            color: white;
+            text-decoration: underline;
+        }
+
+        h4 {
+            color: darkblue;
+        }
+
+        .scrollto {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+  
+
+        <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>"Health Information and Medical Conditions: Your Questions Answered"</p>
+            </div>
+
+            <div class="faq-list">
+                <ul>
+                    <li data-aos="fade-up" data-aos-delay="100">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-1">Diabetes<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                            <p>
+                                Diabetes is a chronic condition that affects how your body processes glucose (sugar). There are two main types: Type 1 and Type 2. Type 1 is an autoimmune disease, while Type 2 is often related to lifestyle factors. Both types result in elevated blood sugar levels that, if not managed, can lead to serious health complications.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="200">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2">Heart Disease<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Heart disease, also known as cardiovascular disease, includes conditions that affect the heart and blood vessels. You can reduce your risk by maintaining a healthy diet, exercising regularly, not smoking, and managing conditions like high blood pressure and high cholesterol.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="300">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3">Arthritis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Arthritis is a group of conditions characterized by joint inflammation. While there is no cure, treatments such as medication, physical therapy, and lifestyle modifications can help manage symptoms and improve quality of life.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="400">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4">Asthma<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Asthma attacks can be triggered by allergens like pollen or dust, respiratory infections, exercise, cold air, or exposure to irritants like smoke. Identifying and avoiding triggers is essential in asthma management.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="500">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5">Alzheimer's Disease<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                While there is no cure, research suggests that a healthy lifestyle with regular exercise, a balanced diet, and mental stimulation can help lower the risk or slow the progression of Alzheimer's disease.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="600">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-6">Chronic Kidney Disease<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Common causes of chronic kidney disease include diabetes, high blood pressure, and long-term use of certain medications. Early detection and management are crucial in slowing its progression.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="700">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-7">Crohn's Disease<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                There isn't a one-size-fits-all diet for Crohn's, but some individuals find relief by avoiding trigger foods and following a low-residue or low-FODMAP diet. Consulting a dietitian can help tailor a diet plan to specific needs.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="800">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-8">COPD<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-8" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                While COPD is not reversible, various treatments, including medication, oxygen therapy, and pulmonary rehabilitation, can help manage symptoms and improve quality of life.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="900">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-9">Multiple Sclerosis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-9" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                MS has a genetic component, but it's not directly inherited. A family history may slightly increase the risk, but other factors, like environmental and immune system factors, also play a role in its development.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1000">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-10">Rheumatoid Arthritis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-10" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Yes, rheumatoid arthritis can impact other organs, such as the heart, lungs, and eyes. It's important to work with a healthcare team to manage the disease comprehensively.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1100">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-11">Osteoporosis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-11" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                While osteoporosis can't always be completely prevented, lifestyle changes such as regular weight-bearing exercise, a diet rich in calcium and vitamin D, and not smoking can help reduce the risk of developing the condition.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1200">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-12">Lupus<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-12" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                The exact cause of lupus is unknown, and there is no cure. Treatment focuses on managing symptoms and preventing flares using medication and lifestyle changes.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1300">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-13">Parkinson's Disease<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-13" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                While there is a genetic component to Parkinson's, it's not typically directly inherited. The majority of cases are sporadic, with a combination of genetic and environmental factors contributing to the disease.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1400">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-14">Psoriasis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-14" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Psoriasis is not contagious; it's an autoimmune skin condition. It can be triggered by various factors, including genetics and environmental influences.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1500">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-15">Hypertension (High Blood Pressure)<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-15" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Lifestyle changes such as a healthy diet, regular exercise, reducing salt intake, and managing stress can help lower and control high blood pressure. In some cases, medication may also be necessary.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1600">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-16">Cystic Fibrosis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-16" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Cystic fibrosis is managed with a combination of airway clearance techniques, medications, and nutritional support. Treatment plans are personalized based on the individual's needs.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1700">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-17">HIV/AIDS<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-17" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Currently, there is no cure for HIV, but antiretroviral therapy (ART) can effectively control the virus and allow people with HIV to live long and healthy lives.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1800">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-18">Migraine<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-18" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Migraine prevention may involve identifying and avoiding triggers, making lifestyle changes, and taking medication as prescribed. Not all migraines can be prevented, but their frequency and severity can often be reduced.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="1900">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-19">Endometriosis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-19" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Endometriosis can impact fertility, but not every individual with endometriosis experiences infertility. Treatments are available to help manage symptoms and improve fertility in some cases.
+                            </p>
+                        </div>
+                    </li>
+
+                    <li data-aos="fade-up" data-aos-delay="2000">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-20">Osteoarthritis<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                        <div id="faq-list-20" class="collapse" data-bs-parent=".faq-list">
+                            <p>
+                                Osteoarthritis is primarily a wear-and-tear condition that affects joint cartilage, while rheumatoid arthritis is an autoimmune disease that causes inflammation and joint damage. Their causes, treatments, and progression patterns are different.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Frequently Asked Questions Section -->
+
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = form.querySelector('#name').value.trim();
+            const surname = form.querySelector('#surname').value.trim();
+            const phone = form.querySelector('#phone').value.trim();
+            const email = form.querySelector('#email').value.trim();
+            const message = form.querySelector('#message').value.trim();
+
+            const mailtoLink = `mailto:CodeMed.group@outlook.com?subject=Contact Us Form Submission&body=Name: ${name} ${surname}%0D%0APhone: ${phone}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+
+            window.location.href = mailtoLink;
+        });
+
+        const chatLink = document.querySelector('.chat');
+        const chatbox = document.createElement('div');
+        const chatHeader = document.createElement('div');
+        const closeBtn = document.createElement('button');
+        const chatMessage = document.createElement('textarea');
+        const userInput = document.createElement('input');
+        const sendBtn = document.createElement('button');
+
+        chatbox.id = 'chatbox';
+        chatbox.style.display = 'none';
+        chatbox.style.position = 'fixed';
+        chatbox.style.bottom = '0';
+        chatbox.style.left = '0';
+        chatbox.style.right = '0';
+        chatbox.style.zIndex = '9999';
+
+        chatHeader.style.display = 'flex';
+        chatHeader.style.justifyContent = 'space-between';
+        chatHeader.style.alignItems = 'center';
+
+        closeBtn.id = 'close-btn';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.style.backgroundColor = 'transparent';
+        closeBtn.style.border = 'none';
+        closeBtn.style.fontSize = '24px';
+        closeBtn.style.cursor = 'pointer';
+        chatHeader.appendChild(closeBtn);
+
+        chatMessage.id = 'chat-message';
+        chatMessage.style.width = '550px';
+        chatMessage.style.height = '300px';
+        chatMessage.style.resize = 'none';
+        chatMessage.textContent = 'Hi there! I\'m the chatbot. How can I assist you today? Select an option by typing its number and pressing "Send": \n\n1. Option 1 - Registrations\n2. Option 2 - Prenatal Care\n3. Option 3 - Family Planning\n4. Option 4 - Counselling (Mental Health & Wellness)\n5. Option 5 - Chronic Medication\n6. Option 6 - Vaccinations\n\n Answer:';
+        chatbox.appendChild(chatHeader);
+        chatbox.appendChild(chatMessage);
+
+        userInput.type = 'text';
+        userInput.id = 'user-input';
+        userInput.placeholder = 'Enter option number';
+        chatbox.appendChild(userInput);
+
+        sendBtn.id = 'send-btn';
+        sendBtn.textContent = 'Send';
+        chatbox.appendChild(sendBtn);
+
+        chatLink.addEventListener('click', function () {
+            chatbox.style.display = 'block';
+        });
+
+        sendBtn.addEventListener('click', function () {
+            const selectedOption = parseInt(userInput.value);
+            switch (selectedOption) {
+                case 1:
+                    chatMessage.value += '\n\nRegistrations: Registrations involve signing up for various health programs or insurance policies. It is an important first step to accessing healthcare services and benefits.Registration forms may require personal information such as name, date of birth, and contact details.Some registrations may require proof of income or other documents.Once registered, individuals can access various health services and benefits.';
+                    break;
+                case 2:
+                    chatMessage.value += '\n\nPrenatal Care: Prenatal care is important to ensure a healthy pregnancy and a healthy baby. It involves regular check-ups with a healthcare provider, who will monitor the health of the mother and baby. Prenatal care may include ultrasounds, blood tests, and other screenings to detect any potential health issues. Healthcare providers may also offer advice on nutrition, exercise, and other aspects of prenatal health. Prenatal care is important for all pregnant women, even those who feel healthy.';
+                    break;
+                case 3:
+                    chatMessage.value += '\n\nFamily Planning: Family planning services help individuals and couples make informed decisions about their reproductive health. These services include contraception, fertility treatments, and education on reproductive health. Family planning can help prevent unintended pregnancies and ensure that individuals can have the number of children they want, when they want them. Family planning services are available to people of all genders and ages.';
+                    break;
+                case 4:
+                    chatMessage.value += '\n\nCounselling (Mental Health & Wellness): Counselling services provide support for individuals who are struggling with mental health or emotional issues. Counselling may involve talking with a trained professional who can help individuals manage their symptoms and develop coping strategies. Counselling can be individual or group-based, and may involve various therapeutic techniques. Mental health and wellness counselling can help improve an individuals quality of life and overall wellbeing.';
+                    break;
+                case 5:
+                    chatMessage.value += '\n\nChronic Medication: Chronic medication is medication that is taken on an ongoing basis to manage long-term health conditions. This may include medication for conditions such as diabetes, hypertension, or asthma. Chronic medication is important to manage symptoms and prevent complications. Healthcare providers may monitor the effectiveness of medication and adjust doses as needed. Patients may need to refill their medication regularly and follow certain instructions, such as taking medication at a certain time each day.';
+                    break;
+                case 6:
+                    chatMessage.value += '\n\nVaccinations: Vaccinations are an important form of preventive healthcare that protect individuals from various diseases. Vaccinations work by exposing individuals to a small amount of a disease-causing organism, which triggers the bodys immune system to produce antibodies.This helps the body fight off the disease if it is encountered again in the future.Vaccinations are typically given according to a recommended schedule, and may be required for certain activities such as travel or school enrollment.Vaccinations are safe and effective, and help protect individuals and communities from the spread of disease.';
+                    break;
+                case 7:
+                    chatMessage.value += '\n\nInterested in registering on our system to make your clinic visits more flexible? Click one of the links below:\n\n';
+                    var registrationLink = document.createElement('a');
+                    registrationLink.href = 'your_registration_url_here';
+                    registrationLink.target = '_blank';
+                    registrationLink.textContent = 'Registration';
+                    registrationLink.style.fontWeight = 'bold';
+                    registrationLink.style.fontSize = '20px';
+                    registrationLink.style.color = 'deeppink';
+                    chatMessage.appendChild(registrationLink);
+
+                    var aboutUsLink = document.createElement('a');
+                    aboutUsLink.href = 'your_about_us_url_here';
+                    aboutUsLink.target = '_blank';
+                    aboutUsLink.textContent = 'About Us';
+                    aboutUsLink.style.fontWeight = 'bold';
+                    aboutUsLink.style.fontSize = '20px';
+                    aboutUsLink.style.color = 'deeppink';
+                    chatMessage.appendChild(document.createElement('br'));
+                    chatMessage.appendChild(aboutUsLink);
+
+                    var loginLink = document.createElement('a');
+                    loginLink.href = 'your_login_url_here';
+                    loginLink.target = '_blank';
+                    loginLink.textContent = 'Login';
+                    loginLink.style.fontWeight = 'bold';
+                    loginLink.style.fontSize = '20px';
+                    loginLink.style.color = 'deeppink';
+                    chatMessage.appendChild(document.createElement('br'));
+                    chatMessage.appendChild(loginLink);
+
+                    break;
+
+                default:
+                    chatMessage.value += '\nInvalid option selected. Please select a valid option.';
+                    break;
+            }
+            userInput.value = '';
+        });
+
+        closeBtn.addEventListener('click', function () {
+            chatbox.style.display = 'none';
+        });
+
+        document.body.appendChild(chatbox);
+
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var popupLinks = document.querySelectorAll('.popup-link');
+            var activePopup = null;
+
+            popupLinks.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    if (activePopup) {
+                        document.body.removeChild(activePopup);
+                        activePopup = null;
+                    }
+
+                    var popup = document.createElement('div');
+                    popup.className = 'popup-message';
+
+                    var closeButton = document.createElement('span');
+                    closeButton.className = 'popup-close';
+                    closeButton.innerHTML = 'X';
+
+                    var messageContent = document.createElement('span');
+                    messageContent.innerHTML = this.getAttribute('data-message');
+
+                    popup.appendChild(closeButton);
+                    popup.appendChild(messageContent);
+
+                    var linkRect = this.getBoundingClientRect();
+
+                    popup.style.position = 'absolute';
+                    // Adjust the top and left positions
+                    popup.style.top = (linkRect.top + window.scrollY + linkRect.height) + 'px';
+                    popup.style.left = (linkRect.left + window.scrollX) + 'px';
+
+                    closeButton.style.position = 'absolute';
+                    closeButton.style.top = '5px';
+                    closeButton.style.right = '5px';
+
+                    popup.appendChild(closeButton);
+
+                    document.body.appendChild(popup);
+
+                    closeButton.addEventListener('click', function () {
+                        document.body.removeChild(popup);
+                        activePopup = null;
+                    });
+
+                    activePopup = popup;
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
